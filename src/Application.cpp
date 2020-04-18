@@ -1,7 +1,16 @@
 #include <iostream>
+#include "puly/lowlevel/Configuration.h"
+
+Puly::Configurations configurator;
 
 int main()
 {
- std::cout << "Hello, world!";
- return 0;
+	configurator.Init();
+	
+	std::cout << configurator.GetValue("platform");
+
+	configurator.Shutdown();
+
+	return 0;
+
 }
