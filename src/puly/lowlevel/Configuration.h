@@ -12,6 +12,8 @@ namespace Puly {
 		void Shutdown();
 
 		const char* GetValue(const char* keyName);
+		bool SetValue(const char* key, const char* value);
+		bool Delete(const char* key);
 
 		const char* GetFilePath() const { return filePath; }
 		void SetFilePath(const char* filePath);

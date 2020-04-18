@@ -28,6 +28,24 @@ const char* Puly::Configurations::GetValue(const char* keyName)
 	return configFile.GetValue("", keyName, NULL);
 }
 
+bool Puly::Configurations::SetValue(const char* key, const char* value)
+{
+	SI_Error rc = configFile.SetValue("", key, value);
+	
+	if (rc < 0) return false;
+
+	return true;
+}
+
+bool Puly::Configurations::Delete(const char* key)
+{
+	bool success = configFile.Delete("", key);
+
+	if (!success) return false;
+
+	return true;
+}
+
 void Puly::Configurations::SetFilePath(const char* filePath)
 {
 	this->filePath = filePath;
