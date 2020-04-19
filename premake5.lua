@@ -12,6 +12,10 @@ project "Puly"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
 
+   includedirs { "include" }
+   libdirs { "vendor" }
+   links { "opengl32", "glfw3" }
+
    files { "**.h", "**.cpp" }
 
    filter "configurations:Debug"
