@@ -45,11 +45,9 @@
     <ClInclude Include="src\puly\window\Window.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\Application.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\puly\SubSystems.cpp">
       <Filter>src\puly</Filter>
     </ClCompile>
@@ -59,5 +57,9 @@
     <ClCompile Include="src\puly\window\Window.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\Application.cpp" />
   </ItemGroup>
 </Project>
