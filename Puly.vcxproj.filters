@@ -46,6 +46,7 @@
       <Filter>src\puly\window</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\Application.h" />
+    <ClInclude Include="src\puly\lowlevel\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\puly\SubSystems.cpp">

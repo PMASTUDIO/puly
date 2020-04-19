@@ -16,5 +16,9 @@ namespace Puly {
 	private:
 		Window mWindow;
 		SubSystems mSubSystems;
+
+		float mLastFrameTime;
+
+		float GetDeltaTime(int targetFPS);
 	};
 }
