@@ -1,5 +1,6 @@
 #include "Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/sinks/basic_file_sink.h"
 
 
 namespace Puly {
@@ -34,4 +35,5 @@ void Puly::Log::Init(int level)
 
 	s_Logger = spdlog::stdout_color_mt("PULY");
 	s_Logger->set_level(currentLevel);
+
 }

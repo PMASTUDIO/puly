@@ -14,7 +14,7 @@ project "Puly"
 
    includedirs { "include" }
    libdirs { "vendor" }
-   links { "opengl32", "glfw3", "spdlogd" }
+   links { "opengl32", "glew32s", "glfw3", "spdlogd" }
 
    files { "**.h", "**.cpp" }
 
