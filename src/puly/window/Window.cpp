@@ -1,5 +1,7 @@
 #include "Window.h"
 
+#include <GL/glew.h>
+
 Window::Window() : m_Window(nullptr)
 {
 }

@@ -5,7 +5,12 @@ Puly::Application application;
 
 int main()
 {
-	application.Init();
+	bool success = application.Init();
+
+	if (!success) {
+		return 0;
+	}
+
 	application.Run();
 	application.Shutdown();
 

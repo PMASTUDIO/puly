@@ -2,8 +2,18 @@
 #include "GL/glew.h"
 
 #include "..//lowlevel/debugging/Log.h"
+#include <iostream>
 
-Puly::Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource)
+Puly::Shader::Shader()
+{
+}
+
+Puly::Shader::~Shader()
+{
+	glDeleteProgram(m_ShaderID);
+}
+
+void Puly::Shader::Compile(const std::string& vertexSource, const std::string& fragmentSource)
 {
 	GLuint sVertex, sFragment;
 
@@ -37,11 +47,7 @@ Puly::Shader::Shader(const std::string& vertexSource, const std::string& fragmen
 	// Delete the shaders as they're linked into our program now and no longer necessery
 	glDeleteShader(sVertex);
 	glDeleteShader(sFragment);
-}
 
-Puly::Shader::~Shader()
-{
-	glDeleteProgram(m_ShaderID);
 }
 
 void Puly::Shader::Bind()

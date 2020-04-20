@@ -19,8 +19,9 @@ namespace Puly {
 		Window mWindow;
 		SubSystems mSubSystems;
 
+		Shader m_Shader;
+
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
-		std::unique_ptr<Shader> m_Shader;
 
 		float mLastFrameTime;
 
