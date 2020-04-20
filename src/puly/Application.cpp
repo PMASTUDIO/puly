@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include "lowlevel/debugging/Log.h"
+
 #include <iostream>
 
 Puly::Application::Application() : mLastFrameTime(0.0f)
@@ -35,7 +37,6 @@ void Puly::Application::Run()
 
 	while (!mWindow.ShouldClose()) {
 		Timestep deltaTime = GetDeltaTime(targetFPS);
-
 		mWindow.Update();
 	}
 }

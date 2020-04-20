@@ -11,7 +11,7 @@ SubSystems::~SubSystems()
 bool SubSystems::Init()
 {
 	configurator.Init();
-	Puly::Log::Init();
+	Puly::Log::Init(atoi(configurator.GetValue("verbosityLog")));
 
 	return true;
 }
