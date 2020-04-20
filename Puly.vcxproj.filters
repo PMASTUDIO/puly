@@ -47,6 +47,8 @@
     </ClInclude>
     <ClInclude Include="src\puly\Application.h" />
     <ClInclude Include="src\puly\lowlevel\Timestep.h" />
+    <ClInclude Include="src\puly\lowlevel\Input.h" />
+    <ClInclude Include="src\puly\window\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\puly\SubSystems.cpp">
@@ -62,5 +64,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\Application.cpp" />
+    <ClCompile Include="src\puly\window\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

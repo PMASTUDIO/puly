@@ -15,6 +15,8 @@ public:
 
 	bool ShouldClose();
 
+	GLFWwindow* GetNativeWindow() const { return m_Window; }
+
 private:
 	GLFWwindow* m_Window;
 
