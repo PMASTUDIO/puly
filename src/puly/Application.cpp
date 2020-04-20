@@ -1,9 +1,6 @@
 #include "Application.h"
-#include "lowlevel/KeyCodes.h"
 
 #include <iostream>
-
-#include "window/WindowsInput.h"
 
 Puly::Application::Application() : mLastFrameTime(0.0f)
 {
@@ -21,8 +18,6 @@ bool Puly::Application::Init()
 	if (!mWindow.Init(1280, 720, "My Puly Engine"))
 		return false;
 
-	mSubSystems.configurator.SetValue("lockFPS", "60");
-
 	return true;
 }
 
@@ -39,7 +34,7 @@ void Puly::Application::Run()
 	int targetFPS = atoi(mSubSystems.configurator.GetValue("lockFPS"));
 
 	while (!mWindow.ShouldClose()) {
-		GetDeltaTime(targetFPS);
+		Timestep deltaTime = GetDeltaTime(targetFPS);
 
 		mWindow.Update();
 	}

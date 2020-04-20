@@ -11,6 +11,7 @@ SubSystems::~SubSystems()
 bool SubSystems::Init()
 {
 	configurator.Init();
+	Puly::Log::Init();
 
 	return true;
 }
