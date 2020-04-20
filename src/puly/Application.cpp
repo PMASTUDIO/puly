@@ -1,10 +1,11 @@
 #include "Application.h"
-#include <GLFW/glfw3.h>
+#include "lowlevel/KeyCodes.h"
+
 #include <iostream>
 
 #include "window/WindowsInput.h"
 
-Puly::Application::Application()
+Puly::Application::Application() : mLastFrameTime(0.0f)
 {
 }
 

@@ -49,6 +49,8 @@
     <ClInclude Include="src\puly\lowlevel\Timestep.h" />
     <ClInclude Include="src\puly\lowlevel\Input.h" />
     <ClInclude Include="src\puly\window\WindowsInput.h" />
+    <ClInclude Include="src\puly\lowlevel\KeyCodes.h" />
+    <ClInclude Include="src\puly\lowlevel\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\puly\SubSystems.cpp">
