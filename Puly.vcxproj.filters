@@ -387,6 +387,7 @@
     <ClInclude Include="src\puly\lowlevel\debugging\ImGuiSystem.h" />
     <ClInclude Include="src\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="src\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\puly\lowlevel\renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -425,5 +426,6 @@
     <ClCompile Include="src\puly\lowlevel\debugging\ImGuiSystem.cpp" />
     <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\puly\lowlevel\renderer\Shader.cpp" />
   </ItemGroup>
 </Project>
