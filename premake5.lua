@@ -12,7 +12,7 @@ project "Puly"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
 
-   includedirs { "include" }
+   includedirs { "include", "src/imgui" }
    libdirs { "vendor" }
    links { "opengl32", "glew32s", "glfw3", "spdlogd" }
 
