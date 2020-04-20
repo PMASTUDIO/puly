@@ -1,7 +1,7 @@
 #include "Shader.h"
 #include "GL/glew.h"
 
-#include "..//debugging/Log.h"
+#include "..//lowlevel/debugging/Log.h"
 
 Puly::Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource)
 {

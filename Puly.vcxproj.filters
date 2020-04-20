@@ -46,6 +46,9 @@
     <Filter Include="src\puly\lowlevel\iniParser">
       <UniqueIdentifier>{1B97F35B-87A4-2142-108B-1D2D7C97EDF8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\puly\renderer">
+      <UniqueIdentifier>{0C90DF27-78A6-DDBD-C11D-69DF2D73AE45}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\puly\window">
       <UniqueIdentifier>{CD077643-3993-E307-42A4-66FCAEAE3F08}</UniqueIdentifier>
     </Filter>
@@ -336,6 +339,12 @@
     <ClInclude Include="src\imgui\imgui.h">
       <Filter>src\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="src\imgui\imgui_impl_glfw.h">
+      <Filter>src\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\imgui_impl_opengl3.h">
+      <Filter>src\imgui</Filter>
+    </ClInclude>
     <ClInclude Include="src\imgui\imgui_internal.h">
       <Filter>src\imgui</Filter>
     </ClInclude>
@@ -369,6 +378,9 @@
     <ClInclude Include="src\puly\lowlevel\Timestep.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\debugging\ImGuiSystem.h">
+      <Filter>src\puly\lowlevel\debugging</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\debugging\Log.h">
       <Filter>src\puly\lowlevel\debugging</Filter>
     </ClInclude>
@@ -378,16 +390,15 @@
     <ClInclude Include="src\puly\lowlevel\iniParser\SimpleIni.h">
       <Filter>src\puly\lowlevel\iniParser</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\renderer\Shader.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\window\Window.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\lowlevel\debugging\ImGuiSystem.h" />
-    <ClInclude Include="src\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="src\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="src\puly\lowlevel\renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -402,6 +413,12 @@
     <ClCompile Include="src\imgui\imgui_draw.cpp">
       <Filter>src\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="src\imgui\imgui_impl_glfw.cpp">
+      <Filter>src\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui\imgui_impl_opengl3.cpp">
+      <Filter>src\imgui</Filter>
+    </ClCompile>
     <ClCompile Include="src\imgui\imgui_widgets.cpp">
       <Filter>src\imgui</Filter>
     </ClCompile>
@@ -414,8 +431,14 @@
     <ClCompile Include="src\puly\lowlevel\Configuration.cpp">
       <Filter>src\puly\lowlevel</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\debugging\ImGuiSystem.cpp">
+      <Filter>src\puly\lowlevel\debugging</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\lowlevel\debugging\Log.cpp">
       <Filter>src\puly\lowlevel\debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\Shader.cpp">
+      <Filter>src\puly\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\window\Window.cpp">
       <Filter>src\puly\window</Filter>
@@ -423,9 +446,5 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\lowlevel\debugging\ImGuiSystem.cpp" />
-    <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="src\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="src\puly\lowlevel\renderer\Shader.cpp" />
   </ItemGroup>
 </Project>
