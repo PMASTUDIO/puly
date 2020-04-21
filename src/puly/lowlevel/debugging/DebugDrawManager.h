@@ -12,6 +12,6 @@ namespace Puly {
 		void OnUpdate();
 
 	private:
-		std::vector<DebugLine> debugLines;
+		std::vector<std::shared_ptr<DebugLine>> debugLines;
 	};
 };

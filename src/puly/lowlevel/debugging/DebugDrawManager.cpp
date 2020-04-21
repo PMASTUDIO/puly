@@ -2,12 +2,11 @@
 
 void Puly::DebugDrawManager::AddLine(Point& fromPosition, Point& toPosition)
 {
-	DebugLine newLine(fromPosition, toPosition);
-	debugLines.push_back(newLine);
+	debugLines.push_back(std::make_shared<DebugLine>(fromPosition, toPosition));
 }
 
 void Puly::DebugDrawManager::OnUpdate()
 {
-	for (auto line : debugLines)
-		line.DrawLine();
+	for (auto &line : debugLines)
+		line->DrawLine();
 }

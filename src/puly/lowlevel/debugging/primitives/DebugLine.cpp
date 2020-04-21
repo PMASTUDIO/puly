@@ -36,6 +36,6 @@ void Puly::DebugLine::Setup()
 	m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)));
 	m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
-	auto shaderFiles = ResourceManager::GetShaderText("resources/shaders/triangleVertexShader.glsl", "resources/shaders/triangleFragmentShader.glsl");
+	auto shaderFiles = ResourceManager::GetShaderText("resources/shaders/debugVertexShader.glsl", "resources/shaders/debugFragmentShader.glsl");
 	m_Shader.Compile(std::get<0>(shaderFiles), std::get<1>(shaderFiles));
 }
