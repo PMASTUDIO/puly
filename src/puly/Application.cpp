@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-Puly::Application::Application() : mLastFrameTime(0.0f)
+Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720)
 {
 	mSubSystems.reset(new SubSystems(&mWindow));
 }
@@ -25,6 +25,9 @@ bool Puly::Application::Init()
 
 	if (!mSubSystems->Init())
 		return false;
+
+	// Demo game
+	demoGame.Start();
 
 	return true;
 }
@@ -47,7 +50,9 @@ void Puly::Application::Run()
 		RenderCommand::SetClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 		RenderCommand::Clear();
 
-		//debugDrawManager->OnUpdate();
+		// Demo game
+		demoGame.Update(deltaTime);
+		demoGame.Render();
 
 		mSubSystems->OnUpdate(deltaTime);
 

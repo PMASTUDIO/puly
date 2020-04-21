@@ -498,6 +498,7 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\Game.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -581,5 +582,6 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\Game.cpp" />
   </ItemGroup>
 </Project>

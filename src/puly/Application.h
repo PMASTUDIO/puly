@@ -9,6 +9,8 @@
 #include "lowlevel/debugging/DebugDrawManager.h"
 #include "lowlevel/debugging/ImGuiSystem.h"
 
+#include "Game.h"
+
 namespace Puly {
 	class Application {
 	public:
@@ -27,6 +29,8 @@ namespace Puly {
 		Shader m_Shader;
 
 		//std::unique_ptr<DebugDrawManager> debugDrawManager;
+
+		Game demoGame;
 
 		float mLastFrameTime;
 
