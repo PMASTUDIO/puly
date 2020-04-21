@@ -10,6 +10,9 @@
     <Filter Include="include\GLFW">
       <UniqueIdentifier>{6888C969-54EB-580E-FD70-91C4E9B22491}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\SOIL2">
+      <UniqueIdentifier>{216CD5A3-8D2C-51DA-5667-9A57C2E695B6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="include\spdlog">
       <UniqueIdentifier>{A18B8C6B-8D59-8071-76ED-F097625A5CD6}</UniqueIdentifier>
     </Filter>
@@ -43,8 +46,14 @@
     <Filter Include="src\puly\lowlevel\debugging">
       <UniqueIdentifier>{9A7D1203-068B-40E9-8F71-3CD4FB7D0CA0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\puly\lowlevel\debugging\primitives">
+      <UniqueIdentifier>{552BC8C5-417D-9FB5-2A9C-DCC5168DB89E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\puly\lowlevel\iniParser">
       <UniqueIdentifier>{1B97F35B-87A4-2142-108B-1D2D7C97EDF8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\puly\opengl">
+      <UniqueIdentifier>{5AA84631-C633-B4F5-CF44-37EA3B4F10F6}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\puly\renderer">
       <UniqueIdentifier>{0C90DF27-78A6-DDBD-C11D-69DF2D73AE45}</UniqueIdentifier>
@@ -71,6 +80,57 @@
     </ClInclude>
     <ClInclude Include="include\GLFW\glfw3native.h">
       <Filter>include\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\SOIL2.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\image_DXT.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\image_helper.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\jo_jpeg.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\pkm_helper.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\pvr_helper.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stb_image.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stb_image_write.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_DDS.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_DDS_c.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_ext.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_ext_c.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_pkm.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_pkm_c.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_pvr.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\stbi_pvr_c.h">
+      <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SOIL2\wfETC.h">
+      <Filter>include\SOIL2</Filter>
     </ClInclude>
     <ClInclude Include="include\spdlog\async.h">
       <Filter>include\spdlog</Filter>
@@ -375,8 +435,14 @@
     <ClInclude Include="src\puly\lowlevel\MouseButtonCodes.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\ResourceManager.h">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\Timestep.h">
       <Filter>src\puly\lowlevel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\debugging\DebugDrawManager.h">
+      <Filter>src\puly\lowlevel\debugging</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\debugging\ImGuiSystem.h">
       <Filter>src\puly\lowlevel\debugging</Filter>
@@ -384,13 +450,46 @@
     <ClInclude Include="src\puly\lowlevel\debugging\Log.h">
       <Filter>src\puly\lowlevel\debugging</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\debugging\primitives\DebugLine.h">
+      <Filter>src\puly\lowlevel\debugging\primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\debugging\primitives\Point.h">
+      <Filter>src\puly\lowlevel\debugging\primitives</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\iniParser\ConvertUTF.h">
       <Filter>src\puly\lowlevel\iniParser</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\iniParser\SimpleIni.h">
       <Filter>src\puly\lowlevel\iniParser</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\opengl\OpenGLBuffer.h">
+      <Filter>src\puly\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\opengl\OpenGLRendererApi.h">
+      <Filter>src\puly\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\opengl\OpenGLVertexArray.h">
+      <Filter>src\puly\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\opengl\OpenGlTexture2D.h">
+      <Filter>src\puly\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\Buffer.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\RenderCommand.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\Renderer.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\RendererAPI.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\renderer\Shader.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\VertexArray.h">
       <Filter>src\puly\renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\window\Window.h">
@@ -399,19 +498,6 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\lowlevel\ResourceManager.h" />
-    <ClInclude Include="src\puly\renderer\Buffer.h" />
-    <ClInclude Include="src\puly\opengl\OpenGLBuffer.h" />
-    <ClInclude Include="src\puly\renderer\Renderer.h" />
-    <ClInclude Include="src\puly\renderer\VertexArray.h" />
-    <ClInclude Include="src\puly\opengl\OpenGLVertexArray.h" />
-    <ClInclude Include="src\puly\lowlevel\debugging\primitives\DebugLine.h" />
-    <ClInclude Include="src\puly\lowlevel\debugging\primitives\Point.h" />
-    <ClInclude Include="src\puly\lowlevel\debugging\DebugDrawManager.h" />
-    <ClInclude Include="src\puly\renderer\RendererAPI.h" />
-    <ClInclude Include="src\puly\renderer\RenderCommand.h" />
-    <ClInclude Include="src\puly\opengl\OpenGLRendererApi.h" />
-    <ClInclude Include="src\puly\opengl\OpenGlTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -444,13 +530,49 @@
     <ClCompile Include="src\puly\lowlevel\Configuration.cpp">
       <Filter>src\puly\lowlevel</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\ResourceManager.cpp">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\debugging\DebugDrawManager.cpp">
+      <Filter>src\puly\lowlevel\debugging</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\lowlevel\debugging\ImGuiSystem.cpp">
       <Filter>src\puly\lowlevel\debugging</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\lowlevel\debugging\Log.cpp">
       <Filter>src\puly\lowlevel\debugging</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\debugging\primitives\DebugLine.cpp">
+      <Filter>src\puly\lowlevel\debugging\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\opengl\OpenGLBuffer.cpp">
+      <Filter>src\puly\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\opengl\OpenGLRendererApi.cpp">
+      <Filter>src\puly\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\opengl\OpenGLVertexArray.cpp">
+      <Filter>src\puly\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\opengl\OpenGlTexture2D.cpp">
+      <Filter>src\puly\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\Buffer.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\RenderCommand.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\Renderer.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\RendererAPI.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\renderer\Shader.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\VertexArray.cpp">
       <Filter>src\puly\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\window\Window.cpp">
@@ -459,21 +581,5 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\lowlevel\ResourceManager.cpp" />
-    <ClCompile Include="src\puly\renderer\Buffer.cpp" />
-    <ClCompile Include="src\puly\opengl\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\puly\renderer\Renderer.cpp" />
-    <ClCompile Include="src\puly\renderer\VertexArray.cpp" />
-    <ClCompile Include="src\puly\opengl\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\puly\lowlevel\debugging\primitives\DebugLine.cpp" />
-    <ClCompile Include="src\puly\lowlevel\debugging\DebugDrawManager.cpp" />
-    <ClCompile Include="src\puly\renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\puly\renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\puly\opengl\OpenGLRendererApi.cpp" />
-    <ClCompile Include="src\puly\opengl\OpenGlTexture2D.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\shaders\triangleVertexShader.glsl" />
-    <None Include="resources\shaders\triangleFragmentShader.glsl" />
   </ItemGroup>
 </Project>

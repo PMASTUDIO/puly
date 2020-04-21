@@ -14,6 +14,12 @@ namespace Puly {
 
 		unsigned int GetRendererId() const;
 
+		GLuint SetInternalFormat(GLuint internalFormat);
+		GLuint SetImageFormat(GLuint imageFormat);
+
+		GLuint GetInternalFormat() const { return m_Internal_Format; }
+		GLuint GetImageFormat() const { return m_Image_Format; }
+
 	private:
 		GLuint m_RenderId;
 		GLuint m_Width, m_Height;

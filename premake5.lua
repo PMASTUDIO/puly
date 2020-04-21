@@ -14,7 +14,7 @@ project "Puly"
 
    includedirs { "include", "src/imgui" }
    libdirs { "vendor" }
-   links { "opengl32", "glew32s", "glfw3", "spdlogd" }
+   links { "opengl32", "glew32s", "glfw3", "spdlogd", "soil2-debug" }
 
    files { "**.h", "**.cpp" }
 

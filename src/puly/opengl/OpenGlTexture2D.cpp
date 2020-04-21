@@ -1,6 +1,6 @@
 #include "OpenGlTexture2D.h"
 
-Puly::Texture2D::Texture2D() : m_Width(0), m_Height(0), m_Image_Format(GL_RGBA), m_Internal_Format(GL_RGBA), m_Wrap_S(GL_REPEAT)
+Puly::Texture2D::Texture2D() : m_Width(0), m_Height(0), m_Image_Format(GL_RGB), m_Internal_Format(GL_RGB), m_Wrap_S(GL_REPEAT)
 							  ,m_Wrap_T(GL_REPEAT), m_Filter_Min(GL_LINEAR), m_Filter_Max(GL_LINEAR)
 {
 	glGenTextures(1, &this->m_RenderId);
@@ -35,4 +35,16 @@ void Puly::Texture2D::Unbind() const
 unsigned int Puly::Texture2D::GetRendererId() const
 {
 	return m_RenderId;
+}
+
+GLuint Puly::Texture2D::SetInternalFormat(GLuint internalFormat)
+{
+	m_Internal_Format = internalFormat;
+	return m_Internal_Format;
+}
+
+GLuint Puly::Texture2D::SetImageFormat(GLuint imageFormat)
+{
+	m_Image_Format = imageFormat;
+	return m_Image_Format;
 }
