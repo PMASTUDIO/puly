@@ -400,6 +400,9 @@
       <Filter>src\puly\window</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\ResourceManager.h" />
+    <ClInclude Include="src\puly\renderer\Buffer.h" />
+    <ClInclude Include="src\puly\opengl\OpenGLBuffer.h" />
+    <ClInclude Include="src\puly\renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -448,6 +451,9 @@
       <Filter>src\puly\window</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\lowlevel\ResourceManager.cpp" />
+    <ClCompile Include="src\puly\renderer\Buffer.cpp" />
+    <ClCompile Include="src\puly\opengl\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\puly\renderer\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\triangleVertexShader.glsl" />

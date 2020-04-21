@@ -3,6 +3,7 @@
 #include "SubSystems.h"
 
 #include "renderer/Shader.h"
+#include "renderer/Buffer.h"
 
 namespace Puly {
 	class Application {
@@ -21,7 +22,10 @@ namespace Puly {
 
 		Shader m_Shader;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		unsigned int m_VertexArray;
+
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
 		float mLastFrameTime;
 
