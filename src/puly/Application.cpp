@@ -21,8 +21,7 @@ bool Puly::Application::Init()
 	if (!mSubSystems.Init())
 		return false;
 	
-	glGenVertexArrays(1, &m_VertexArray);
-	glBindVertexArray(m_VertexArray);
+	m_VertexArray.reset(VertexArray::Create());
 
 	float vertices[9] = {
 		-0.5f, -0.5f, 0.0f,
@@ -36,21 +35,14 @@ bool Puly::Application::Init()
 		{ ShaderDataType::Float3, "a_Position" }
 	};
 
-	uint32_t index = 0;
-	for (const auto& element : layout) {
-		glEnableVertexAttribArray(index);
-		glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGl(element.Type), 
-			element.Normalized ? GL_TRUE : GL_FALSE, 
-			layout.GetStride(), 
-			(const void*)element.Offset
-		);
-
-		index++;
-	}
+	m_VertexBuffer->SetLayout(layout);
+	m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 
 	unsigned int indices[3] = { 0, 1, 2 };
 	m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)));
-	
+
+	m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+
 	// Shaders
 	auto shaderFromFile = ResourceManager::GetShaderText("resources/shaders/triangleVertexShader.glsl", "resources/shaders/triangleFragmentShader.glsl");
 	m_Shader.Compile(std::get<0>(shaderFromFile), std::get<1>(shaderFromFile));
@@ -78,7 +70,7 @@ void Puly::Application::Run()
 
 		m_Shader.Bind();
 
-		glBindVertexArray(m_VertexArray);
+		m_VertexArray->Bind();
 		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
 		mWindow.Update();
