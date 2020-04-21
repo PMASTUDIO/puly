@@ -13,6 +13,15 @@
     <Filter Include="include\SOIL2">
       <UniqueIdentifier>{216CD5A3-8D2C-51DA-5667-9A57C2E695B6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\glm">
+      <UniqueIdentifier>{58D6C031-C48B-3927-4D80-33FEB934302B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\glm\detail">
+      <UniqueIdentifier>{1A3BEF0A-061F-B060-6F7F-AAB35B829AE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\glm\simd">
+      <UniqueIdentifier>{B4E98F4A-A0E2-AE9C-C914-9421B56C8EA8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="include\spdlog">
       <UniqueIdentifier>{A18B8C6B-8D59-8071-76ED-F097625A5CD6}</UniqueIdentifier>
     </Filter>
@@ -131,6 +140,36 @@
     </ClInclude>
     <ClInclude Include="include\SOIL2\wfETC.h">
       <Filter>include\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\common.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\exponential.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\geometric.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\integer.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\matrix.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\neon.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\packing.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\platform.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\trigonometric.h">
+      <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\glm\simd\vector_relational.h">
+      <Filter>include\glm\simd</Filter>
     </ClInclude>
     <ClInclude Include="include\spdlog\async.h">
       <Filter>include\spdlog</Filter>
@@ -420,6 +459,9 @@
     <ClInclude Include="src\puly\Application.h">
       <Filter>src\puly</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\Game.h">
+      <Filter>src\puly</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\SubSystems.h">
       <Filter>src\puly</Filter>
     </ClInclude>
@@ -498,9 +540,11 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\Game.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\glm\detail\glm.cpp">
+      <Filter>include\glm\detail</Filter>
+    </ClCompile>
     <ClCompile Include="src\Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -523,6 +567,9 @@
       <Filter>src\imgui</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\Application.cpp">
+      <Filter>src\puly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\Game.cpp">
       <Filter>src\puly</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\SubSystems.cpp">
@@ -582,6 +629,5 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\Game.cpp" />
   </ItemGroup>
 </Project>
