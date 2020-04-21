@@ -411,6 +411,7 @@
     <ClInclude Include="src\puly\renderer\RendererAPI.h" />
     <ClInclude Include="src\puly\renderer\RenderCommand.h" />
     <ClInclude Include="src\puly\opengl\OpenGLRendererApi.h" />
+    <ClInclude Include="src\puly\opengl\OpenGlTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -469,6 +470,7 @@
     <ClCompile Include="src\puly\renderer\RendererAPI.cpp" />
     <ClCompile Include="src\puly\renderer\RenderCommand.cpp" />
     <ClCompile Include="src\puly\opengl\OpenGLRendererApi.cpp" />
+    <ClCompile Include="src\puly\opengl\OpenGlTexture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\triangleVertexShader.glsl" />

@@ -6,6 +6,8 @@
 #include "debugging/Log.h"
 
 namespace Puly {
+	std::map<std::string, Texture2D> ResourceManager::m_Textures;
+
 	/*
 	std::map<std::string, Shader> ResourceManager::Shaders;
 	
@@ -20,6 +22,17 @@ namespace Puly {
 		return Shaders[name];
 	}
 	*/
+
+	Texture2D ResourceManager::LoadTexture(const GLchar* file, GLboolean alpha, std::string name)
+	{
+		m_Textures[name] = LoadTextureFromFile(file, alpha);
+		return m_Textures[name];
+	}
+
+	Texture2D ResourceManager::GetTexture(std::string name)
+	{
+		return m_Textures[name];
+	}
 
 	std::tuple<std::string, std::string> ResourceManager::GetShaderText(std::string vShaderFile, std::string fShaderFile)
 	{
@@ -52,7 +65,13 @@ namespace Puly {
 
 	void ResourceManager::Clear()
 	{
-		
+		for (auto iter : m_Textures)
+			glDeleteTextures(1, (const GLuint*)iter.second.GetRendererId());
+	}
+
+	Texture2D ResourceManager::LoadTextureFromFile(const GLchar* file, GLboolean alpha)
+	{
+		return Texture2D();
 	}
 	/*
 	Shader ResourceManager::loadShaderFromFile(std::string vShaderFile, std::string fShaderFile)
