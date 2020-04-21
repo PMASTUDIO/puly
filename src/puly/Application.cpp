@@ -5,6 +5,8 @@
 
 #include "lowlevel/debugging/primitives/Point.h"
 
+#include "renderer/Renderer.h"
+
 #include <iostream>
 
 Puly::Application::Application() : mLastFrameTime(0.0f)
@@ -42,8 +44,8 @@ void Puly::Application::Run()
 	while (!mWindow.ShouldClose()) {
 		Timestep deltaTime = GetDeltaTime(targetFPS);
 
-		glClearColor(0.1f, 0.1f, 0.1f, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
+		RenderCommand::SetClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+		RenderCommand::Clear();
 
 		//debugDrawManager->OnUpdate();
 

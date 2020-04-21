@@ -8,10 +8,10 @@ namespace Puly {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			PL_LOG_ERROR("Graphics api not supported!");
 			break;
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexArray();
 			break;
 		}
