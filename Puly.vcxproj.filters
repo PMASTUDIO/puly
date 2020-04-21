@@ -405,6 +405,9 @@
     <ClInclude Include="src\puly\renderer\Renderer.h" />
     <ClInclude Include="src\puly\renderer\VertexArray.h" />
     <ClInclude Include="src\puly\opengl\OpenGLVertexArray.h" />
+    <ClInclude Include="src\puly\lowlevel\debugging\primitives\DebugLine.h" />
+    <ClInclude Include="src\puly\lowlevel\debugging\primitives\Point.h" />
+    <ClInclude Include="src\puly\lowlevel\debugging\DebugDrawManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -458,6 +461,8 @@
     <ClCompile Include="src\puly\renderer\Renderer.cpp" />
     <ClCompile Include="src\puly\renderer\VertexArray.cpp" />
     <ClCompile Include="src\puly\opengl\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\puly\lowlevel\debugging\primitives\DebugLine.cpp" />
+    <ClCompile Include="src\puly\lowlevel\debugging\DebugDrawManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\triangleVertexShader.glsl" />

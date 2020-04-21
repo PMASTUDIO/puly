@@ -3,6 +3,8 @@
 #include "lowlevel/debugging/Log.h"
 #include "lowlevel/ResourceManager.h"
 
+#include "lowlevel/debugging/primitives/Point.h"
+
 #include <iostream>
 
 Puly::Application::Application() : mLastFrameTime(0.0f), mSubSystems(&mWindow)
@@ -20,32 +22,10 @@ bool Puly::Application::Init()
 
 	if (!mSubSystems.Init())
 		return false;
-	
-	m_VertexArray.reset(VertexArray::Create());
 
-	float vertices[9] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
-	};
+	debugDrawManager.reset(new DebugDrawManager());
 
-	m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-
-	BufferLayout layout = {
-		{ ShaderDataType::Float3, "a_Position" }
-	};
-
-	m_VertexBuffer->SetLayout(layout);
-	m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-
-	unsigned int indices[3] = { 0, 1, 2 };
-	m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)));
-
-	m_VertexArray->SetIndexBuffer(m_IndexBuffer);
-
-	// Shaders
-	auto shaderFromFile = ResourceManager::GetShaderText("resources/shaders/triangleVertexShader.glsl", "resources/shaders/triangleFragmentShader.glsl");
-	m_Shader.Compile(std::get<0>(shaderFromFile), std::get<1>(shaderFromFile));
+	debugDrawManager->AddLine( Point(1.0f, 1.0f, 1.0f), Point(0.0f, 0.0f, 0.0f) );
 
 	return true;
 }
@@ -68,10 +48,7 @@ void Puly::Application::Run()
 		glClearColor(0.1f, 0.1f, 0.1f, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		m_Shader.Bind();
-
-		m_VertexArray->Bind();
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+		debugDrawManager->OnUpdate();
 
 		mWindow.Update();
 		mSubSystems.OnUpdate(deltaTime);
