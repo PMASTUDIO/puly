@@ -32,11 +32,21 @@ bool Puly::Application::Init()
 
 	m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	BufferLayout layout = {
+		{ ShaderDataType::Float3, "a_Position" }
+	};
 
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+	uint32_t index = 0;
+	for (const auto& element : layout) {
+		glEnableVertexAttribArray(index);
+		glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGl(element.Type), 
+			element.Normalized ? GL_TRUE : GL_FALSE, 
+			layout.GetStride(), 
+			(const void*)element.Offset
+		);
 
+		index++;
+	}
 
 	unsigned int indices[3] = { 0, 1, 2 };
 	m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)));
