@@ -7,6 +7,7 @@
 #include "renderer/VertexArray.h"
 
 #include "lowlevel/debugging/DebugDrawManager.h"
+#include "lowlevel/debugging/ImGuiSystem.h"
 
 namespace Puly {
 	class Application {
@@ -21,11 +22,11 @@ namespace Puly {
 
 	private:
 		Window mWindow;
-		SubSystems mSubSystems;
+		std::unique_ptr<SubSystems> mSubSystems;
 
 		Shader m_Shader;
 
-		std::unique_ptr<DebugDrawManager> debugDrawManager;
+		//std::unique_ptr<DebugDrawManager> debugDrawManager;
 
 		float mLastFrameTime;
 

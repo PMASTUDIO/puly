@@ -5,6 +5,8 @@
 #include "lowlevel/debugging/Log.h"
 #include "lowlevel/debugging/ImGuiSystem.h"
 
+#include <memory>
+
 class SubSystems {
 public:
 	SubSystems(Window* mainWindow);
@@ -15,7 +17,7 @@ public:
 	bool Shutdown();
 
 	Puly::Configurations configurator;
-	Puly::ImguiSystem imGuiSystem;
+	std::shared_ptr<Puly::ImguiSystem> imGuiSystem;
 
 	Window* mainWindow;
 };

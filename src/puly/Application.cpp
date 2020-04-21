@@ -7,8 +7,9 @@
 
 #include <iostream>
 
-Puly::Application::Application() : mLastFrameTime(0.0f), mSubSystems(&mWindow)
+Puly::Application::Application() : mLastFrameTime(0.0f)
 {
+	mSubSystems.reset(new SubSystems(&mWindow));
 }
 
 Puly::Application::~Application()
@@ -20,19 +21,15 @@ bool Puly::Application::Init()
 	if (!mWindow.Init(1280, 720, "My Puly Engine"))
 		return false;
 
-	if (!mSubSystems.Init())
+	if (!mSubSystems->Init())
 		return false;
-
-	debugDrawManager.reset(new DebugDrawManager());
-
-	debugDrawManager->AddLine( Point(1.0f, 1.0f, 1.0f), Point(0.0f, 0.0f, 0.0f) );
 
 	return true;
 }
 
 bool Puly::Application::Shutdown()
 {
-	mSubSystems.Shutdown();
+	mSubSystems->Shutdown();
 	mWindow.Shutdown();
 
 	return true;
@@ -40,7 +37,7 @@ bool Puly::Application::Shutdown()
 
 void Puly::Application::Run()
 {
-	int targetFPS = atoi(mSubSystems.configurator.GetValue("lockFPS"));
+	int targetFPS = atoi(mSubSystems->configurator.GetValue("lockFPS"));
 
 	while (!mWindow.ShouldClose()) {
 		Timestep deltaTime = GetDeltaTime(targetFPS);
@@ -48,10 +45,11 @@ void Puly::Application::Run()
 		glClearColor(0.1f, 0.1f, 0.1f, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		debugDrawManager->OnUpdate();
+		//debugDrawManager->OnUpdate();
+
+		mSubSystems->OnUpdate(deltaTime);
 
 		mWindow.Update();
-		mSubSystems.OnUpdate(deltaTime);
 	}
 }
 

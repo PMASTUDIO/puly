@@ -1,4 +1,7 @@
 #pragma once
+
+#include <memory>
+#include "DebugDrawManager.h"
 #include "..//Timestep.h"
 
 class Window;
@@ -15,6 +18,12 @@ namespace Puly {
 		void OnUpdate(Timestep dt);
 
 		void Shutdown();
+
+	private:
+		std::unique_ptr<DebugDrawManager> debugDrawManager;
+		Window* mWindow;
+
+		void DebugPrimitiveMenu(Timestep dt);
 	};
 
 }

@@ -17,6 +17,7 @@ void Puly::DebugLine::DrawLine()
 	m_Shader.Bind();
 	glDrawArrays(GL_LINES, 0, 2);
 	m_Shader.Unbind();
+	m_VertexArray->Unbind();
 
 }
 
