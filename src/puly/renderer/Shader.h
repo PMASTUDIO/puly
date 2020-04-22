@@ -3,6 +3,8 @@
 #include <string>
 #include "GL/glew.h"
 
+#include <glm/glm.hpp>
+
 namespace Puly {
 	class Shader
 	{
@@ -15,6 +17,7 @@ namespace Puly {
 		void Bind();
 		void Unbind();
 
+		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 	private:
 		uint32_t m_ShaderID;
 

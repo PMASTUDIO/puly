@@ -8,7 +8,6 @@ Puly::Game::Game(unsigned int width, unsigned int height) : mWidth(width), mHeig
 
 Puly::Game::~Game()
 {
-	PL_LOG_SUCCESS("Game destroyed!");
 }
 
 void Puly::Game::Start()

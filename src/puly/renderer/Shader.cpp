@@ -4,6 +4,8 @@
 #include "..//lowlevel/debugging/Log.h"
 #include <iostream>
 
+#include <glm/gtc/type_ptr.hpp>
+
 Puly::Shader::Shader()
 {
 }
@@ -58,6 +60,18 @@ void Puly::Shader::Bind()
 void Puly::Shader::Unbind()
 {
 	glUseProgram(0);
+}
+
+void Puly::Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
+{
+	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
+	
+	if (location != -1) {
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+	else {
+		PL_LOG_ERROR("Uniform {}, location not found", name);
+	}
 }
 
 void Puly::Shader::CheckCompileErrors(GLuint object, std::string type)

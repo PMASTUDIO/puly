@@ -540,6 +540,7 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -629,5 +630,6 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>

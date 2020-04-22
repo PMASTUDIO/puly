@@ -9,6 +9,8 @@
 #include "lowlevel/debugging/DebugDrawManager.h"
 #include "lowlevel/debugging/ImGuiSystem.h"
 
+#include "renderer/OrthographicCamera.h"
+
 #include "Game.h"
 
 namespace Puly {
@@ -26,14 +28,22 @@ namespace Puly {
 		Window mWindow;
 		std::unique_ptr<SubSystems> mSubSystems;
 
-		Shader m_Shader;
+		//Shader m_Shader;
+
+		std::shared_ptr<Shader> m_Shader;
 
 		//std::unique_ptr<DebugDrawManager> debugDrawManager;
+
+		std::shared_ptr<VertexBuffer> m_VBO;
+		std::shared_ptr<IndexBuffer> m_IBO;
+		std::shared_ptr<VertexArray> m_VAO;
 
 		Game demoGame;
 
 		float mLastFrameTime;
 
 		float GetDeltaTime(int targetFPS);
+
+		OrtographicCamera m_Camera;
 	};
 }
