@@ -5,6 +5,8 @@
 
 #include "lowlevel/debugging/primitives/Point.h"
 
+#include "./renderer/OrthographicCameraController.h"
+
 #include "renderer/Renderer.h"
 
 #include <iostream>
@@ -80,8 +82,7 @@ void Puly::Application::Run()
 		demoGame.Render();
 
 		// Demo scene
-		m_Camera.SetPosition(glm::vec3(0.5f, 0.5f, 0.0f));
-		//m_Camera.SetRotation(45.0f);
+		OrthographicCamera2DController::HandleCameraWithInput(&m_Camera, &mWindow, deltaTime, 1.0f);
 
 		Renderer::BeginScene(m_Camera);
 		Renderer::Submit(m_VAO, m_Shader);
