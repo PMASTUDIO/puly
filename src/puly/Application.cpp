@@ -9,12 +9,15 @@
 
 #include "renderer/Renderer.h"
 
+#include <glm/gtc/matrix_transform.hpp>
+
 #include <iostream>
 
 Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 {
 	mSubSystems.reset(new SubSystems(&mWindow));
 	m_Shader.reset(new Shader());
+
 }
 
 Puly::Application::~Application()
@@ -36,10 +39,11 @@ bool Puly::Application::Init()
 
 	m_VAO.reset(VertexArray::Create());
 
-	float vertices[3 * 3] = {
+	float vertices[4 * 4] = {
 		-0.5f, -0.5f, 0.0f,
 		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
+		-0.5f,  0.5f, 0.0f,
+		 0.5f,  0.5f, 0.0f
 	};
 
 	m_VBO.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -49,7 +53,7 @@ bool Puly::Application::Init()
 	m_VBO->SetLayout(layout);
 	m_VAO->AddVertexBuffer(m_VBO);
 
-	uint32_t indices[3] = { 0, 1, 2 };
+	uint32_t indices[6] = { 0, 1, 2, 1, 2, 3 };
 	m_IBO.reset(IndexBuffer::Create(indices, sizeof(indices)));
 	m_VAO->SetIndexBuffer(m_IBO);
 
@@ -85,7 +89,17 @@ void Puly::Application::Run()
 		OrthographicCamera2DController::HandleCameraWithInput(&m_Camera, &mWindow, deltaTime, 1.0f);
 
 		Renderer::BeginScene(m_Camera);
-		Renderer::Submit(m_VAO, m_Shader);
+
+		glm::mat4 squaresScale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+		for (int y = 0; y < 20; y++) {
+			for (int x = 0; x < 20; x++) {
+				glm::vec3 pos(x * 0.11f, y * 0.13f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * squaresScale;
+				Renderer::Submit(m_VAO, m_Shader, transform);
+			}
+		}
+
 		Renderer::EndScene();
 
 		// ------- DEMO SCENE ENDED --------

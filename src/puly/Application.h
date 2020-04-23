@@ -10,6 +10,7 @@
 #include "lowlevel/debugging/ImGuiSystem.h"
 
 #include "renderer/OrthographicCamera.h"
+#include <glm/glm.hpp>
 
 #include "Game.h"
 
