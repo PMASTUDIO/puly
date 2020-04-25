@@ -1,8 +1,11 @@
 #pragma once
 
 #include <memory>
+#include <map>
 #include "DebugDrawManager.h"
 #include "..//Timestep.h"
+
+#include "..//..//renderer/SpriteRenderer.h"
 
 class Window;
 
@@ -19,13 +22,15 @@ namespace Puly {
 
 		void Shutdown();
 
+		void TextureImportMenu(bool show, std::map<std::string, std::shared_ptr<SpriteRenderer>>& textures);
+
+		void Render();
+
 	private:
 		std::unique_ptr<DebugDrawManager> debugDrawManager;
 		Window* mWindow;
 
 		void DebugPrimitiveMenu(Timestep dt);
-
-		void TextureImportMenu(Timestep dt);
 	};
 
 }

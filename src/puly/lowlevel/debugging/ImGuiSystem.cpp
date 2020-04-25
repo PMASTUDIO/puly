@@ -52,11 +52,7 @@ void Puly::ImguiSystem::OnUpdate(Timestep dt)
 
 	if (menuOpened) {
 		DebugPrimitiveMenu(dt);
-		TextureImportMenu(dt);
 	}
-	
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 }
 
@@ -84,14 +80,31 @@ void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 	debugDrawManager->OnUpdate();
 }
 
-void Puly::ImguiSystem::TextureImportMenu(Timestep dt)
+void Puly::ImguiSystem::TextureImportMenu(bool show, std::map<std::string, std::shared_ptr<SpriteRenderer>>& textures)
 {
 
-	ImGui::Begin("Textures Menu");
+	if (show) {
+		ImGui::Begin("Textures Menu");
 
-	ImGui::ListBoxHeader("Textures");
-	ImGui::ListBoxFooter();
+		ImGui::ListBoxHeader("Textures");
 
-	ImGui::End();
+		for (auto& item : textures) {
+			if (ImGui::Selectable(item.first.c_str()))
+			{
+				// handle selection
+			}
+		}
+
+		ImGui::ListBoxFooter();
+
+		ImGui::End();
+	}
+
 	
+}
+
+void Puly::ImguiSystem::Render()
+{
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }

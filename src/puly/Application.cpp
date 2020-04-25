@@ -74,6 +74,8 @@ void Puly::Application::Run()
 		// ------- DEMO SCENE ENDED --------
 
 		mSubSystems->OnUpdate(deltaTime);
+		mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_SpriteRenderers);
+		mSubSystems->imGuiSystem->Render();
 
 		mWindow.Update();
 	}
