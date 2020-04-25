@@ -47,10 +47,10 @@ namespace Puly {
 		m_VAO.reset(VertexArray::Create());
 
 		float vertices[5 * 4] = {
-		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
-		 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.0f, 1.0f, 0.0f
+			-0.5f, -0.5f, 0.0f, 1.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
+			 0.5f,  0.5f, 0.0f, 0.0f, 0.0f,
+			-0.5f,  0.5f, 0.0f, 1.0f, 0.0f
 		};
 
 		m_VBO.reset(VertexBuffer::Create(vertices, sizeof(vertices)));

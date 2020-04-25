@@ -12,7 +12,7 @@ Puly::OpenGLTexture2D::OpenGLTexture2D(std::string& path) : m_Path(path)
 	//unsigned char* data = SOIL_load_image(path.c_str(), &width, &height, &channels, 0);
 
 	m_RenderId = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
-		SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB);
+		SOIL_FLAG_INVERT_Y);
 
 	/*
 	if (data == nullptr) {
@@ -34,6 +34,8 @@ Puly::OpenGLTexture2D::OpenGLTexture2D(std::string& path) : m_Path(path)
 
 	glTexParameteri(m_RenderId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(m_RenderId, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	/*
 
