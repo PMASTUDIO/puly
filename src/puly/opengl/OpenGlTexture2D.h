@@ -2,36 +2,24 @@
 
 #include <GL/glew.h>
 
+#include "..//renderer/Texture.h"
+
 namespace Puly {
-	class Texture2D {
+
+	class OpenGLTexture2D : public Texture
+	{
 	public:
-		Texture2D();
+		OpenGLTexture2D(std::string& path);
+		virtual ~OpenGLTexture2D();
 
-		void Generate(unsigned int width, unsigned int height, unsigned char* data);
+		virtual uint32_t GetWidth() const override { return m_Width; }
+		virtual uint32_t GetHeight() const override { return m_Height; };
 
-		void Bind() const;
-		void Unbind() const;
-
-		unsigned int GetRendererId() const;
-
-		GLuint SetInternalFormat(GLuint internalFormat);
-		GLuint SetImageFormat(GLuint imageFormat);
-
-		GLuint GetInternalFormat() const { return m_Internal_Format; }
-		GLuint GetImageFormat() const { return m_Image_Format; }
+		virtual uint32_t Bind(uint32_t slot = 0) const override;
 
 	private:
-		GLuint m_RenderId;
-		GLuint m_Width, m_Height;
-
-		// Texture Format
-		GLuint m_Internal_Format;
-		GLuint m_Image_Format;
-
-		// Texture configuration
-		GLuint m_Wrap_S;
-		GLuint m_Wrap_T;
-		GLuint m_Filter_Min;
-		GLuint m_Filter_Max;
+		std::string m_Path;
+		uint32_t m_RenderId;
+		uint32_t m_Width, m_Height;
 	};
 }

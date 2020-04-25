@@ -1,50 +1,54 @@
 #include "OpenGlTexture2D.h"
 
-Puly::Texture2D::Texture2D() : m_Width(0), m_Height(0), m_Image_Format(GL_RGB), m_Internal_Format(GL_RGB), m_Wrap_S(GL_REPEAT)
-							  ,m_Wrap_T(GL_REPEAT), m_Filter_Min(GL_LINEAR), m_Filter_Max(GL_LINEAR)
+#include "SOIL2/SOIL2.h"
+#include "..//lowlevel/debugging/Log.h"
+
+
+Puly::OpenGLTexture2D::OpenGLTexture2D(std::string& path) : m_Path(path)
 {
-	glGenTextures(1, &this->m_RenderId);
+	int width, height, channels;
+
+	//stbi_set_flip_vertically_on_load(1);
+	//unsigned char* data = SOIL_load_image(path.c_str(), &width, &height, &channels, 0);
+
+	m_RenderId = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+		SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB);
+
+	/*
+	if (data == nullptr) {
+		PL_LOG_ERROR("Error with STBI loading image: {}", path);
+		return;
+	}
+	*/
+
+	if (0 == m_RenderId) {
+		PL_LOG_ERROR("Error with SOIL loading image: {}", path);
+		return;
+	}
+
+	/*m_Width = width;
+	m_Height = height;*/
+
+	//glCreateTextures(GL_TEXTURE_2D, 1, &m_RenderId);
+	//glTextureStorage2D(m_RenderId, 1, GL_RGBA16F, m_Width, m_Height);
+
+	glTexParameteri(m_RenderId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(m_RenderId, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	/*
+
+	glTextureSubImage2D(m_RenderId, 0, 0, 0, m_Width, m_Height, GL_RGB, GL_UNSIGNED_BYTE, data);*/
+
+	//stbi_image_free(data);
 }
 
-void Puly::Texture2D::Generate(unsigned int width, unsigned int height, unsigned char* data)
+Puly::OpenGLTexture2D::~OpenGLTexture2D()
 {
-	this->m_Width = width;
-	this->m_Height = height;
-
-	glBindTexture(GL_TEXTURE_2D, this->m_RenderId);
-	glTexImage2D(GL_TEXTURE_2D, 0, this->m_Internal_Format, this->m_Width, this->m_Height, 0, this->m_Image_Format, GL_UNSIGNED_BYTE, data);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, this->m_Wrap_S);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, this->m_Wrap_T);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, this->m_Filter_Min);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, this->m_Filter_Max);
-
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glDeleteTextures(1, &m_RenderId);
 }
 
-void Puly::Texture2D::Bind() const
+uint32_t Puly::OpenGLTexture2D::Bind(uint32_t slot) const
 {
-	glBindTexture(GL_TEXTURE_2D, this->m_RenderId);
-}
-
-void Puly::Texture2D::Unbind() const
-{
-	glBindTexture(GL_TEXTURE_2D, 0);
-}
-
-unsigned int Puly::Texture2D::GetRendererId() const
-{
+	glBindTextureUnit(slot, m_RenderId);
 	return m_RenderId;
-}
-
-GLuint Puly::Texture2D::SetInternalFormat(GLuint internalFormat)
-{
-	m_Internal_Format = internalFormat;
-	return m_Internal_Format;
-}
-
-GLuint Puly::Texture2D::SetImageFormat(GLuint imageFormat)
-{
-	m_Image_Format = imageFormat;
-	return m_Image_Format;
 }

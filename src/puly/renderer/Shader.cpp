@@ -74,6 +74,18 @@ void Puly::Shader::UploadUniformMat4(const std::string& name, const glm::mat4& m
 	}
 }
 
+void Puly::Shader::UploadUniform1i(const std::string& name, int value)
+{
+	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
+
+	if (location != -1) {
+		glUniform1i(location, value);
+	}
+	else {
+		PL_LOG_ERROR("Uniform of type int {}, location not found", name);
+	}
+}
+
 void Puly::Shader::CheckCompileErrors(GLuint object, std::string type)
 {
 	GLint success;

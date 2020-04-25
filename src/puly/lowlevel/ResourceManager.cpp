@@ -22,7 +22,7 @@ namespace Puly {
 	{
 		return Shaders[name];
 	}
-	*/
+	
 
 	Texture2D ResourceManager::LoadTexture(const GLchar* file, GLboolean alpha, std::string name)
 	{
@@ -34,6 +34,8 @@ namespace Puly {
 	{
 		return m_Textures[name];
 	}
+
+	*/
 
 	std::tuple<std::string, std::string> ResourceManager::GetShaderText(std::string vShaderFile, std::string fShaderFile)
 	{
@@ -66,9 +68,9 @@ namespace Puly {
 
 	void ResourceManager::Clear()
 	{
-		for (auto iter : m_Textures)
-			glDeleteTextures(1, (const GLuint*)iter.second.GetRendererId());
 	}
+
+	/*
 
 	Texture2D ResourceManager::LoadTextureFromFile(const GLchar* file, GLboolean alpha)
 	{
@@ -86,7 +88,7 @@ namespace Puly {
 		SOIL_free_image_data(image);
 		return texture;
 	}
-	/*
+	
 	Shader ResourceManager::loadShaderFromFile(std::string vShaderFile, std::string fShaderFile)
 	{
 		std::string vertexCode;

@@ -519,6 +519,12 @@
     <ClInclude Include="src\puly\renderer\Buffer.h">
       <Filter>src\puly\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\renderer\OrthographicCamera.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\OrthographicCameraController.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\renderer\RenderCommand.h">
       <Filter>src\puly\renderer</Filter>
     </ClInclude>
@@ -540,8 +546,7 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\puly\renderer\OrthographicCameraController.h" />
+    <ClInclude Include="src\puly\renderer\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -610,6 +615,12 @@
     <ClCompile Include="src\puly\renderer\Buffer.cpp">
       <Filter>src\puly\renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\renderer\OrthographicCamera.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\OrthographicCameraController.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\renderer\RenderCommand.cpp">
       <Filter>src\puly\renderer</Filter>
     </ClCompile>
@@ -631,7 +642,6 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\puly\renderer\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\puly\renderer\Texture.cpp" />
   </ItemGroup>
 </Project>

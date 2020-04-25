@@ -18,6 +18,7 @@ namespace Puly {
 		void Unbind();
 
 		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
+		void UploadUniform1i(const std::string& name, int value);
 	private:
 		uint32_t m_ShaderID;
 

@@ -17,7 +17,7 @@ Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720), m_
 {
 	mSubSystems.reset(new SubSystems(&mWindow));
 	m_Shader.reset(new Shader());
-
+	m_TextureShader.reset(new Shader());
 }
 
 Puly::Application::~Application()
@@ -39,26 +39,35 @@ bool Puly::Application::Init()
 
 	m_VAO.reset(VertexArray::Create());
 
-	float vertices[4 * 4] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f
+	float vertices[5 * 4] = {
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
+		 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+		-0.5f,  0.5f, 0.0f, 1.0f, 0.0f
 	};
 
 	m_VBO.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 	BufferLayout layout = {
-		{ ShaderDataType::Float3, "a_Position" }
+		{ ShaderDataType::Float3, "a_Position" },
+		{ ShaderDataType::Float2, "a_TexCoord" }
 	};
 	m_VBO->SetLayout(layout);
 	m_VAO->AddVertexBuffer(m_VBO);
 
-	uint32_t indices[6] = { 0, 1, 2, 1, 2, 3 };
+	uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
 	m_IBO.reset(IndexBuffer::Create(indices, sizeof(indices)));
 	m_VAO->SetIndexBuffer(m_IBO);
 
 	auto shaderTexts = ResourceManager::GetShaderText("resources/shaders/triangleVertexShader.glsl", "resources/shaders/triangleFragmentShader.glsl");
 	m_Shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+
+	auto textureShaderTexts = ResourceManager::GetShaderText("resources/shaders/textureVertexShader.glsl", "resources/shaders/textureFragmentShader.glsl");
+	m_TextureShader->Compile(std::get<0>(textureShaderTexts), std::get<1>(textureShaderTexts));
+
+	m_Texture = Puly::Texture2D::Create("resources/textures/checkerboard.png");
+
+	m_TextureShader->Bind();
+	m_TextureShader->UploadUniform1i("u_Texture", 0);
 
 	return true;
 }
@@ -94,11 +103,15 @@ void Puly::Application::Run()
 
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
-				glm::vec3 pos(x * 0.11f, y * 0.13f, 0.0f);
+				glm::vec3 pos(x * 0.11f, y * 0.13f, 1.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * squaresScale;
 				Renderer::Submit(m_VAO, m_Shader, transform);
 			}
 		}
+
+		m_Texture->Bind();
+
+		Renderer::Submit(m_VAO, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Renderer::EndScene();
 
