@@ -8,10 +8,16 @@
 #include "../..//window/Window.h"
 #include "Log.h"
 
+#include "../../platform/windows/FileOpenDialog.h"
+
+#include <filesystem>
+
 float newLinePos[3];
 float newLineFinalPos[3];
 
 bool menuOpened = false;
+
+namespace fs = std::experimental::filesystem;
 
 Puly::ImguiSystem::ImguiSystem()
 {
@@ -85,6 +91,23 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::map<std::string, std::
 
 	if (show) {
 		ImGui::Begin("Textures Menu");
+
+		if (ImGui::Button("Import new renderer sprite")) {
+
+			std::string pathTexture = Puly::openfilename();
+			PL_LOG_INFO("Path: {}", pathTexture);
+
+			std::shared_ptr<SpriteRenderer> newSprite;
+			newSprite.reset(new SpriteRenderer(pathTexture.c_str()));
+
+			fs::path filePath(pathTexture);
+
+			fs::path fileName = filePath.filename();
+
+			std::string fileNameString = fileName.u8string();
+
+			textures[fileNameString] = newSprite;
+		}
 
 		ImGui::ListBoxHeader("Textures");
 

@@ -47,6 +47,11 @@ void Puly::Game::Update(Timestep dt)
 
 void Puly::Game::Render()
 {
-	v_SpriteRenderers["Bird"]->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
-	v_SpriteRenderers["Checkerboard"]->DrawSprite(glm::vec2(0.5f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
+	float i = 0.0f;
+
+	for (auto& element : v_SpriteRenderers) {
+		element.second->DrawSprite(glm::vec2(i, 0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
+
+		i += 1.0f;
+	}
 }

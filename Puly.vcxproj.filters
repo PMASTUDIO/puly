@@ -64,6 +64,12 @@
     <Filter Include="src\puly\opengl">
       <UniqueIdentifier>{5AA84631-C633-B4F5-CF44-37EA3B4F10F6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\puly\platform">
+      <UniqueIdentifier>{BA88024D-269F-00E3-6F16-8C04DB6BD16A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\puly\platform\windows">
+      <UniqueIdentifier>{14E5C912-80A7-FD9C-C957-8C293559D67A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\puly\renderer">
       <UniqueIdentifier>{0C90DF27-78A6-DDBD-C11D-69DF2D73AE45}</UniqueIdentifier>
     </Filter>
@@ -170,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="include\glm\simd\vector_relational.h">
       <Filter>include\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfd.h">
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\spdlog\async.h">
       <Filter>include\spdlog</Filter>
@@ -516,6 +525,12 @@
     <ClInclude Include="src\puly\opengl\OpenGlTexture2D.h">
       <Filter>src\puly\opengl</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\platform\windows\FileOpenDialog.h">
+      <Filter>src\puly\platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\platform\windows\nfd.h">
+      <Filter>src\puly\platform\windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\renderer\Buffer.h">
       <Filter>src\puly\renderer</Filter>
     </ClInclude>
@@ -537,6 +552,12 @@
     <ClInclude Include="src\puly\renderer\Shader.h">
       <Filter>src\puly\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\renderer\SpriteRenderer.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\Texture.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\renderer\VertexArray.h">
       <Filter>src\puly\renderer</Filter>
     </ClInclude>
@@ -546,8 +567,6 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\renderer\Texture.h" />
-    <ClInclude Include="src\puly\renderer\SpriteRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -634,6 +653,12 @@
     <ClCompile Include="src\puly\renderer\Shader.cpp">
       <Filter>src\puly\renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\renderer\SpriteRenderer.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\Texture.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\renderer\VertexArray.cpp">
       <Filter>src\puly\renderer</Filter>
     </ClCompile>
@@ -643,7 +668,5 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\renderer\Texture.cpp" />
-    <ClCompile Include="src\puly\renderer\SpriteRenderer.cpp" />
   </ItemGroup>
 </Project>
