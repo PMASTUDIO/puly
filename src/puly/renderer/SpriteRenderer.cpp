@@ -6,9 +6,13 @@
 
 namespace Puly {
 
-	SpriteRenderer::SpriteRenderer(std::shared_ptr<Shader>& Shader, const char* texturePath)
+	SpriteRenderer::SpriteRenderer(const char* texturePath, const char* vertexShaderPath, const char* fragmentShaderPath)
 	{
-		this->m_Shader = Shader;
+		m_Shader.reset(new Shader());
+
+		auto shaderTexts = ResourceManager::GetShaderText(vertexShaderPath, fragmentShaderPath);
+		m_Shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+
 		InitRenderData();
 
 		m_Texture = Puly::Texture2D::Create(texturePath);

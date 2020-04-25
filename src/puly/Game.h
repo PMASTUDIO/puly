@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include "renderer/SpriteRenderer.h"
+
 #include "./lowlevel/Timestep.h"
 
 namespace Puly {
@@ -23,6 +26,9 @@ namespace Puly {
 	private:
 		GameState m_State;
 		unsigned int mWidth, mHeight;
+
+		std::vector<std::shared_ptr<SpriteRenderer>> v_SpriteRenderers;
+		std::vector<std::shared_ptr<Shader>> v_Shaders;
 	};
 
 }

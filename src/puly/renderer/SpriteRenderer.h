@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 #include <glm/glm.hpp>
 
@@ -15,7 +16,11 @@ namespace Puly {
 
 	class SpriteRenderer {
 	public:
-		SpriteRenderer(std::shared_ptr<Shader>& Shader, const char* texturePath);
+		SpriteRenderer(const char* texturePath,
+			const char* vertexShaderPath = "resources/shaders/textureVertexShader.glsl", 
+			const char* fragmentShaderPath = "resources/shaders/textureFragmentShader.glsl"
+			);
+
 		~SpriteRenderer();
 
 		void DrawSprite(

@@ -35,10 +35,7 @@ bool Puly::Application::Init()
 	// Demo game
 	demoGame.Start();
 
-	myFirstSprite.reset(new SpriteRenderer(m_TextureShader, "resources/textures/checkerboard.png"));
-
-	auto textureShaderTexts = ResourceManager::GetShaderText("resources/shaders/textureVertexShader.glsl", "resources/shaders/textureFragmentShader.glsl");
-	m_TextureShader->Compile(std::get<0>(textureShaderTexts), std::get<1>(textureShaderTexts));
+	//myFirstSprite.reset(new SpriteRenderer(m_TextureShader, "resources/textures/checkerboard.png"));
 
 	return true;
 }
@@ -61,16 +58,16 @@ void Puly::Application::Run()
 		RenderCommand::SetClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 		RenderCommand::Clear();
 
-		// Demo game
-		demoGame.Update(deltaTime);
-		demoGame.Render();
-
 		// Demo scene
 		OrthographicCamera2DController::HandleCameraWithInput(&m_Camera, &mWindow, deltaTime, 1.0f);
 
 		Renderer::BeginScene(m_Camera);
 
-		myFirstSprite->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
+		// Demo game
+		demoGame.Update(deltaTime);
+		demoGame.Render();
+
+		//myFirstSprite->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
 
 		Renderer::EndScene();
 

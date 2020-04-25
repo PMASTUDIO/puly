@@ -1,6 +1,9 @@
 #include "Game.h"
 
 #include "lowlevel/debugging/Log.h"
+#include "lowlevel/ResourceManager.h"
+
+#include <glm/glm.hpp>
 
 Puly::Game::Game(unsigned int width, unsigned int height) : mWidth(width), mHeight(height), m_State(GAME_ACTIVE)
 {
@@ -13,12 +16,35 @@ Puly::Game::~Game()
 void Puly::Game::Start()
 {
 	PL_LOG_SUCCESS("Game initialized! Width: {}, Height: {}", mWidth, mHeight);
+
+	// Texture Shader setup
+	std::shared_ptr<Shader> shader;
+	shader.reset(new Shader());
+
+	v_Shaders.push_back(shader);
+	
+	auto textureShaderTexts = ResourceManager::GetShaderText("resources/shaders/textureVertexShader.glsl", "resources/shaders/textureFragmentShader.glsl");
+	shader->Compile(std::get<0>(textureShaderTexts), std::get<1>(textureShaderTexts));
+
+
+	// Texture Renderer setups
+	std::shared_ptr<SpriteRenderer> checkerboard;
+	checkerboard.reset(new SpriteRenderer("resources/textures/checkerboard.png"));
+
+	std::shared_ptr<SpriteRenderer> bird;
+	bird.reset(new SpriteRenderer("resources/textures/bird.png"));
+
+	v_SpriteRenderers.push_back(bird);
+	v_SpriteRenderers.push_back(checkerboard);
 }
 
 void Puly::Game::Update(Timestep dt)
 {
+	
 }
 
 void Puly::Game::Render()
 {
+	v_SpriteRenderers[0]->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
+	v_SpriteRenderers[1]->DrawSprite(glm::vec2(0.5f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
 }
