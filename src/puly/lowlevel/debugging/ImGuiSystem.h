@@ -24,6 +24,8 @@ namespace Puly {
 		Window* mWindow;
 
 		void DebugPrimitiveMenu(Timestep dt);
+
+		void TextureImportMenu(Timestep dt);
 	};
 
 }

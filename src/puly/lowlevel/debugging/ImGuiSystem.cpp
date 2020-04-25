@@ -35,6 +35,13 @@ void Puly::ImguiSystem::Init(Window* window)
 
 void Puly::ImguiSystem::OnUpdate(Timestep dt)
 {
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+
+	ImGuiIO& io = ImGui::GetIO();
+	io.DeltaTime = dt;
+
 	if (Input::IsKeyPressed(mWindow, PL_KEY_F1)) {
 		menuOpened = true;
 	}
@@ -45,8 +52,12 @@ void Puly::ImguiSystem::OnUpdate(Timestep dt)
 
 	if (menuOpened) {
 		DebugPrimitiveMenu(dt);
+		TextureImportMenu(dt);
 	}
 	
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 }
 
 void Puly::ImguiSystem::Shutdown()
@@ -59,18 +70,10 @@ void Puly::ImguiSystem::Shutdown()
 
 void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 {
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-
-	ImGuiIO& io = ImGui::GetIO();
-	io.DeltaTime = dt;
-
-	//ImGui::ShowDemoWindow((bool*)true);
-
+		
 	ImGui::Begin("Debugging Primitive Menu");
-	ImGui::SliderFloat3("From", newLinePos, 0, 1.0f);
-	ImGui::SliderFloat3("To", newLineFinalPos, 0, 1.0f);
+	ImGui::SliderFloat3("From", newLinePos, -1.0f, 1.0f);
+	ImGui::SliderFloat3("To", newLineFinalPos, -1.0f, 1.0f);
 
 	if (ImGui::Button("Add New Line")) {
 		debugDrawManager->AddLine(Point(newLinePos[0], newLinePos[1], newLinePos[2]), Point(newLineFinalPos[0], newLineFinalPos[1], newLineFinalPos[2]));
@@ -78,8 +81,17 @@ void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 
 	ImGui::End();
 
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
 	debugDrawManager->OnUpdate();
+}
+
+void Puly::ImguiSystem::TextureImportMenu(Timestep dt)
+{
+
+	ImGui::Begin("Textures Menu");
+
+	ImGui::ListBoxHeader("Textures");
+	ImGui::ListBoxFooter();
+
+	ImGui::End();
+	
 }

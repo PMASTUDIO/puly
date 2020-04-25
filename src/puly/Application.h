@@ -10,6 +10,8 @@
 #include "lowlevel/debugging/DebugDrawManager.h"
 #include "lowlevel/debugging/ImGuiSystem.h"
 
+#include "renderer/SpriteRenderer.h"
+
 #include "renderer/OrthographicCamera.h"
 #include <glm/glm.hpp>
 
@@ -32,22 +34,16 @@ namespace Puly {
 
 		//Shader m_Shader;
 
+		OrtographicCamera m_Camera;
+
 		std::shared_ptr<Shader> m_Shader, m_TextureShader;
 
-		//std::unique_ptr<DebugDrawManager> debugDrawManager;
-
-		std::shared_ptr<VertexBuffer> m_VBO;
-		std::shared_ptr<IndexBuffer> m_IBO;
-		std::shared_ptr<VertexArray> m_VAO;
-
-		std::shared_ptr<Texture> m_Texture;
+		std::shared_ptr<SpriteRenderer> myFirstSprite;
 
 		Game demoGame;
 
 		float mLastFrameTime;
 
 		float GetDeltaTime(int targetFPS);
-
-		OrtographicCamera m_Camera;
 	};
 }
