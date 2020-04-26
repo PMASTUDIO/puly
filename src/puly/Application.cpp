@@ -29,6 +29,8 @@ bool Puly::Application::Init()
 	if (!mWindow.Init(1280, 720, "My Puly Engine"))
 		return false;
 
+	Renderer::Init();
+
 	if (!mSubSystems->Init())
 		return false;
 
