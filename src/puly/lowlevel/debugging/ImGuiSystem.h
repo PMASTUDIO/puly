@@ -5,7 +5,7 @@
 #include "DebugDrawManager.h"
 #include "..//Timestep.h"
 
-#include "..//..//renderer/SpriteRenderer.h"
+#include "..//..//objects/GameObject.h"
 
 class Window;
 
@@ -22,7 +22,7 @@ namespace Puly {
 
 		void Shutdown();
 
-		void TextureImportMenu(bool show, std::map<std::string, std::shared_ptr<SpriteRenderer>>& textures);
+		void TextureImportMenu(bool show, std::map<std::string, std::shared_ptr<GameObject>>& objects);
 
 		void Render();
 
@@ -31,6 +31,8 @@ namespace Puly {
 		Window* mWindow;
 
 		void DebugPrimitiveMenu(Timestep dt);
+
+		void SceneTreeMenu(std::map<std::string, std::shared_ptr<GameObject>>& objects);
 	};
 
 }

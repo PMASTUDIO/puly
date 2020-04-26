@@ -36,10 +36,6 @@ namespace Puly {
 
 		OrthographicCamera2DController m_CameraController;
 
-		std::shared_ptr<Shader> m_Shader, m_TextureShader;
-
-		std::shared_ptr<SpriteRenderer> myFirstSprite;
-
 		Game demoGame;
 
 		float mLastFrameTime;

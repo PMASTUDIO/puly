@@ -16,8 +16,6 @@
 Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720), m_CameraController(&mWindow, 1280.0f / 720.0f, true)
 {
 	mSubSystems.reset(new SubSystems(&mWindow));
-	m_Shader.reset(new Shader());
-	m_TextureShader.reset(new Shader());
 }
 
 Puly::Application::~Application()
@@ -36,8 +34,6 @@ bool Puly::Application::Init()
 
 	// Demo game
 	demoGame.Start();
-
-	//myFirstSprite.reset(new SpriteRenderer(m_TextureShader, "resources/textures/checkerboard.png"));
 
 	return true;
 }
@@ -78,7 +74,7 @@ void Puly::Application::Run()
 		// ------- DEMO SCENE ENDED --------
 
 		mSubSystems->OnUpdate(deltaTime);
-		mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_SpriteRenderers);
+		mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_Objects);
 		mSubSystems->imGuiSystem->Render();
 
 		mWindow.Update();
