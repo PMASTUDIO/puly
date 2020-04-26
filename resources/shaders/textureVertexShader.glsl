@@ -10,6 +10,6 @@ uniform mat4 u_Transform;
 out vec2 v_TexCoords;
 
 void main(){
-	gl_Position = u_Transform * u_ViewProjection * vec4(a_Position, 1.0);
+	gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 	v_TexCoords = vec2(1.0f - a_TexCoord.x, a_TexCoord.y);
 }	

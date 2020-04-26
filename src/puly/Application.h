@@ -12,7 +12,7 @@
 
 #include "renderer/SpriteRenderer.h"
 
-#include "renderer/OrthographicCamera.h"
+#include "renderer/OrthographicCameraController.h"
 #include <glm/glm.hpp>
 
 #include "Game.h"
@@ -34,7 +34,7 @@ namespace Puly {
 
 		//Shader m_Shader;
 
-		OrtographicCamera m_Camera;
+		OrthographicCamera2DController m_CameraController;
 
 		std::shared_ptr<Shader> m_Shader, m_TextureShader;
 

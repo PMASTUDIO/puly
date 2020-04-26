@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720), m_CameraController(&mWindow, 1280.0f / 720.0f, true)
 {
 	mSubSystems.reset(new SubSystems(&mWindow));
 	m_Shader.reset(new Shader());
@@ -61,15 +61,17 @@ void Puly::Application::Run()
 		RenderCommand::Clear();
 
 		// Demo scene
-		OrthographicCamera2DController::HandleCameraWithInput(&m_Camera, &mWindow, deltaTime, 1.0f);
+		m_CameraController.OnUpdate(&mWindow, deltaTime);
 
-		Renderer::BeginScene(m_Camera);
+		Renderer::BeginScene(m_CameraController.GetCamera());
 
 		// Demo game
 		demoGame.Update(deltaTime);
 		demoGame.Render();
 
 		//myFirstSprite->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
+
+		//PL_LOG_INFO("FPS: {}", 1.0f / deltaTime);
 
 		Renderer::EndScene();
 

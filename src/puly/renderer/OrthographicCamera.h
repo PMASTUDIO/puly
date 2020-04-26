@@ -8,6 +8,8 @@ namespace Puly {
 	public:
 		OrtographicCamera(float leftBound, float rightBound, float bottomBound, float topBound);
 
+		void SetProjection(float left, float right, float bottom, float top);
+
 		const glm::vec3& GetPosition() const { return m_Position; }
 		void SetPosition(glm::vec3& position) { m_Position = position; RecalculateViewMatrix(); }
 

@@ -42,7 +42,6 @@ void Puly::Game::Start()
 
 void Puly::Game::Update(Timestep dt)
 {
-	
 }
 
 void Puly::Game::Render()
