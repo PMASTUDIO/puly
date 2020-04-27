@@ -53,6 +53,9 @@ bool Puly::Application::Shutdown()
 void Puly::Application::OnEvent(Event& evt)
 {
 	m_CameraController.OnEvent(evt);
+
+	EventDispatcher dispatcher(evt);
+	dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
 	//PL_LOG_INFO("{0}", evt.ToString());
 }
 
@@ -67,20 +70,21 @@ void Puly::Application::Run()
 		RenderCommand::Clear();
 
 		// Demo scene
-		m_CameraController.OnUpdate(&mWindow, deltaTime);
+		if (!gameMinimized) {
+			m_CameraController.OnUpdate(&mWindow, deltaTime);
 
-		Renderer::BeginScene(m_CameraController.GetCamera());
+			Renderer::BeginScene(m_CameraController.GetCamera());
 
-		// Demo game
-		demoGame.Update(deltaTime);
-		demoGame.Render();
+			// Demo game
+			demoGame.Update(deltaTime);
+			demoGame.Render();
 
-		//myFirstSprite->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
+			//myFirstSprite->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
 
-		//PL_LOG_INFO("FPS: {}", 1.0f / deltaTime);
+			//PL_LOG_INFO("FPS: {}", 1.0f / deltaTime);
 
-		Renderer::EndScene();
-
+			Renderer::EndScene();
+		}
 		// ------- DEMO SCENE ENDED --------
 
 		mSubSystems->OnUpdate(deltaTime);
@@ -89,6 +93,19 @@ void Puly::Application::Run()
 
 		mWindow.Update();
 	}
+}
+
+bool Puly::Application::OnWindowResize(WindowResizeEvent& e)
+{
+	if (e.GetWidth() == 0 || e.GetHeight() == 0) {
+		gameMinimized = true;
+		return false;
+	}
+
+	gameMinimized = false;
+	Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+	return false;
 }
 
 float Puly::Application::GetDeltaTime(int targetFPS)

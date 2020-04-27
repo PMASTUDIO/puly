@@ -33,6 +33,8 @@ namespace Puly {
 		void Run();
 
 	private:
+		bool OnWindowResize(WindowResizeEvent& e);
+	private:
 		Window mWindow;
 		std::unique_ptr<SubSystems> mSubSystems;
 
@@ -45,5 +47,7 @@ namespace Puly {
 		float mLastFrameTime;
 
 		float GetDeltaTime(int targetFPS);
+
+		float gameMinimized = false;
 	};
 }
