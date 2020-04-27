@@ -579,6 +579,7 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\dataStructures\ArrayStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -683,5 +684,6 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\dataStructures\ArrayStack.cpp" />
   </ItemGroup>
 </Project>

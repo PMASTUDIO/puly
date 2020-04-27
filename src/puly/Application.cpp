@@ -89,6 +89,7 @@ void Puly::Application::Run()
 
 		mSubSystems->OnUpdate(deltaTime);
 		mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_Objects);
+		mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 		mSubSystems->imGuiSystem->Render();
 
 		mWindow.Update();

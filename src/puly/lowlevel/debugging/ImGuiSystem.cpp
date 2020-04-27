@@ -14,6 +14,9 @@
 #include "../../platform/windows/FileOpenDialog.h"
 
 #include <filesystem>
+#include <string>
+
+#include "..//dataStructures/ArrayStack.h"
 
 float newLinePos[3];
 float newLineFinalPos[3];
@@ -54,18 +57,17 @@ void Puly::ImguiSystem::OnUpdate(Timestep dt)
 	ImGuiIO& io = ImGui::GetIO();
 	io.DeltaTime = dt;
 
-	if (Input::IsKeyPressed(mWindow, PL_KEY_F1)) {
-		menuOpened = true;
-	}
+	///*if (Input::IsKeyPressed(mWindow, PL_KEY_F1)) {
+	//	menuOpened = true;
+	//}
 
-	if (Input::IsKeyPressed(mWindow, PL_KEY_F2)) {
-		menuOpened = false;
-	}
+	//if (Input::IsKeyPressed(mWindow, PL_KEY_F2)) {
+	//	menuOpened = false;
+	//}*/
 
-	if (menuOpened) {
-		DebugPrimitiveMenu(dt);
-	}
-
+	//if (menuOpened) {
+	//	DebugPrimitiveMenu(dt);
+	//}
 }
 
 void Puly::ImguiSystem::Shutdown()
@@ -154,6 +156,29 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::map<std::string, std::
 	}
 
 	
+}
+
+float data[100] = { 0 };
+Puly::ArrayStack performanceArr(data);
+
+void Puly::ImguiSystem::PerformanceMenu(bool show, Timestep dt)
+{
+	if (show) {
+		ImGui::Begin("Performance");
+
+		ImGui::Text("Delta Time: %f", (float)dt);
+		ImGui::Text("FPS: %f", 1.0f / dt);
+
+		performanceArr.pop();
+		performanceArr.x = dt * 10000000;
+		performanceArr.push();
+
+		performanceArr.display();
+
+		ImGui::PlotLines("FPS Graph", performanceArr.stack, IM_ARRAYSIZE(performanceArr.stack));
+
+		ImGui::End();
+	}
 }
 
 void Puly::ImguiSystem::Render()

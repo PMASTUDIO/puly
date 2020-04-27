@@ -24,6 +24,8 @@ namespace Puly {
 
 		void TextureImportMenu(bool show, std::map<std::string, std::shared_ptr<GameObject>>& objects);
 
+		void PerformanceMenu(bool show, Timestep dt);
+
 		void Render();
 
 	private:
