@@ -580,6 +580,7 @@
       <Filter>src\puly\window</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\dataStructures\ArrayStack.h" />
+    <ClInclude Include="src\puly\platform\FileOp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">

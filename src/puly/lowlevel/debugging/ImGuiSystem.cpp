@@ -16,7 +16,10 @@
 #include <filesystem>
 #include <string>
 
+#include <windows.h>
+
 #include "..//dataStructures/ArrayStack.h"
+#include "..//..//platform/FileOp.h"
 
 float newLinePos[3];
 float newLineFinalPos[3];
@@ -105,7 +108,7 @@ void Puly::ImguiSystem::SceneTreeMenu(std::map<std::string, std::shared_ptr<Game
 			{
 				ImGui::DragFloat3("Position", glm::value_ptr<float>(item.second->m_Position), 0.2f, -10.0f, 10.0f);
 				ImGui::DragFloat("Rotation", &item.second->m_Rotation, 1.0f, 0, 360.0f);
-				ImGui::DragFloat("Scale", &item.second->m_Scale, 0.2f, -10.0f, 10.0f);
+				ImGui::DragFloat("Scale", &item.second->m_Scale, 0.2f, 0.0f, 10.0f);
 				//item.second->m_Position = glm::vec3(transformPos[0], transformPos[1], transformPos[2]);
 				ImGui::TreePop();
 			}
@@ -130,10 +133,19 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::map<std::string, std::
 			std::string pathTexture = Puly::openfilename();
 			PL_LOG_INFO("Path: {}", pathTexture);
 
-			std::shared_ptr<GameObject> newObject;
-			newObject.reset(new GameObject(glm::vec3(initialPos[0], initialPos[1], initialPos[2]), pathTexture));
+			fs::path absolutePath = fs::current_path();
+			fs::path resourcesPath = absolutePath.append("resources/textures/");
+
+			PL_LOG_INFO(resourcesPath.u8string());
+
+			copyFile(pathTexture, resourcesPath);
+
 
 			fs::path path = pathTexture;
+			fs::path relativePath = fs::path("resources/textures/").append(path.filename());
+
+			std::shared_ptr<GameObject> newObject;
+			newObject.reset(new GameObject(glm::vec3(initialPos[0], initialPos[1], initialPos[2]), relativePath.u8string()));
 
 			std::string fileNameString;
 			
@@ -173,7 +185,7 @@ void Puly::ImguiSystem::PerformanceMenu(bool show, Timestep dt)
 		performanceArr.x = dt * 10000000;
 		performanceArr.push();
 
-		performanceArr.display();
+		//performanceArr.display();
 
 		ImGui::PlotLines("FPS Graph", performanceArr.stack, IM_ARRAYSIZE(performanceArr.stack));
 
