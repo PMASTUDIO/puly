@@ -5,7 +5,13 @@
 
 #include "..//lowlevel/debugging/Log.h"
 
+#include "..//lowlevel/Event.h"
+
+#include <algorithm>
+
 namespace Puly {
+
+	#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
 	OrthographicCamera2DController::OrthographicCamera2DController(Window* window, float aspectRatio, bool rotation)
 		: m_AspectRatio(aspectRatio), m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel), m_Rotation(rotation)
@@ -37,17 +43,29 @@ namespace Puly {
 				m_CameraRotation -= m_CameraRotationSpeed * dt;
 			}
 		}
-
-		if (Input::IsKeyPressed(window, PL_KEY_KP_ADD)) {
-			m_ZoomLevel -= 1.0f  * dt;
-			m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-		} else if (Input::IsKeyPressed(window, PL_KEY_KP_SUBTRACT)) {
-			m_ZoomLevel += 1.0f * dt;
-			m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-		}
 	
 		m_Camera.SetPosition(m_CameraPosition);
 		m_Camera.SetRotation(m_CameraRotation);
+	}
+
+	void OrthographicCamera2DController::OnEvent(Event& evt)
+	{
+		EventDispatcher dispatcher(evt);
+		dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FN(OrthographicCamera2DController::OnMouseScrolled));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OrthographicCamera2DController::OnWindowsResized));
+	}
+	bool OrthographicCamera2DController::OnMouseScrolled(MouseScrolledEvent& evt)
+	{
+		m_ZoomLevel -= evt.GetYOffset();
+		m_ZoomLevel = max(m_ZoomLevel, 0.25f);
+		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		return false;
+	}
+	bool OrthographicCamera2DController::OnWindowsResized(WindowResizeEvent& evt)
+	{
+		m_AspectRatio = (float)evt.GetWidth() / (float)evt.GetHeight();
+		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		return false;
 	}
 }
 

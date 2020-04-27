@@ -8,7 +8,12 @@
 
 #include "GLFW/glfw3.h"
 
+#include "..//lowlevel/BaseEvents.h"
+
 namespace Puly {
+
+	class Event;
+
 	class OrthographicCamera2DController {
 	public:
 		OrthographicCamera2DController(Window* window, float aspectRatio, bool rotation = false);
@@ -16,6 +21,12 @@ namespace Puly {
 		OrtographicCamera& GetCamera() { return m_Camera; }
 
 		void OnUpdate(Window* window, Timestep dt);
+
+		void OnEvent(Event& evt);
+
+	private:
+		bool OnMouseScrolled(MouseScrolledEvent& evt);
+		bool OnWindowsResized(WindowResizeEvent& evt);
 
 	private:
 		float m_AspectRatio;

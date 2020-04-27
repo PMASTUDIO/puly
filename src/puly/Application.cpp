@@ -52,6 +52,7 @@ bool Puly::Application::Shutdown()
 
 void Puly::Application::OnEvent(Event& evt)
 {
+	m_CameraController.OnEvent(evt);
 	//PL_LOG_INFO("{0}", evt.ToString());
 }
 
