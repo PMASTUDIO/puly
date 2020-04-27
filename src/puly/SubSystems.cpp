@@ -13,19 +13,26 @@ bool SubSystems::Init()
 {
 	configurator.Init();
 	Puly::Log::Init(atoi(configurator.GetValue("verbosityLog")));
-	imGuiSystem->Init(mainWindow);
+
+	#ifdef PL_DEBUG
+		imGuiSystem->Init(mainWindow);
+	#endif
 
 	return true;
 }
 
 void SubSystems::OnUpdate(Puly::Timestep dt)
 {
-	imGuiSystem->OnUpdate(dt);
+	#ifdef PL_DEBUG
+		imGuiSystem->OnUpdate(dt);
+	#endif
 }
 
 bool SubSystems::Shutdown()
 {
-	imGuiSystem->Shutdown();
+	#ifdef PL_DEBUG
+		imGuiSystem->Shutdown();
+	#endif
 	configurator.Shutdown();
 
 	return true;

@@ -88,9 +88,12 @@ void Puly::Application::Run()
 		// ------- DEMO SCENE ENDED --------
 
 		mSubSystems->OnUpdate(deltaTime);
-		mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_Objects);
-		mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
-		mSubSystems->imGuiSystem->Render();
+
+		#ifdef PL_DEBUG
+			mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_Objects);
+			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
+			mSubSystems->imGuiSystem->Render();
+		#endif
 
 		mWindow.Update();
 	}

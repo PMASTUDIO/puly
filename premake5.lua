@@ -19,9 +19,9 @@ project "Puly"
    files { "**.h", "**.cpp" }
 
    filter "configurations:Debug"
-      defines { "DEBUG" }
+      defines { "PL_DEBUG" }
       symbols "On"
 
    filter "configurations:Release"
-      defines { "RELEASE" }
+      defines { "PL_RELEASE" }
       optimize "On"

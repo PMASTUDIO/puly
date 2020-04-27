@@ -52,6 +52,9 @@
     <Filter Include="src\puly\lowlevel">
       <UniqueIdentifier>{FF34AAB5-6B4B-A84B-B4C2-336D201879D3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\puly\lowlevel\dataStructures">
+      <UniqueIdentifier>{EC6D8C84-D8BE-77C6-0123-6688EDD20A30}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\puly\lowlevel\debugging">
       <UniqueIdentifier>{9A7D1203-068B-40E9-8F71-3CD4FB7D0CA0}</UniqueIdentifier>
     </Filter>
@@ -501,6 +504,9 @@
     <ClInclude Include="src\puly\lowlevel\Timestep.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\dataStructures\ArrayStack.h">
+      <Filter>src\puly\lowlevel\dataStructures</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\debugging\DebugDrawManager.h">
       <Filter>src\puly\lowlevel\debugging</Filter>
     </ClInclude>
@@ -536,6 +542,9 @@
     </ClInclude>
     <ClInclude Include="src\puly\opengl\OpenGlTexture2D.h">
       <Filter>src\puly\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\platform\FileOp.h">
+      <Filter>src\puly\platform</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\platform\windows\FileOpenDialog.h">
       <Filter>src\puly\platform\windows</Filter>
@@ -579,8 +588,6 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\lowlevel\dataStructures\ArrayStack.h" />
-    <ClInclude Include="src\puly\platform\FileOp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -621,6 +628,9 @@
     </ClCompile>
     <ClCompile Include="src\puly\lowlevel\ResourceManager.cpp">
       <Filter>src\puly\lowlevel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\dataStructures\ArrayStack.cpp">
+      <Filter>src\puly\lowlevel\dataStructures</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\lowlevel\debugging\DebugDrawManager.cpp">
       <Filter>src\puly\lowlevel\debugging</Filter>
@@ -685,6 +695,5 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\lowlevel\dataStructures\ArrayStack.cpp" />
   </ItemGroup>
 </Project>
