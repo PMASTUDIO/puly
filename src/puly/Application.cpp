@@ -105,6 +105,10 @@ bool Puly::Application::OnWindowResize(WindowResizeEvent& e)
 	gameMinimized = false;
 	Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
 
+	float zoom = e.GetWidth() / 1280.0f;
+
+	//m_CameraController.SetZoomLevel(zoom);
+
 	return false;
 }
 

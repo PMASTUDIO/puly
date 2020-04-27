@@ -24,6 +24,9 @@ namespace Puly {
 
 		void OnEvent(Event& evt);
 
+		float GetZoomLevel() const { return m_ZoomLevel; }
+		void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; }
+
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& evt);
 		bool OnWindowsResized(WindowResizeEvent& evt);
