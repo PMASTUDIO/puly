@@ -588,6 +588,8 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\ecs\Component.h" />
+    <ClInclude Include="src\puly\ecs\EntityManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -695,5 +697,6 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\ecs\EntityManager.cpp" />
   </ItemGroup>
 </Project>

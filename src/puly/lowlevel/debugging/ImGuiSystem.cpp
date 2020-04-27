@@ -144,8 +144,8 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::map<std::string, std::
 			fs::path path = pathTexture;
 			fs::path relativePath = fs::path("resources/textures/").append(path.filename());
 
-			std::shared_ptr<GameObject> newObject;
-			newObject.reset(new GameObject(glm::vec3(initialPos[0], initialPos[1], initialPos[2]), relativePath.u8string()));
+			//std::shared_ptr<GameObject> newObject;
+			//newObject.reset(new GameObject(glm::vec3(initialPos[0], initialPos[1], initialPos[2]), relativePath.u8string()));
 
 			std::string fileNameString;
 			
@@ -159,7 +159,7 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::map<std::string, std::
 				fileNameString = fileName.u8string();
 			}
 
-			objects[fileNameString] = newObject;
+			//objects[fileNameString] = newObject;
 		}
 
 		ImGui::End();

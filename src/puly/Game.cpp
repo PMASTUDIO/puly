@@ -30,13 +30,13 @@ void Puly::Game::Start()
 
 
 	// Texture Renderer setups
-	std::shared_ptr<GameObject> checkerboard;
-	checkerboard.reset(new GameObject(glm::vec3(0.0f), "resources/textures/checkerboard.png"));
+	//std::shared_ptr<GameObject> checkerboard;
+	//checkerboard.reset(new GameObject(glm::vec3(0.0f), "resources/textures/checkerboard.png"));
 
 	//std::shared_ptr<SpriteRenderer> bird;
 	//bird.reset(new SpriteRenderer("resources/textures/bird.png"));
 
-	v_Objects["Checkerboard"] = checkerboard;
+	//v_Objects["Checkerboard"] = checkerboard;
 	//v_SpriteRenderers["Checkerboard"] = checkerboard;
 }
 
@@ -46,7 +46,5 @@ void Puly::Game::Update(Timestep dt)
 
 void Puly::Game::Render()
 {
-	for (auto& element : v_Objects) {
-		element.second->Draw();
-	}
+	
 }

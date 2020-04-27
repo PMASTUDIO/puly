@@ -2,6 +2,8 @@
 #include "window/Window.h"
 #include "SubSystems.h"
 
+#include <vector>
+
 #include "renderer/Shader.h"
 #include "renderer/Buffer.h"
 #include "renderer/VertexArray.h"
