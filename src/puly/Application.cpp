@@ -11,11 +11,15 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+// For event testing
+#include "lowlevel/BaseEvents.h"
+
 #include <iostream>
 
 Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720), m_CameraController(&mWindow, 1280.0f / 720.0f, true)
 {
 	mSubSystems.reset(new SubSystems(&mWindow));
+	mWindow.SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 }
 
 Puly::Application::~Application()
@@ -44,6 +48,11 @@ bool Puly::Application::Shutdown()
 	mWindow.Shutdown();
 
 	return true;
+}
+
+void Puly::Application::OnEvent(Event& evt)
+{
+	//PL_LOG_INFO("{0}", evt.ToString());
 }
 
 void Puly::Application::Run()

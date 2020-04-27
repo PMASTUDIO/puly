@@ -477,7 +477,13 @@
     <ClInclude Include="src\puly\SubSystems.h">
       <Filter>src\puly</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\BaseEvents.h">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\Configuration.h">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\Event.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\Input.h">
@@ -626,6 +632,9 @@
     <ClCompile Include="src\puly\lowlevel\debugging\primitives\DebugLine.cpp">
       <Filter>src\puly\lowlevel\debugging\primitives</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\objects\GameObject.cpp">
+      <Filter>src\puly\objects</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\opengl\OpenGLBuffer.cpp">
       <Filter>src\puly\opengl</Filter>
     </ClCompile>
@@ -674,6 +683,5 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\objects\GameObject.cpp" />
   </ItemGroup>
 </Project>

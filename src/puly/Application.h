@@ -18,6 +18,8 @@
 #include "Game.h"
 
 namespace Puly {
+	#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
+
 	class Application {
 	public:
 		Application();
@@ -25,6 +27,8 @@ namespace Puly {
 
 		bool Init();
 		bool Shutdown();
+
+		void OnEvent(Event& evt);
 
 		void Run();
 
