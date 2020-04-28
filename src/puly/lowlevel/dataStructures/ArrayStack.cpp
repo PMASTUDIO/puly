@@ -16,6 +16,7 @@ void Puly::ArrayStack::push(void)
 	else {
 		top++;
 		stack[top] = x;
+
 	}
 }
 

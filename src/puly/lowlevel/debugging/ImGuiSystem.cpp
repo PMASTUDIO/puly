@@ -21,6 +21,8 @@
 #include "..//dataStructures/ArrayStack.h"
 #include "..//..//platform/FileOp.h"
 
+#include <queue>
+
 float newLinePos[3];
 float newLineFinalPos[3];
 
@@ -190,8 +192,7 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::vector<GameObject*> v_
 	
 }
 
-float data[100] = { 0 };
-Puly::ArrayStack performanceArr(data);
+std::queue<float> performanceStack;
 
 void Puly::ImguiSystem::PerformanceMenu(bool show, Timestep dt)
 {
@@ -201,13 +202,19 @@ void Puly::ImguiSystem::PerformanceMenu(bool show, Timestep dt)
 		ImGui::Text("Delta Time: %f", (float)dt);
 		ImGui::Text("FPS: %f", 1.0f / dt);
 
-		performanceArr.pop();
-		performanceArr.x = dt * 10000000;
-		performanceArr.push();
+		if (performanceStack.size() < 100) {
+			performanceStack.push(dt);
+		}
+		else {
+			performanceStack.pop();
+			performanceStack.push(dt);
+		}
+
+		float* performanceArray = &performanceStack.front();
 
 		//performanceArr.display();
 
-		ImGui::PlotLines("FPS Graph", performanceArr.stack, IM_ARRAYSIZE(performanceArr.stack));
+		ImGui::PlotLines("Graph", performanceArray, performanceStack.size(), 5);
 
 		ImGui::End();
 	}
