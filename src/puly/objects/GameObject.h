@@ -46,6 +46,8 @@ namespace Puly {
 			return *newComponent;
 		}
 
+		std::vector<Component*> GetComponents() const { return v_Components; }
+
 	private:
 		std::vector<Component*> v_Components;
 	};

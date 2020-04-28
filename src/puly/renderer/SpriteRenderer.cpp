@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "..//objects/GameObject.h"
+#include "..//imgui/imgui.h"
 
 namespace Puly {
 
@@ -22,6 +23,7 @@ namespace Puly {
 
 	void SpriteRenderer::Init()
 	{
+
 	}
 
 	SpriteRenderer::~SpriteRenderer()
@@ -57,6 +59,11 @@ namespace Puly {
 		m_Texture->Bind();
 
 		Renderer::Submit(m_VAO, m_Shader, model);
+	}
+
+	void SpriteRenderer::DebugGUI()
+	{
+		ImGui::Text("Sprite Component");
 	}
 
 	void SpriteRenderer::InitRenderData()

@@ -29,6 +29,8 @@ namespace Puly {
 		virtual void Update(float deltaTime) override;
 		virtual void Render() override;
 
+		virtual void DebugGUI() override;
+
 	private:
 		std::shared_ptr<Shader> m_Shader;
 

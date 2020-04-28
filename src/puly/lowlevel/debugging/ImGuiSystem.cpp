@@ -97,12 +97,28 @@ void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 	debugDrawManager->OnUpdate();
 }
 
+void Puly::ImguiSystem::PropertyPanel(std::vector<GameObject*> v_Objects)
+{
+	ImGui::Begin("Properties");
+	
+	if (selectedGameObject != -1) {
+		ImGui::Text(v_Objects[selectedGameObject]->m_DebugName.c_str());
+
+		for (auto& component : v_Objects[selectedGameObject]->GetComponents()) {
+			component->DebugGUI();
+		}
+	}
+
+	ImGui::End();
+}
+
 void Puly::ImguiSystem::SceneTreeMenu(std::vector<GameObject*> objects)
 {
 	ImGui::Begin("Scene");
 
 	if (ImGui::CollapsingHeader("Game Objects"))
 	{
+		int i = 0;
 		for (auto& item : objects) {
 			if (ImGui::TreeNode(item->m_DebugName.c_str())) /*ImGui::Selectable(item.first.c_str())*/
 			{
@@ -110,8 +126,13 @@ void Puly::ImguiSystem::SceneTreeMenu(std::vector<GameObject*> objects)
 				ImGui::DragFloat("Rotation", &item->m_Rotation, 1.0f, 0, 360.0f);
 				ImGui::DragFloat("Scale", &item->m_Scale, 0.2f, 0.0f, 10.0f);
 
+				if(ImGui::Button("Edit")) {
+					selectedGameObject = i;
+				}
+
 				ImGui::TreePop();
 			}
+			i++;
 		}
 	}
 
@@ -164,6 +185,7 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::vector<GameObject*> v_
 		ImGui::End();
 
 		SceneTreeMenu(v_Objects);
+		PropertyPanel(v_Objects);
 	}
 
 	

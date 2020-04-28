@@ -18,7 +18,6 @@ void Puly::GameObject::Draw()
 	for (auto& component : v_Components) {
 		component->Render();
 	}
-	//	m_Sprite->DrawSprite(glm::vec2(m_Position.x, m_Position.y), glm::vec2(m_Scale), glm::radians(m_Rotation), glm::vec3(1.0f));
 }
 
 void Puly::GameObject::Destroy()

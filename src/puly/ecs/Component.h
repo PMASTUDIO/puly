@@ -19,6 +19,7 @@ namespace Puly {
 		virtual void Update(float deltaTime) {}
 		virtual void Render() {}
 	
+		virtual void DebugGUI(){}
 	};
 
 }

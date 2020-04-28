@@ -20,8 +20,8 @@ void Puly::Game::Start()
 {
 	PL_LOG_SUCCESS("Game initialized! Width: {}, Height: {}", mWidth, mHeight);
 
-	Puly::GameObject& bird(m_EntityManager->AddObject("bird"));
-	bird.AddComponent<Puly::SpriteRenderer>("resources/textures/bird.png");
+	Puly::GameObject& bird(m_EntityManager->AddObject("checkerboard"));
+	bird.AddComponent<Puly::SpriteRenderer>("resources/textures/checkerboard.png");
 
 }
 
