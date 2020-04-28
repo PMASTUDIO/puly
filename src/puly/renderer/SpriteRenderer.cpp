@@ -18,13 +18,28 @@ namespace Puly {
 		m_Texture = Puly::Texture2D::Create(texturePath);
 	}
 
+	void SpriteRenderer::Init()
+	{
+	}
+
 	SpriteRenderer::~SpriteRenderer()
 	{
 		
 	}
 
-	void SpriteRenderer::DrawSprite(glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color)
+	
+
+	void SpriteRenderer::Update(float deltaTime)
 	{
+	}
+
+	void SpriteRenderer::Render()
+	{
+		glm::vec2 position = glm::vec2(0, 0);
+
+		glm::vec2 size = glm::vec2(10.0f, 10.0f);
+		float rotate = 0.0f;
+
 		m_Shader->Bind();
 		m_Shader->UploadUniform1i("u_Texture", 0);
 

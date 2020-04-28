@@ -7,6 +7,8 @@
 
 #include "./lowlevel/Timestep.h"
 
+#include "ecs/EntityManager.h"
+
 namespace Puly {
 	
 	enum GameState {
@@ -29,8 +31,7 @@ namespace Puly {
 		GameState m_State;
 		unsigned int mWidth, mHeight;
 
-		std::map<std::string, std::shared_ptr<GameObject>> v_Objects;
-		std::vector<std::shared_ptr<Shader>> v_Shaders;
+		std::unique_ptr<EntityManager> m_EntityManager;
 	};
 
 }

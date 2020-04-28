@@ -2,21 +2,23 @@
 
 #include <memory>
 
-class GameObject;
-
 namespace Puly {
+
+	class GameObject;
 
 	class Component {
 	public:
-		
-		virtual ~Component();
+		GameObject* m_Owner;
+	public:
 
-		virtual void Init();
-		virtual void Update(float deltaTime);
-		virtual void Render();
+		Component() {}
 
-	private:
-		std::shared_ptr<GameObject>& owner;
+		virtual ~Component() {}
+
+		virtual void Init() {}
+		virtual void Update(float deltaTime) {}
+		virtual void Render() {}
+	
 	};
 
 }

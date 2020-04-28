@@ -3,15 +3,15 @@
 namespace Puly {
 	void Puly::EntityManager::Update(float deltaTime)
 	{
-		for (auto& object : v_Objects) {
-			object.second->Update(deltaTime);
+		for (auto object : v_Objects) {
+			object->Update(deltaTime);
 		}
 	}
 
 	void Puly::EntityManager::Render()
 	{
 		for (auto& object : v_Objects) {
-			object.second->Draw();
+			object->Draw();
 		}
 	}
 
@@ -20,17 +20,16 @@ namespace Puly {
 		return v_Objects.size() == 0;
 	}
 
-	std::shared_ptr<Puly::GameObject>& Puly::EntityManager::AddObject(std::string name)
+	Puly::GameObject& EntityManager::AddObject(std::string name)
 	{
-		std::shared_ptr<Puly::GameObject> newObject;
-		newObject = std::make_shared<Puly::GameObject>();
+		Puly::GameObject* newObject = new Puly::GameObject(name);
 
-		v_Objects.emplace(name, newObject);
+		v_Objects.emplace_back(newObject);
 
-		return newObject;
+		return *newObject;
 	}
 
-	std::map<std::string, std::shared_ptr<GameObject>> EntityManager::GetObjects() const
+	std::vector<GameObject*> EntityManager::GetObjects() const
 	{
 		return v_Objects;
 	}
@@ -39,7 +38,7 @@ namespace Puly {
 	void Puly::EntityManager::ClearData()
 	{
 		for (auto& object : v_Objects) {
-			object.second->Destroy();
+			object->Destroy();
 		}
 	}
 	unsigned int EntityManager::GetObjectCount()

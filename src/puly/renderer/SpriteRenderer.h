@@ -12,22 +12,22 @@
 #include "VertexArray.h"
 #include "Texture.h"
 
+#include "../ecs/Component.h"
+
 namespace Puly {
 
-	class SpriteRenderer {
+	class SpriteRenderer : public Component {
 	public:
 		SpriteRenderer(const char* texturePath,
 			const char* vertexShaderPath = "resources/shaders/textureVertexShader.glsl", 
 			const char* fragmentShaderPath = "resources/shaders/textureFragmentShader.glsl"
-			);
+		);
 
 		~SpriteRenderer();
 
-		void DrawSprite(
-			glm::vec2 position, 
-			glm::vec2 size = glm::vec2(10.0f, 10.0f), float rotate = 0.0f,
-			glm::vec3 color = glm::vec3(1.0f)
-		);
+		virtual void Init() override;
+		virtual void Update(float deltaTime) override;
+		virtual void Render() override;
 
 	private:
 		std::shared_ptr<Shader> m_Shader;

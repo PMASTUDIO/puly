@@ -1,25 +1,29 @@
 #pragma once
 
-#include <map>
+#include <vector>
 #include <string>
 
 #include "..//objects/GameObject.h"
 
 namespace Puly {
+
 	class EntityManager {
 	private:
-		std::map<std::string, std::shared_ptr<GameObject>> v_Objects;
+		std::vector<GameObject*> v_Objects;
 	public:
+		EntityManager() {}
+
 		void Update(float deltaTime);
 		void Render();
 
 		bool IsEmpty() const;
-		std::shared_ptr<Puly::GameObject>& AddObject(std::string name);
+	    Puly::GameObject& AddObject(std::string name);
 
-		std::map<std::string, std::shared_ptr<GameObject>> GetObjects() const;
+		std::vector<GameObject*> GetObjects() const;
 		 
 		void ClearData();
 
 		unsigned int GetObjectCount();
 	};
+
 }

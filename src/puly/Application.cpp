@@ -11,6 +11,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "renderer/SpriteRenderer.h"
+
 // For event testing
 #include "lowlevel/BaseEvents.h"
 
@@ -44,6 +46,7 @@ bool Puly::Application::Init()
 
 bool Puly::Application::Shutdown()
 {
+	//m_EntityManager->ClearData();
 	mSubSystems->Shutdown();
 	mWindow.Shutdown();
 
@@ -90,7 +93,7 @@ void Puly::Application::Run()
 		mSubSystems->OnUpdate(deltaTime);
 
 		#ifdef PL_DEBUG
-			mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_Objects);
+			//mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_Objects);
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->Render();
 		#endif

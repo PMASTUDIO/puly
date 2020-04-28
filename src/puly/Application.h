@@ -17,6 +17,8 @@
 #include "renderer/OrthographicCameraController.h"
 #include <glm/glm.hpp>
 
+#include "ecs/EntityManager.h"
+
 #include "Game.h"
 
 namespace Puly {
