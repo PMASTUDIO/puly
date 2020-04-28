@@ -34,8 +34,6 @@ namespace Puly {
 	private:
 		std::shared_ptr<Shader> m_Shader;
 
-		std::shared_ptr<VertexBuffer> m_VBO;
-		std::shared_ptr<IndexBuffer> m_IBO;
 		std::shared_ptr<VertexArray> m_VAO;
 
 		std::shared_ptr<Texture> m_Texture;

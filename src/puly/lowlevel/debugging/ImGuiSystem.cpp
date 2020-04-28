@@ -99,17 +99,16 @@ void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 
 void Puly::ImguiSystem::PropertyPanel(std::vector<GameObject*> v_Objects)
 {
-	ImGui::Begin("Properties");
-	
 	if (selectedGameObject != -1) {
-		ImGui::Text(v_Objects[selectedGameObject]->m_DebugName.c_str());
+		std::string pageName = "Properties for " + v_Objects[selectedGameObject]->m_DebugName;
+		ImGui::Begin(pageName.c_str());
 
 		for (auto& component : v_Objects[selectedGameObject]->GetComponents()) {
 			component->DebugGUI();
 		}
-	}
 
-	ImGui::End();
+		ImGui::End();
+	}
 }
 
 void Puly::ImguiSystem::SceneTreeMenu(std::vector<GameObject*> objects)

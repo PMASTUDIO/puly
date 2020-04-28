@@ -17,6 +17,8 @@ namespace Puly {
 		static void BeginScene(OrtographicCamera& camera);
 		static void EndScene();
 
+		static std::shared_ptr<VertexArray> Draw2DQuad();
+
 		static void Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform = glm::mat4(1.0f));
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
