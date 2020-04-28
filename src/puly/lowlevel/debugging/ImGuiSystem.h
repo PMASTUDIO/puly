@@ -7,6 +7,8 @@
 
 #include "..//..//objects/GameObject.h"
 
+#include "..//..//ecs/EntityManager.h"
+
 class Window;
 
 namespace Puly {
@@ -22,7 +24,7 @@ namespace Puly {
 
 		void Shutdown();
 
-		void TextureImportMenu(bool show, std::map<std::string, std::shared_ptr<GameObject>>& objects);
+		void TextureImportMenu(bool show, std::vector<GameObject*> v_Objects, EntityManager& em);
 
 		void PerformanceMenu(bool show, Timestep dt);
 
@@ -34,7 +36,7 @@ namespace Puly {
 
 		void DebugPrimitiveMenu(Timestep dt);
 
-		void SceneTreeMenu(std::map<std::string, std::shared_ptr<GameObject>>& objects);
+		void SceneTreeMenu(std::vector<GameObject*> objects);
 	};
 
 }

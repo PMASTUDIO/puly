@@ -93,7 +93,7 @@ void Puly::Application::Run()
 		mSubSystems->OnUpdate(deltaTime);
 
 		#ifdef PL_DEBUG
-			//mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.v_Objects);
+			mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.m_EntityManager->GetObjects(), *demoGame.m_EntityManager);
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->Render();
 		#endif

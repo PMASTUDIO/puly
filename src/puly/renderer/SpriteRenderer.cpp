@@ -4,6 +4,8 @@
 #include "Renderer.h"
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "..//objects/GameObject.h"
+
 namespace Puly {
 
 	SpriteRenderer::SpriteRenderer(const char* texturePath, const char* vertexShaderPath, const char* fragmentShaderPath)
@@ -35,10 +37,10 @@ namespace Puly {
 
 	void SpriteRenderer::Render()
 	{
-		glm::vec2 position = glm::vec2(0, 0);
+		glm::vec2 position = glm::vec2(m_Owner->m_Position.x, m_Owner->m_Position.y);
 
-		glm::vec2 size = glm::vec2(10.0f, 10.0f);
-		float rotate = 0.0f;
+		glm::vec2 size = glm::vec2(m_Owner->m_Scale, m_Owner->m_Scale);
+		float rotate = glm::radians(m_Owner->m_Rotation);
 
 		m_Shader->Bind();
 		m_Shader->UploadUniform1i("u_Texture", 0);
