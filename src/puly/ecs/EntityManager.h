@@ -24,6 +24,9 @@ namespace Puly {
 		void ClearData();
 
 		unsigned int GetObjectCount();
+
+	public:
+		bool m_IsDebugging = false;
 	};
 
 }

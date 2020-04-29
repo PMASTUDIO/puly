@@ -31,8 +31,6 @@ namespace Puly {
 		
 	}
 
-	
-
 	void SpriteRenderer::Update(float deltaTime)
 	{
 	}

@@ -4,6 +4,12 @@ namespace Puly {
 	void Puly::EntityManager::Update(float deltaTime)
 	{
 		for (auto object : v_Objects) {
+			if (m_IsDebugging) {
+				object->m_Debugging = true;
+			}
+			else {
+				object->m_Debugging = false;
+			}
 			object->Update(deltaTime);
 		}
 	}

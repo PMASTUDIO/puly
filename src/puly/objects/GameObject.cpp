@@ -9,6 +9,12 @@ Puly::GameObject::GameObject(std::string debugName, glm::vec3 m_Position, glm::v
 void Puly::GameObject::Update(Timestep dt)
 {
 	for (auto& component : v_Components) {
+		if (m_Debugging) {
+			component->m_State = PL_COMP_DEBUGGING;
+		}
+		else {
+			component->m_State = PL_COMP_ACTIVE;
+		}
 		component->Update(dt);
 	}
 }

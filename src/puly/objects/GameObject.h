@@ -25,6 +25,8 @@ namespace Puly {
 		bool m_IsSolid;
 		bool m_IsActive;
 
+		bool m_Debugging = false;
+
 		std::shared_ptr<SpriteRenderer> m_Sprite;
 
 		GameObject(std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), float scale = 1.0f);

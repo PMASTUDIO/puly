@@ -94,6 +94,7 @@ void Puly::Application::Run()
 
 		#ifdef PL_DEBUG
 			mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.m_EntityManager->GetObjects(), *demoGame.m_EntityManager);
+			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame.m_EntityManager);
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->Render();
 		#endif
