@@ -21,31 +21,34 @@ namespace Puly {
 
 	void OrthographicCamera2DController::OnUpdate(Window* window, Timestep dt)
 	{
-		if (Input::IsKeyPressed(window, PL_KEY_UP)) {
-			m_CameraPosition.y += m_CameraTranslationSpeed * dt;
-		}
-		else if (Input::IsKeyPressed(window, PL_KEY_DOWN)) {
-			m_CameraPosition.y -= m_CameraTranslationSpeed * dt;
-		}
-
-		if (Input::IsKeyPressed(window, PL_KEY_RIGHT)) {
-			m_CameraPosition.x += m_CameraTranslationSpeed * dt;
-		}
-		else if (Input::IsKeyPressed(window, PL_KEY_LEFT)) {
-			m_CameraPosition.x -= m_CameraTranslationSpeed * dt;
-		}
-
-		if (m_Rotation) {
-			if (Input::IsKeyPressed(window, PL_KEY_Q)) {
-				m_CameraRotation += m_CameraRotationSpeed * dt;
+		if (m_ControlActive) {
+			if (Input::IsKeyPressed(window, PL_KEY_UP)) {
+				m_CameraPosition.y += m_CameraTranslationSpeed * dt;
 			}
-			else if (Input::IsKeyPressed(window, PL_KEY_E)) {
-				m_CameraRotation -= m_CameraRotationSpeed * dt;
+			else if (Input::IsKeyPressed(window, PL_KEY_DOWN)) {
+				m_CameraPosition.y -= m_CameraTranslationSpeed * dt;
 			}
+
+			if (Input::IsKeyPressed(window, PL_KEY_RIGHT)) {
+				m_CameraPosition.x += m_CameraTranslationSpeed * dt;
+			}
+			else if (Input::IsKeyPressed(window, PL_KEY_LEFT)) {
+				m_CameraPosition.x -= m_CameraTranslationSpeed * dt;
+			}
+
+			if (m_Rotation) {
+				if (Input::IsKeyPressed(window, PL_KEY_Q)) {
+					m_CameraRotation += m_CameraRotationSpeed * dt;
+				}
+				else if (Input::IsKeyPressed(window, PL_KEY_E)) {
+					m_CameraRotation -= m_CameraRotationSpeed * dt;
+				}
+			}
+
+			m_Camera.SetPosition(m_CameraPosition);
+			m_Camera.SetRotation(m_CameraRotation);
 		}
-	
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
+		
 	}
 
 	void OrthographicCamera2DController::OnEvent(Event& evt)
@@ -54,11 +57,17 @@ namespace Puly {
 		dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FN(OrthographicCamera2DController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OrthographicCamera2DController::OnWindowsResized));
 	}
+	void OrthographicCamera2DController::SetControlActive(float active)
+	{
+		m_ControlActive = active;
+	}
 	bool OrthographicCamera2DController::OnMouseScrolled(MouseScrolledEvent& evt)
 	{
-		m_ZoomLevel -= evt.GetYOffset();
-		m_ZoomLevel = max(m_ZoomLevel, 0.25f);
-		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		if (m_ControlActive) {
+			m_ZoomLevel -= evt.GetYOffset();
+			m_ZoomLevel = max(m_ZoomLevel, 0.25f);
+			m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		}
 		return false;
 	}
 	bool OrthographicCamera2DController::OnWindowsResized(WindowResizeEvent& evt)

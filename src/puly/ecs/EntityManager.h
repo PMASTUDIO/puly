@@ -26,7 +26,12 @@ namespace Puly {
 		unsigned int GetObjectCount();
 
 	public:
-		bool m_IsDebugging = false;
+		
+		#ifdef PL_DEBUG
+			bool m_IsDebugging = true;
+		#else
+			bool m_IsDebugging = false;
+		#endif	
 	};
 
 }

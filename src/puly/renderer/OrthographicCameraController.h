@@ -27,6 +27,8 @@ namespace Puly {
 		float GetZoomLevel() const { return m_ZoomLevel; }
 		void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; }
 
+		void SetControlActive(float active);
+
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& evt);
 		bool OnWindowsResized(WindowResizeEvent& evt);
@@ -34,6 +36,7 @@ namespace Puly {
 	private:
 		float m_AspectRatio;
 		float m_ZoomLevel = 1.0f;
+		float m_ControlActive = true;
 
 		bool m_Rotation;
 

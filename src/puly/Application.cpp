@@ -74,7 +74,17 @@ void Puly::Application::Run()
 
 		// Demo scene
 		if (!gameMinimized) {
+			if (!demoGame.m_EntityManager->m_IsDebugging) {
+				m_CameraController.SetControlActive(false);
+				m_CameraController.GetCamera().SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+				m_CameraController.SetZoomLevel(1.0f);
+				m_CameraController.GetCamera().SetRotation(0.0f);
+			}
+			else {
+				m_CameraController.SetControlActive(true);
+			}
 			m_CameraController.OnUpdate(&mWindow, deltaTime);
+			
 
 			Renderer::BeginScene(m_CameraController.GetCamera());
 

@@ -222,7 +222,7 @@ void Puly::ImguiSystem::PerformanceMenu(bool show, Timestep dt)
 
 void Puly::ImguiSystem::PlayPauseMenu(EntityManager& em)
 {
-	ImGui::Begin(em.m_IsDebugging ? "Debugging" : "Playing", (bool*)true);
+	ImGui::Begin(em.m_IsDebugging ? "Debugging" : "Playing");
 	
 	if(ImGui::Button("Play")) {
 		em.m_IsDebugging = false;
