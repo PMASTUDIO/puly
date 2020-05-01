@@ -21,6 +21,8 @@
 #include "..//dataStructures/ArrayStack.h"
 #include "..//..//platform/FileOp.h"
 
+#include "../..//ecs/components/MoveComponent.h"
+
 #include <queue>
 
 float newLinePos[3];
@@ -107,6 +109,26 @@ void Puly::ImguiSystem::PropertyPanel(std::vector<GameObject*> v_Objects)
 
 		for (auto& component : v_Objects[selectedGameObject]->GetComponents()) {
 			component->DebugGUI();
+		}
+
+		ImGui::Separator();
+
+		const char* listbox_items[] = { "2D Move Component" };
+		static int listbox_item_current = 0;
+
+		ImGui::ListBoxHeader("New Component");
+		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 1);
+		ImGui::ListBoxFooter();
+
+		if (ImGui::Button("Add Component")) {
+			switch (listbox_item_current)
+			{
+			case 0:
+				v_Objects[selectedGameObject]->AddComponent<MoveComponent>(0.5f);
+				break;
+			default:
+				break;
+			}
 		}
 
 		ImGui::End();

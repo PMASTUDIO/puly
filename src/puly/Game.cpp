@@ -24,7 +24,6 @@ void Puly::Game::Start()
 
 	Puly::GameObject& checkerboard(m_EntityManager->AddObject(mOwnerWindow, "checkerboard"));
 	checkerboard.AddComponent<Puly::SpriteRenderer>("resources/textures/checkerboard.png");
-	checkerboard.AddComponent<Puly::MoveComponent>(1.0f);
 }
 
 void Puly::Game::Update(Timestep dt)
