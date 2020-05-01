@@ -17,10 +17,11 @@ namespace Puly {
 		void Render();
 
 		bool IsEmpty() const;
-	    Puly::GameObject& AddObject(std::string name);
+	    Puly::GameObject& AddObject(Window* window, std::string name);
 
 		std::vector<GameObject*> GetObjects() const;
-		 
+		void ResetObjects();
+
 		void ClearData();
 
 		unsigned int GetObjectCount();

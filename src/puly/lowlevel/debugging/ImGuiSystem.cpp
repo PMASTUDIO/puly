@@ -140,7 +140,7 @@ void Puly::ImguiSystem::SceneTreeMenu(std::vector<GameObject*> objects)
 	ImGui::End();
 }
 
-void Puly::ImguiSystem::TextureImportMenu(bool show, std::vector<GameObject*> v_Objects, EntityManager& em)
+void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em)
 {
 
 	if (show) {
@@ -178,7 +178,7 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, std::vector<GameObject*> v_
 				fileNameString = fileName.u8string();
 			}
 
-			Puly::GameObject& bird(em.AddObject(fileNameString));
+			Puly::GameObject& bird(em.AddObject(window, fileNameString));
 			bird.AddComponent<Puly::SpriteRenderer>(relativePath.u8string().c_str());
 			//objects[fileNameString] = newObject;
 		}
@@ -230,6 +230,7 @@ void Puly::ImguiSystem::PlayPauseMenu(EntityManager& em)
 
 	if (ImGui::Button("Pause")) {
 		em.m_IsDebugging = true;
+		//em.ResetObjects();
 	}
 
 	ImGui::End();

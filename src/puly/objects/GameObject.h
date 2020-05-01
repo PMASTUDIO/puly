@@ -9,6 +9,8 @@
 #include "..//ecs/Component.h"
 
 #include "../lowlevel/Timestep.h"
+
+#include "../window/Window.h"
 //class Component;
 
 namespace Puly {
@@ -18,6 +20,8 @@ namespace Puly {
 	class GameObject {
 	public:
 		std::string m_DebugName;
+
+		Window* m_Owner;
 
 		glm::vec3 m_Position, m_Velocity;
 		float m_Scale;
@@ -29,7 +33,7 @@ namespace Puly {
 
 		std::shared_ptr<SpriteRenderer> m_Sprite;
 
-		GameObject(std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), float scale = 1.0f);
+		GameObject(Window* owner, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), float scale = 1.0f);
 
 		void Update(Timestep dt);
 		
@@ -49,6 +53,8 @@ namespace Puly {
 		}
 
 		std::vector<Component*> GetComponents() const { return v_Components; }
+
+		void ResetComponents();
 
 	private:
 		std::vector<Component*> v_Components;

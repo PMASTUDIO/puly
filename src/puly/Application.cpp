@@ -3,8 +3,6 @@
 #include "lowlevel/debugging/Log.h"
 #include "lowlevel/ResourceManager.h"
 
-#include "lowlevel/debugging/primitives/Point.h"
-
 #include "./renderer/OrthographicCameraController.h"
 
 #include "renderer/Renderer.h"
@@ -18,7 +16,7 @@
 
 #include <iostream>
 
-Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(1280, 720), m_CameraController(&mWindow, 1280.0f / 720.0f, true)
+Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(&mWindow, 1280, 720), m_CameraController(&mWindow, 1280.0f / 720.0f, true)
 {
 	mSubSystems.reset(new SubSystems(&mWindow));
 	mWindow.SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
@@ -83,6 +81,7 @@ void Puly::Application::Run()
 			else {
 				m_CameraController.SetControlActive(true);
 			}
+
 			m_CameraController.OnUpdate(&mWindow, deltaTime);
 			
 
@@ -103,7 +102,7 @@ void Puly::Application::Run()
 		mSubSystems->OnUpdate(deltaTime);
 
 		#ifdef PL_DEBUG
-			mSubSystems->imGuiSystem->TextureImportMenu(true, demoGame.m_EntityManager->GetObjects(), *demoGame.m_EntityManager);
+			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame.m_EntityManager->GetObjects(), *demoGame.m_EntityManager);
 			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame.m_EntityManager);
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->Render();

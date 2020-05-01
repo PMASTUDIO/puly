@@ -590,6 +590,7 @@
     </ClInclude>
     <ClInclude Include="src\puly\ecs\Component.h" />
     <ClInclude Include="src\puly\ecs\EntityManager.h" />
+    <ClInclude Include="src\puly\ecs\components\MoveComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -698,5 +699,6 @@
       <Filter>src\puly\window</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\ecs\EntityManager.cpp" />
+    <ClCompile Include="src\puly\ecs\components\MoveComponent.cpp" />
   </ItemGroup>
 </Project>

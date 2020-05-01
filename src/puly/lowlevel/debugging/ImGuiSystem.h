@@ -24,7 +24,7 @@ namespace Puly {
 
 		void Shutdown();
 
-		void TextureImportMenu(bool show, std::vector<GameObject*> v_Objects, EntityManager& em);
+		void TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em);
 		void PerformanceMenu(bool show, Timestep dt);
 		void PlayPauseMenu(EntityManager& em);
 

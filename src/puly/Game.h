@@ -19,7 +19,7 @@ namespace Puly {
 
 	class Game {
 	public:
-		Game(unsigned int width, unsigned int height);
+		Game(Window* window, unsigned int width, unsigned int height);
 		~Game();
 
 		void Start();
@@ -32,6 +32,8 @@ namespace Puly {
 		unsigned int mWidth, mHeight;
 
 		std::unique_ptr<EntityManager> m_EntityManager;
+
+		Window* mOwnerWindow;
 	};
 
 }

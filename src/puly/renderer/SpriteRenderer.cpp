@@ -67,9 +67,6 @@ namespace Puly {
 	void SpriteRenderer::InitRenderData()
 	{
 		m_VAO = Renderer::Draw2DQuad();
-
-		auto textureShaderTexts = ResourceManager::GetShaderText("resources/shaders/textureVertexShader.glsl", "resources/shaders/textureFragmentShader.glsl");
-		m_Shader->Compile(std::get<0>(textureShaderTexts), std::get<1>(textureShaderTexts));
 	}
 
 }

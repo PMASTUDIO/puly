@@ -4,13 +4,13 @@
 
 namespace Puly {
 
-	class GameObject;
-
 	enum COMPONENT_STATE {
 		PL_COMP_ACTIVE,
 		PL_COMP_DEBUGGING,
 		PL_COMP_PAUSED
 	};
+
+	class GameObject;
 
 	class Component {
 	public:

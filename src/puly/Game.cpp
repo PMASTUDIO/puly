@@ -3,11 +3,13 @@
 #include "lowlevel/debugging/Log.h"
 #include "lowlevel/ResourceManager.h"
 
+#include "ecs/components/MoveComponent.h"
+
 #include <imgui.h>
 
 #include <glm/glm.hpp>
 
-Puly::Game::Game(unsigned int width, unsigned int height) : mWidth(width), mHeight(height), m_State(GAME_ACTIVE)
+Puly::Game::Game(Window* window, unsigned int width, unsigned int height) : mWidth(width), mHeight(height), m_State(GAME_ACTIVE), mOwnerWindow(window)
 {
 	m_EntityManager.reset(new EntityManager());
 }
@@ -20,9 +22,9 @@ void Puly::Game::Start()
 {
 	PL_LOG_SUCCESS("Game initialized! Width: {}, Height: {}", mWidth, mHeight);
 
-	Puly::GameObject& bird(m_EntityManager->AddObject("checkerboard"));
-	bird.AddComponent<Puly::SpriteRenderer>("resources/textures/checkerboard.png");
-
+	Puly::GameObject& checkerboard(m_EntityManager->AddObject(mOwnerWindow, "checkerboard"));
+	checkerboard.AddComponent<Puly::SpriteRenderer>("resources/textures/checkerboard.png");
+	checkerboard.AddComponent<Puly::MoveComponent>(1.0f);
 }
 
 void Puly::Game::Update(Timestep dt)
