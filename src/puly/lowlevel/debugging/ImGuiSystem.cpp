@@ -168,6 +168,25 @@ void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*
 	ImGui::End();
 }
 
+void Puly::ImguiSystem::TopMenu(EntityManager& em, std::vector<GameObject*> objects)
+{
+	//if (ImGui::BeginMainMenuBar()) {
+	//
+	//	if (ImGui::BeginMenu("Create")) {
+	//	
+	//		if (ImGui::MenuItem("Empty Object")) {
+	//			//Puly::GameObject& bird(em.AddObject(1, fileNameString));
+	//			//bird.AddComponent<Puly::SpriteRenderer>(relativePath.u8string().c_str());
+	//		}
+	//		
+	//		ImGui::EndMenu();
+	//	}
+
+	//	ImGui::EndMainMenuBar();
+	//	
+	//}
+}
+
 void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em)
 {
 
@@ -208,15 +227,29 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector
 
 			Puly::GameObject& bird(em.AddObject(1, fileNameString));
 			bird.AddComponent<Puly::SpriteRenderer>(relativePath.u8string().c_str());
-			//objects[fileNameString] = newObject;
+		}
+
+		if (ImGui::Button("New empty object")) {
+			std::string fileNameString;
+
+			if (strcmp(bufIdentifier, "")) {
+				fileNameString = bufIdentifier;
+				memset(bufIdentifier, 0, sizeof(bufIdentifier));
+			}
+			else {
+				// if it's empty then use the texture file name
+				fs::path fileName = "empty";
+			}
+
+			Puly::GameObject& newObj(em.AddObject(1, fileNameString));
 		}
 
 		ImGui::End();
 
 		SceneTreeMenu(em, v_Objects);
 		PropertyPanel(em, v_Objects);
+		TopMenu(em, v_Objects);
 	}
-
 	
 }
 

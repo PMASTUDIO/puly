@@ -39,6 +39,8 @@ namespace Puly {
 
 		void SceneTreeMenu(EntityManager& em, std::vector<GameObject*> objects);
 
+		void TopMenu(EntityManager& em, std::vector<GameObject*> objects);
+
 		int selectedGameObject = -1;
 	};
 
