@@ -37,7 +37,7 @@ namespace Puly {
 		void DebugPrimitiveMenu(Timestep dt);
 		void PropertyPanel(std::vector<GameObject*> v_Objects);
 
-		void SceneTreeMenu(std::vector<GameObject*> objects);
+		void SceneTreeMenu(EntityManager& em, std::vector<GameObject*> objects);
 
 		int selectedGameObject = -1;
 	};

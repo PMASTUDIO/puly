@@ -135,7 +135,7 @@ void Puly::ImguiSystem::PropertyPanel(std::vector<GameObject*> v_Objects)
 	}
 }
 
-void Puly::ImguiSystem::SceneTreeMenu(std::vector<GameObject*> objects)
+void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*> objects)
 {
 	ImGui::Begin("Scene");
 
@@ -148,6 +148,9 @@ void Puly::ImguiSystem::SceneTreeMenu(std::vector<GameObject*> objects)
 				ImGui::DragFloat3("Position", glm::value_ptr<float>(item->m_Position), 0.2f, -10.0f, 10.0f);
 				ImGui::DragFloat("Rotation", &item->m_Rotation, 1.0f, 0, 360.0f);
 				ImGui::DragFloat("Scale", &item->m_Scale, 0.2f, 0.0f, 10.0f);
+				if (ImGui::DragInt("Z-Index", &item->m_Priority)) {
+					em.SortByPriority();
+				}
 
 				if(ImGui::Button("Edit")) {
 					selectedGameObject = i;
@@ -200,14 +203,14 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector
 				fileNameString = fileName.u8string();
 			}
 
-			Puly::GameObject& bird(em.AddObject(window, fileNameString));
+			Puly::GameObject& bird(em.AddObject(1, fileNameString));
 			bird.AddComponent<Puly::SpriteRenderer>(relativePath.u8string().c_str());
 			//objects[fileNameString] = newObject;
 		}
 
 		ImGui::End();
 
-		SceneTreeMenu(v_Objects);
+		SceneTreeMenu(em, v_Objects);
 		PropertyPanel(v_Objects);
 	}
 

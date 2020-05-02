@@ -11,7 +11,7 @@
 
 Puly::Game::Game(Window* window, unsigned int width, unsigned int height) : mWidth(width), mHeight(height), m_State(GAME_ACTIVE), mOwnerWindow(window)
 {
-	m_EntityManager.reset(new EntityManager());
+	m_EntityManager.reset(new EntityManager(*window));
 }
 
 Puly::Game::~Game()
@@ -22,7 +22,7 @@ void Puly::Game::Start()
 {
 	PL_LOG_SUCCESS("Game initialized! Width: {}, Height: {}", mWidth, mHeight);
 
-	Puly::GameObject& checkerboard(m_EntityManager->AddObject(mOwnerWindow, "checkerboard"));
+	Puly::GameObject& checkerboard(m_EntityManager->AddObject(1, "checkerboard"));
 	checkerboard.AddComponent<Puly::SpriteRenderer>("resources/textures/checkerboard.png");
 }
 

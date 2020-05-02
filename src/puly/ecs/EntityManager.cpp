@@ -19,6 +19,7 @@ namespace Puly {
 		for (auto& object : v_Objects) {
 			object->Draw();
 		}
+
 	}
 
 	bool Puly::EntityManager::IsEmpty() const
@@ -26,11 +27,13 @@ namespace Puly {
 		return v_Objects.size() == 0;
 	}
 
-	Puly::GameObject& EntityManager::AddObject(Window* window, std::string name)
+	Puly::GameObject& EntityManager::AddObject(int priority, std::string name)
 	{
-		Puly::GameObject* newObject = new Puly::GameObject(window, name);
+		Puly::GameObject* newObject = new Puly::GameObject(m_Window, priority, name);
 
 		v_Objects.emplace_back(newObject);
+
+		SortByPriority();
 
 		return *newObject;
 	}
@@ -45,7 +48,7 @@ namespace Puly {
 		for (auto& object : v_Objects) {
 			std::string objectOldName = object->m_DebugName;
 
-			object = new Puly::GameObject(object->m_Owner, objectOldName);
+			object = new Puly::GameObject(object->m_Owner, 0, objectOldName);
 		}
 	}
 
@@ -56,6 +59,15 @@ namespace Puly {
 			object->Destroy();
 		}
 	}
+
+	std::vector<GameObject*> EntityManager::SortByPriority()
+	{
+		std::sort(v_Objects.begin(), v_Objects.end(), [](const GameObject* priority1, const GameObject* priority2) {
+			return priority1->m_Priority < priority2->m_Priority;
+		});
+		return v_Objects;
+	}
+
 	unsigned int EntityManager::GetObjectCount()
 	{
 		return v_Objects.size();

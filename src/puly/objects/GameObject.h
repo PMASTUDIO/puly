@@ -33,7 +33,7 @@ namespace Puly {
 
 		std::shared_ptr<SpriteRenderer> m_Sprite;
 
-		GameObject(Window* owner, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), float scale = 1.0f);
+		GameObject(Window* owner, int priority, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), float scale = 1.0f);
 
 		void Update(Timestep dt);
 		
@@ -55,6 +55,12 @@ namespace Puly {
 		std::vector<Component*> GetComponents() const { return v_Components; }
 
 		void ResetComponents();
+
+		bool operator< (const GameObject& other) const {
+			return m_Priority < other.m_Priority;
+		}
+
+		int m_Priority;
 
 	private:
 		std::vector<Component*> v_Components;
