@@ -17,18 +17,18 @@ namespace Puly {
 	}
 	void MoveComponent::Update(float deltaTime)
 	{
-		
 		if (m_State == PL_COMP_ACTIVE) {
-			if (Input::IsKeyPressed(m_Owner->m_Owner, !m_UseKeys ? PL_KEY_W : PL_KEY_UP)) {
+
+			if (Input::IsKeyPressed(&m_Owner->m_Owner, !m_UseKeys ? PL_KEY_W : PL_KEY_UP)) {
 				m_Owner->m_Position.y += m_Speed * deltaTime;
-			} else if (Input::IsKeyPressed(m_Owner->m_Owner, !m_UseKeys ? PL_KEY_S : PL_KEY_DOWN)) {
+			} else if (Input::IsKeyPressed(&m_Owner->m_Owner, !m_UseKeys ? PL_KEY_S : PL_KEY_DOWN)) {
 				m_Owner->m_Position.y -= m_Speed * deltaTime;
 			}
 
-			if (Input::IsKeyPressed(m_Owner->m_Owner, !m_UseKeys ? PL_KEY_A : PL_KEY_LEFT)) {
+			if (Input::IsKeyPressed(&m_Owner->m_Owner, !m_UseKeys ? PL_KEY_A : PL_KEY_LEFT)) {
 				m_Owner->m_Position.x -= m_Speed * deltaTime;
 			}
-			else if (Input::IsKeyPressed(m_Owner->m_Owner, !m_UseKeys ? PL_KEY_D : PL_KEY_RIGHT)) {
+			else if (Input::IsKeyPressed(&m_Owner->m_Owner, !m_UseKeys ? PL_KEY_D : PL_KEY_RIGHT)) {
 				m_Owner->m_Position.x += m_Speed * deltaTime;
 			}
 		}

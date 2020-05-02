@@ -11,14 +11,16 @@
 
 #include "renderer/SpriteRenderer.h"
 
-// For event testing
+// For event 
+
 #include "lowlevel/BaseEvents.h"
 
 #include <iostream>
+#include "lowlevel/Input.h"
+#include "lowlevel/KeyCodes.h"
 
-Puly::Application::Application() : mLastFrameTime(0.0f), demoGame(&mWindow, 1280, 720), m_CameraController(&mWindow, 1280.0f / 720.0f, true)
+Puly::Application::Application() : mLastFrameTime(0.0f), mWindow()
 {
-	mSubSystems.reset(new SubSystems(&mWindow));
 	mWindow.SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 }
 
@@ -33,11 +35,15 @@ bool Puly::Application::Init()
 
 	Renderer::Init();
 
+	mSubSystems.reset(new SubSystems(&mWindow));
 	if (!mSubSystems->Init())
 		return false;
 
 	// Demo game
-	demoGame.Start();
+	m_CameraController.reset(new OrthographicCamera2DController(&mWindow, 1280.0f / 720.0f, true));
+
+	demoGame.reset(new Game(&mWindow, 1280, 720));
+	demoGame->Start();
 
 	return true;
 }
@@ -53,7 +59,7 @@ bool Puly::Application::Shutdown()
 
 void Puly::Application::OnEvent(Event& evt)
 {
-	m_CameraController.OnEvent(evt);
+	m_CameraController->OnEvent(evt);
 
 	EventDispatcher dispatcher(evt);
 	dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
@@ -72,24 +78,23 @@ void Puly::Application::Run()
 
 		// Demo scene
 		if (!gameMinimized) {
-			if (!demoGame.m_EntityManager->m_IsDebugging) {
-				m_CameraController.SetControlActive(false);
-				m_CameraController.GetCamera().SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-				m_CameraController.SetZoomLevel(1.0f);
-				m_CameraController.GetCamera().SetRotation(0.0f);
+			if (!demoGame->m_EntityManager->m_IsDebugging) {
+				m_CameraController->SetControlActive(false);
+				m_CameraController->GetCamera().SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+				m_CameraController->SetZoomLevel(1.0f);
+				m_CameraController->GetCamera().SetRotation(0.0f);
 			}
 			else {
-				m_CameraController.SetControlActive(true);
+				m_CameraController->SetControlActive(true);
 			}
 
-			m_CameraController.OnUpdate(&mWindow, deltaTime);
-			
+			m_CameraController->OnUpdate(&mWindow, deltaTime);
 
-			Renderer::BeginScene(m_CameraController.GetCamera());
+			Renderer::BeginScene(m_CameraController->GetCamera());
 
 			// Demo game
-			demoGame.Update(deltaTime);
-			demoGame.Render();
+			demoGame->Update(deltaTime);
+			demoGame->Render();
 
 			//myFirstSprite->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
 
@@ -102,8 +107,8 @@ void Puly::Application::Run()
 		mSubSystems->OnUpdate(deltaTime);
 
 		#ifdef PL_DEBUG
-			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame.m_EntityManager->GetObjects(), *demoGame.m_EntityManager);
-			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame.m_EntityManager);
+			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame->m_EntityManager->GetObjects(), *demoGame->m_EntityManager);
+			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame->m_EntityManager);
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->Render();
 		#endif

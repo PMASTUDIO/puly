@@ -30,7 +30,7 @@ namespace Puly {
 
 	Puly::GameObject& EntityManager::AddObject(int priority, std::string name)
 	{
-		Puly::GameObject* newObject = new Puly::GameObject(m_Window, priority, name);
+		Puly::GameObject* newObject = new Puly::GameObject(*m_Window, priority, name);
 
 		v_Objects.emplace_back(newObject);
 

@@ -14,7 +14,7 @@ namespace Puly {
 		std::vector<GameObject*> v_Objects;
 		Window* m_Window;
 	public:
-		EntityManager(Window window) : m_Window(&window) {}
+		EntityManager(Window* window) : m_Window(window) {}
 
 		void Update(float deltaTime);
 		void Render();

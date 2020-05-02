@@ -22,7 +22,7 @@ namespace Puly {
 	public:
 		std::string m_DebugName;
 
-		Window* m_Owner;
+		Window& m_Owner;
 
 		glm::vec3 m_Position, m_Velocity;
 		glm::vec3 m_Scale;
@@ -34,7 +34,7 @@ namespace Puly {
 
 		std::shared_ptr<SpriteRenderer> m_Sprite;
 
-		GameObject(Window* owner, int priority, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f));
+		GameObject(Window& owner, int priority, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f));
 
 		void Update(Timestep dt);
 		

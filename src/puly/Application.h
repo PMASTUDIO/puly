@@ -44,9 +44,9 @@ namespace Puly {
 
 		//Shader m_Shader;
 
-		OrthographicCamera2DController m_CameraController;
+		std::unique_ptr<OrthographicCamera2DController> m_CameraController;
 
-		Game demoGame;
+		std::unique_ptr<Game> demoGame;
 
 		float mLastFrameTime;
 
