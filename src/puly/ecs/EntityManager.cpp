@@ -1,4 +1,5 @@
 #include "EntityManager.h"
+#include "../physics/Collision.h"
 
 namespace Puly {
 	void Puly::EntityManager::Update(float deltaTime)
@@ -71,6 +72,21 @@ namespace Puly {
 	unsigned int EntityManager::GetObjectCount()
 	{
 		return v_Objects.size();
+	}
+	
+	std::string EntityManager::CheckEntityCollider(GameObject& entity)
+	{
+		for (auto obj : v_Objects) {
+			if (entity.m_DebugName.compare(obj->m_DebugName) != 0) {
+				if (entity.HasComponent<ColliderComponent>()) {
+					if (CheckRectCollision2D(entity, *obj)) {
+						return obj->m_DebugName;
+					}
+				}
+			}
+		}
+
+		return "";
 	}
 }
 

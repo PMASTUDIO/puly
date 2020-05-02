@@ -591,6 +591,8 @@
     <ClInclude Include="src\puly\ecs\Component.h" />
     <ClInclude Include="src\puly\ecs\EntityManager.h" />
     <ClInclude Include="src\puly\ecs\components\MoveComponent.h" />
+    <ClInclude Include="src\puly\physics\Collision.h" />
+    <ClInclude Include="src\puly\ecs\components\ColliderComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -700,5 +702,7 @@
     </ClCompile>
     <ClCompile Include="src\puly\ecs\EntityManager.cpp" />
     <ClCompile Include="src\puly\ecs\components\MoveComponent.cpp" />
+    <ClCompile Include="src\puly\ecs\components\ColliderComponent.cpp" />
+    <ClCompile Include="src\puly\physics\Collision.cpp" />
   </ItemGroup>
 </Project>

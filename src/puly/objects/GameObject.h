@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <memory>
 #include <string>
 
@@ -47,9 +48,20 @@ namespace Puly {
 
 			newComponent->m_Owner = this;
 			v_Components.emplace_back(newComponent);
+			v_ComponentsTypeMap[&typeid(*newComponent)] = newComponent;
 			newComponent->Init();
 
 			return *newComponent;
+		}
+
+		template <typename T>
+		bool HasComponent() const {
+			return v_ComponentsTypeMap.count(&typeid(T));
+		}
+
+		template <typename T>
+		T* GetComponent() {
+			return static_cast<T*>(v_ComponentsTypeMap[&typeid(T)]);
 		}
 
 		std::vector<Component*> GetComponents() const { return v_Components; }
@@ -64,6 +76,7 @@ namespace Puly {
 
 	private:
 		std::vector<Component*> v_Components;
+		std::map<const std::type_info* , Component*> v_ComponentsTypeMap;
 	};
 
 }

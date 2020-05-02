@@ -5,6 +5,8 @@
 
 #include "..//objects/GameObject.h"
 
+#include "components/ColliderComponent.h"
+
 namespace Puly {
 
 	class EntityManager {
@@ -28,6 +30,22 @@ namespace Puly {
 		std::vector<GameObject*> SortByPriority();
 
 		unsigned int GetObjectCount();
+
+		GameObject* GetObjectByDebugName(std::string name) const { 
+			auto iter = std::find_if(v_Objects.begin(), v_Objects.end(), [&name](const GameObject* obj) {
+				return obj->m_DebugName == name;
+			});
+
+			if (iter != v_Objects.end()) {
+				auto index = std::distance(v_Objects.begin(), iter);
+				return v_Objects[index];
+			}
+			else {
+				return nullptr;
+			}
+		}
+
+		std::string CheckEntityCollider(GameObject& entity);
 
 	public:
 		

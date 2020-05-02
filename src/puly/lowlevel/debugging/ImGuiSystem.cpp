@@ -101,7 +101,7 @@ void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 	debugDrawManager->OnUpdate();
 }
 
-void Puly::ImguiSystem::PropertyPanel(std::vector<GameObject*> v_Objects)
+void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*> v_Objects)
 {
 	if (selectedGameObject != -1) {
 		std::string pageName = "Properties for " + v_Objects[selectedGameObject]->m_DebugName;
@@ -113,11 +113,11 @@ void Puly::ImguiSystem::PropertyPanel(std::vector<GameObject*> v_Objects)
 
 		ImGui::Separator();
 
-		const char* listbox_items[] = { "2D Move Component" };
+		const char* listbox_items[] = { "2D Move Component", "Collider Component" };
 		static int listbox_item_current = 0;
 
 		ImGui::ListBoxHeader("New Component");
-		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 1);
+		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 2);
 		ImGui::ListBoxFooter();
 
 		if (ImGui::Button("Add Component")) {
@@ -125,6 +125,9 @@ void Puly::ImguiSystem::PropertyPanel(std::vector<GameObject*> v_Objects)
 			{
 			case 0:
 				v_Objects[selectedGameObject]->AddComponent<MoveComponent>(0.5f);
+				break;
+			case 1:
+				v_Objects[selectedGameObject]->AddComponent<ColliderComponent>(&em);
 				break;
 			default:
 				break;
@@ -211,7 +214,7 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector
 		ImGui::End();
 
 		SceneTreeMenu(em, v_Objects);
-		PropertyPanel(v_Objects);
+		PropertyPanel(em, v_Objects);
 	}
 
 	
