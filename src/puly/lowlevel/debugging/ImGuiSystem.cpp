@@ -147,7 +147,7 @@ void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*
 			{
 				ImGui::DragFloat3("Position", glm::value_ptr<float>(item->m_Position), 0.2f, -10.0f, 10.0f);
 				ImGui::DragFloat("Rotation", &item->m_Rotation, 1.0f, 0, 360.0f);
-				ImGui::DragFloat("Scale", &item->m_Scale, 0.2f, 0.0f, 10.0f);
+				ImGui::DragFloat3("Scale", glm::value_ptr<float>(item->m_Scale), 0.2f, 0.0f, 10.0f);
 				if (ImGui::DragInt("Z-Index", &item->m_Priority)) {
 					em.SortByPriority();
 				}

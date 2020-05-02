@@ -24,7 +24,7 @@ namespace Puly {
 		Window* m_Owner;
 
 		glm::vec3 m_Position, m_Velocity;
-		float m_Scale;
+		glm::vec3 m_Scale;
 		float m_Rotation;
 		bool m_IsSolid;
 		bool m_IsActive;
@@ -33,7 +33,7 @@ namespace Puly {
 
 		std::shared_ptr<SpriteRenderer> m_Sprite;
 
-		GameObject(Window* owner, int priority, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), float scale = 1.0f);
+		GameObject(Window* owner, int priority, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f));
 
 		void Update(Timestep dt);
 		

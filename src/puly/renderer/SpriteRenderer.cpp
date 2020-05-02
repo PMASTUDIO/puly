@@ -39,7 +39,7 @@ namespace Puly {
 	{
 		glm::vec2 position = glm::vec2(m_Owner->m_Position.x, m_Owner->m_Position.y);
 
-		glm::vec2 size = glm::vec2(m_Owner->m_Scale, m_Owner->m_Scale);
+		glm::vec2 size = glm::vec2(m_Owner->m_Scale.x, m_Owner->m_Scale.y);
 		float rotate = glm::radians(m_Owner->m_Rotation);
 
 		m_Shader->Bind();
