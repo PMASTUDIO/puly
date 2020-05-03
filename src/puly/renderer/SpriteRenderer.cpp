@@ -9,7 +9,7 @@
 
 namespace Puly {
 
-	SpriteRenderer::SpriteRenderer(const char* texturePath, const char* vertexShaderPath, const char* fragmentShaderPath)
+	SpriteRenderer::SpriteRenderer(const char* texturePath, const char* vertexShaderPath, const char* fragmentShaderPath) : m_TexturePath(texturePath), m_VertexShaderPath(vertexShaderPath), m_FragmentShaderPath(fragmentShaderPath)
 	{
 		m_Shader.reset(new Shader());
 
@@ -62,6 +62,15 @@ namespace Puly {
 	void SpriteRenderer::DebugGUI()
 	{
 		ImGui::Text("Sprite Component");
+	}
+
+	void SpriteRenderer::SaveInScene(std::string section, GameLevel& levelSave)
+	{
+		levelSave.configurator.SetValue(section.c_str(), "owner", m_Owner->m_DebugName.c_str());
+		levelSave.configurator.SetValue(section.c_str(), "state", std::to_string(m_State).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "texturePath", m_TexturePath.c_str());
+		levelSave.configurator.SetValue(section.c_str(), "vertexShaderPath", m_VertexShaderPath.c_str());
+		levelSave.configurator.SetValue(section.c_str(), "fragmentShaderPath", m_FragmentShaderPath.c_str());
 	}
 
 	void SpriteRenderer::InitRenderData()

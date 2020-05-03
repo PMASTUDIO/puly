@@ -15,6 +15,9 @@ namespace Puly {
 
 		virtual void DebugGUI() override;
 
+
+		void SaveInScene(std::string section, GameLevel& levelSave) override;
+
 	private:
 		float m_Speed;
 		bool m_UseKeys;

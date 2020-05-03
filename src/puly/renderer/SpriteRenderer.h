@@ -31,12 +31,19 @@ namespace Puly {
 
 		virtual void DebugGUI() override;
 
+
+		void SaveInScene(std::string section, GameLevel& levelSave) override;
+
 	private:
 		std::shared_ptr<Shader> m_Shader;
 
 		std::shared_ptr<VertexArray> m_VAO;
 
 		std::shared_ptr<Texture> m_Texture;
+
+		std::string m_TexturePath;
+		std::string m_VertexShaderPath;
+		std::string m_FragmentShaderPath;
 
 		void InitRenderData();
 	};

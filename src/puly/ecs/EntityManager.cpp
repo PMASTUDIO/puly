@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include "../physics/Collision.h"
+#include "../lowlevel/Scene.h"
 
 namespace Puly {
 	void Puly::EntityManager::Update(float deltaTime)
@@ -87,6 +88,16 @@ namespace Puly {
 		}
 
 		return "";
+	}
+	std::string EntityManager::SaveScene()
+	{
+		GameLevel levelSave("level.ini");
+
+		for (auto& object : v_Objects) {
+			object->SaveInLevel(levelSave);
+		}
+
+		return "level.ini";
 	}
 }
 

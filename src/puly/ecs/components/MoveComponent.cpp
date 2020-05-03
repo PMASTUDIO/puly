@@ -45,4 +45,13 @@ namespace Puly {
 			ImGui::TreePop();
 		}
 	}
+
+	void MoveComponent::SaveInScene(std::string section, GameLevel& levelSave)
+	{
+		levelSave.configurator.SetValue(section.c_str(), "owner", m_Owner->m_DebugName.c_str());
+		levelSave.configurator.SetValue(section.c_str(), "state", std::to_string(m_State).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "usingKeys", std::to_string(m_UseKeys).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "speed", std::to_string(m_Speed).c_str());
+	}
+
 }

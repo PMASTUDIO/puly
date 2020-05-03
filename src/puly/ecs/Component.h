@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include "../lowlevel/Scene.h"
 
 namespace Puly {
 
@@ -18,7 +19,7 @@ namespace Puly {
 		COMPONENT_STATE m_State;
 	public:
 
-		Component() : m_State(PL_COMP_ACTIVE) {}
+		Component() : m_State(PL_COMP_ACTIVE), m_Owner(nullptr){}
 
 		virtual ~Component() {}
 
@@ -27,6 +28,9 @@ namespace Puly {
 		virtual void Render() {}
 	
 		virtual void DebugGUI(){}
+
+		virtual void SaveInScene(std::string section, GameLevel& levelSave){}
+
 	};
 
 }

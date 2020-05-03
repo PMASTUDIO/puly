@@ -47,6 +47,8 @@ namespace Puly {
 
 		std::string CheckEntityCollider(GameObject& entity);
 
+		std::string SaveScene();
+
 	public:
 		
 		#ifdef PL_DEBUG

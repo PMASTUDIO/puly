@@ -12,6 +12,7 @@
 #include "../lowlevel/Timestep.h"
 
 #include "../window/Window.h"
+#include "../lowlevel/Scene.h"
 //class Component;
 
 namespace Puly {
@@ -27,12 +28,9 @@ namespace Puly {
 		glm::vec3 m_Position, m_Velocity;
 		glm::vec3 m_Scale;
 		float m_Rotation;
-		bool m_IsSolid;
 		bool m_IsActive;
 
 		bool m_Debugging = false;
-
-		std::shared_ptr<SpriteRenderer> m_Sprite;
 
 		GameObject(Window& owner, int priority, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f));
 
@@ -74,9 +72,12 @@ namespace Puly {
 
 		int m_Priority;
 
+		void SaveInLevel(GameLevel& levelSave);
+
 	private:
 		std::vector<Component*> v_Components;
 		std::map<const std::type_info* , Component*> v_ComponentsTypeMap;
+
 	};
 
 }

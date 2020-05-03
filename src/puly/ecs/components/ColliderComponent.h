@@ -14,6 +14,9 @@ namespace Puly {
 
 		virtual void DebugGUI() override;
 
+
+		void SaveInScene(std::string section, GameLevel& levelSave) override;
+
 	private:
 		EntityManager* m_Em;
 	};
