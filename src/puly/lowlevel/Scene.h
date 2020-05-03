@@ -31,8 +31,7 @@ namespace Puly {
 	class GameLevel {
 	public:
 		GameLevel(std::string name) : configurator(name) { 
-			std::string path = "resources/scenes/" + name;
-			configurator.SetFilePath(path);
+			configurator.SetFilePath(name);
 		}
 		~GameLevel() { configurator.Shutdown(); }
 	public:

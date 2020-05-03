@@ -2,6 +2,8 @@
 #include "../physics/Collision.h"
 #include "../lowlevel/Scene.h"
 
+#include "../platform/windows/FileOpenDialog.h"
+
 namespace Puly {
 	void Puly::EntityManager::Update(float deltaTime)
 	{
@@ -91,13 +93,14 @@ namespace Puly {
 	}
 	std::string EntityManager::SaveScene()
 	{
-		GameLevel levelSave("level.ini");
+		std::string pathToSave = Puly::savefile("ini;");
+		GameLevel levelSave(pathToSave + ".ini");
 
 		for (auto& object : v_Objects) {
 			object->SaveInLevel(levelSave);
 		}
 
-		return "level.ini";
+		return pathToSave;
 	}
 }
 
