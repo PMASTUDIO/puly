@@ -78,7 +78,7 @@ void Puly::Application::Run()
 
 		// Demo scene
 		if (!gameMinimized) {
-			if (!demoGame->m_EntityManager->m_IsDebugging) {
+			if (!demoGame->mainScene.GetEntityManager()->m_IsDebugging) {
 				m_CameraController->SetControlActive(false);
 				m_CameraController->GetCamera().SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 				m_CameraController->SetZoomLevel(1.0f);
@@ -107,16 +107,18 @@ void Puly::Application::Run()
 		mSubSystems->OnUpdate(deltaTime);
 
 		#ifdef PL_DEBUG
-			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame->m_EntityManager->GetObjects(), *demoGame->m_EntityManager);
-			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame->m_EntityManager);
+			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame->mainScene.GetEntityManager()->GetObjects(), *demoGame->mainScene.GetEntityManager());
+			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame->mainScene.GetEntityManager());
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
-			mSubSystems->imGuiSystem->Render();
+			mSubSystems->imGuiSystem->TopMenu(demoGame->mainScene);
 
 			if (Input::IsKeyPressed(&mWindow, PL_KEY_LEFT_CONTROL)) {
 				if (Input::IsKeyPressed(&mWindow, PL_KEY_S)) {
-					demoGame->m_EntityManager->SaveScene();
+					demoGame->mainScene.GetEntityManager()->SaveScene();
 				}
 			}
+
+			mSubSystems->imGuiSystem->Render();
 		#endif
 
 		mWindow.Update();

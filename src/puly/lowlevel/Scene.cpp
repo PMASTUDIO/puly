@@ -1,5 +1,4 @@
 #include "Scene.h"
-#include <list>
 
 Puly::SceneConfig::SceneConfig(std::string sceneName) : m_SceneName(sceneName), sceneFile(true, false, true), filePath("")
 {
@@ -12,7 +11,7 @@ Puly::SceneConfig::~SceneConfig()
 bool Puly::SceneConfig::Init()
 {
 
-	if (!LoadFile(filePath.c_str())) {
+	if (!LoadFile(m_SceneName.c_str())) {
 		return false;
 	}
 
@@ -21,7 +20,29 @@ bool Puly::SceneConfig::Init()
 
 void Puly::SceneConfig::Shutdown()
 {
-	sceneFile.SaveFile(filePath.c_str());
+	sceneFile.SaveFile(m_SceneName.c_str());
+}
+
+std::vector<std::string> Puly::SceneConfig::GetObjects()
+{
+	CSimpleIniA::TNamesDepend sections;
+	sceneFile.GetAllSections(sections);
+
+	std::vector<std::string> sectionNames;
+
+	CSimpleIniA::TNamesDepend::const_iterator i;
+	for (i = sections.begin(); i != sections.end(); ++i)
+	{
+		std::string name(i->pItem);
+		char nameFirstChar = name.at(0);
+		char objectIdentifier = ':';
+
+		if (nameFirstChar != objectIdentifier) {
+			sectionNames.push_back(i->pItem);
+		}
+	}
+
+	return sectionNames;
 }
 
 bool Puly::SceneConfig::LoadFile(const char* filePath)

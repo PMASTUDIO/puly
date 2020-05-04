@@ -50,7 +50,7 @@ void Puly::GameObject::SaveInLevel(GameLevel& levelSave)
 	levelSave.configurator.SetValue(m_DebugName.c_str(), "scaleZ", std::to_string(m_Scale.z).c_str());
 	levelSave.configurator.SetValue(m_DebugName.c_str(), "rotation", std::to_string(m_Rotation).c_str());
 	for (auto& comp : v_ComponentsTypeMap) {
-		comp.second->SaveInScene(m_DebugName + ">" + comp.first->name(), levelSave);
+		comp.second->SaveInScene(":" + m_DebugName + ">" + comp.first->name(), levelSave);
 		//levelSave.configurator.SetValue(comp.first->name());
 	}
 }

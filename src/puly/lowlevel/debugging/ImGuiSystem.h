@@ -8,6 +8,7 @@
 #include "..//..//objects/GameObject.h"
 
 #include "..//..//ecs/EntityManager.h"
+#include "../../ecs/Scene2D.h"
 
 class Window;
 
@@ -27,6 +28,7 @@ namespace Puly {
 		void TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em);
 		void PerformanceMenu(bool show, Timestep dt);
 		void PlayPauseMenu(EntityManager& em);
+		void TopMenu(Scene2D& scene);
 
 		void Render();
 
@@ -38,8 +40,6 @@ namespace Puly {
 		void PropertyPanel(EntityManager& em, std::vector<GameObject*> v_Objects);
 
 		void SceneTreeMenu(EntityManager& em, std::vector<GameObject*> objects);
-
-		void TopMenu(EntityManager& em, std::vector<GameObject*> objects);
 
 		int selectedGameObject = -1;
 	};

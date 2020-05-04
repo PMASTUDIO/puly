@@ -8,6 +8,7 @@
 #include "./lowlevel/Timestep.h"
 
 #include "ecs/EntityManager.h"
+#include "ecs/Scene2D.h"
 
 namespace Puly {
 	
@@ -31,7 +32,8 @@ namespace Puly {
 		GameState m_State;
 		unsigned int mWidth, mHeight;
 
-		std::unique_ptr<EntityManager> m_EntityManager;
+		//std::unique_ptr<EntityManager> m_EntityManager;
+		Scene2D mainScene;
 
 		Window* mOwnerWindow;
 	};

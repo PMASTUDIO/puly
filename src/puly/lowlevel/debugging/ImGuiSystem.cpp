@@ -168,23 +168,22 @@ void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*
 	ImGui::End();
 }
 
-void Puly::ImguiSystem::TopMenu(EntityManager& em, std::vector<GameObject*> objects)
+void Puly::ImguiSystem::TopMenu(Scene2D& scene)
 {
-	//if (ImGui::BeginMainMenuBar()) {
-	//
-	//	if (ImGui::BeginMenu("Create")) {
-	//	
-	//		if (ImGui::MenuItem("Empty Object")) {
-	//			//Puly::GameObject& bird(em.AddObject(1, fileNameString));
-	//			//bird.AddComponent<Puly::SpriteRenderer>(relativePath.u8string().c_str());
-	//		}
-	//		
-	//		ImGui::EndMenu();
-	//	}
+	if (ImGui::BeginMainMenuBar()) {
+	
+		if (ImGui::BeginMenu("File")) {
+		
+			if (ImGui::MenuItem("Load Level")) {
+				scene.LoadSceneFromFile(openfilename());
+			}
+			
+			ImGui::EndMenu();
+		}
 
-	//	ImGui::EndMainMenuBar();
-	//	
-	//}
+		ImGui::EndMainMenuBar();
+		
+	}
 }
 
 void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em)
@@ -248,7 +247,6 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector
 
 		SceneTreeMenu(em, v_Objects);
 		PropertyPanel(em, v_Objects);
-		TopMenu(em, v_Objects);
 	}
 	
 }

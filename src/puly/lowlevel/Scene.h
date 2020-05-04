@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "..//lowlevel/iniParser/SimpleIni.h"
 
 namespace Puly {
@@ -11,6 +12,8 @@ namespace Puly {
 
 		bool Init();
 		void Shutdown();
+
+		std::vector<std::string> GetObjects();
 
 		const char* GetValue(const char* section, const char* keyName);
 		bool SetValue(const char* section, const char* key, const char* value);

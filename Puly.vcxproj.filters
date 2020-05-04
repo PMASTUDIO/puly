@@ -594,6 +594,7 @@
     <ClInclude Include="src\puly\physics\Collision.h" />
     <ClInclude Include="src\puly\ecs\components\ColliderComponent.h" />
     <ClInclude Include="src\puly\lowlevel\Scene.h" />
+    <ClInclude Include="src\puly\ecs\Scene2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -706,5 +707,6 @@
     <ClCompile Include="src\puly\ecs\components\ColliderComponent.cpp" />
     <ClCompile Include="src\puly\physics\Collision.cpp" />
     <ClCompile Include="src\puly\lowlevel\Scene.cpp" />
+    <ClCompile Include="src\puly\ecs\Scene2D.cpp" />
   </ItemGroup>
 </Project>
