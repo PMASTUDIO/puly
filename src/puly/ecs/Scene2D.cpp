@@ -1,5 +1,6 @@
 #include "Scene2D.h"
 #include "../lowlevel/Scene.h"
+#include "components/MoveComponent.h"
 
 namespace Puly {
 
@@ -59,8 +60,19 @@ namespace Puly {
 			importedObj.m_Scale.z = scaleZ;
 			importedObj.m_Rotation = rotation;
 
-			for (auto objName : sceneConfig.GetComponentsInObject(objName)) {
-				PL_LOG_INFO("Created Component: {}", objName);
+			for (auto componentSection : sceneConfig.GetComponentsInObject(objName)) {
+				if (componentSection.find("SpriteRenderer") != std::string::npos) {
+					PL_LOG_INFO("Creating Sprite Component");
+					SpriteRenderer::GetComponentFromScene(importedObj, componentSection, sceneConfig);
+				}
+				else if (componentSection.find("MoveComponent") != std::string::npos) {
+					PL_LOG_INFO("Creating Move Component");
+					MoveComponent::GetComponentFromScene(importedObj, componentSection, sceneConfig);
+				}
+				else if (componentSection.find("ColliderComponent") != std::string::npos) {
+					PL_LOG_INFO("Creating Collider Component");
+					ColliderComponent::GetComponentFromScene(m_EntityManager.get(), importedObj, componentSection, sceneConfig);
+				}
 			}
 		}
 

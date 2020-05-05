@@ -57,24 +57,12 @@ void Puly::ImguiSystem::Init(Window* window)
 
 void Puly::ImguiSystem::OnUpdate(Timestep dt)
 {
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-
 	ImGuiIO& io = ImGui::GetIO();
 	io.DeltaTime = dt;
 
-	///*if (Input::IsKeyPressed(mWindow, PL_KEY_F1)) {
-	//	menuOpened = true;
-	//}
-
-	//if (Input::IsKeyPressed(mWindow, PL_KEY_F2)) {
-	//	menuOpened = false;
-	//}*/
-
-	//if (menuOpened) {
-	//	DebugPrimitiveMenu(dt);
-	//}
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
 }
 
 void Puly::ImguiSystem::Shutdown()
@@ -104,8 +92,10 @@ void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*> v_Objects)
 {
 	if (selectedGameObject != -1) {
+		ImGui::Begin("Properties");
+
 		std::string pageName = "Properties for " + v_Objects[selectedGameObject]->m_DebugName;
-		ImGui::Begin(pageName.c_str());
+		ImGui::Text(pageName.c_str());
 
 		for (auto& component : v_Objects[selectedGameObject]->GetComponents()) {
 			component->DebugGUI();
@@ -116,9 +106,9 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 		const char* listbox_items[] = { "2D Move Component", "Collider Component" };
 		static int listbox_item_current = 0;
 
-		ImGui::ListBoxHeader("New Component");
+		//ImGui::ListBoxHeader("New Component", ImVec2(0, 200));
 		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 2);
-		ImGui::ListBoxFooter();
+		//ImGui::ListBoxFooter();
 
 		if (ImGui::Button("Add Component")) {
 			switch (listbox_item_current)

@@ -16,6 +16,7 @@ namespace Puly {
 
 
 		void SaveInScene(std::string section, GameLevel& levelSave) override;
+		static ColliderComponent& GetComponentFromScene(EntityManager* em, GameObject& go, std::string section, SceneConfig& config);
 
 	private:
 		EntityManager* m_Em;

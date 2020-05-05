@@ -34,6 +34,8 @@ namespace Puly {
 
 		void SaveInScene(std::string section, GameLevel& levelSave) override;
 
+		static SpriteRenderer& GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config);
+
 	private:
 		std::shared_ptr<Shader> m_Shader;
 

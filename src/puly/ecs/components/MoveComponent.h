@@ -17,6 +17,7 @@ namespace Puly {
 
 
 		void SaveInScene(std::string section, GameLevel& levelSave) override;
+		static MoveComponent& GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config);
 
 	private:
 		float m_Speed;

@@ -73,6 +73,16 @@ namespace Puly {
 		levelSave.configurator.SetValue(section.c_str(), "fragmentShaderPath", m_FragmentShaderPath.c_str());
 	}
 
+	Puly::SpriteRenderer& SpriteRenderer::GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config)
+	{
+		const char* texPath = config.GetValue(section.c_str(), "texturePath");
+		const char* vertexShaderPath = config.GetValue(section.c_str(), "vertexShaderPath");
+		const char* fragmentShaderPath = config.GetValue(section.c_str(), "fragmentShaderPath");
+
+		SpriteRenderer& newComponent = go.AddComponent<SpriteRenderer>(texPath, vertexShaderPath, fragmentShaderPath);
+		return newComponent;
+	}
+
 	void SpriteRenderer::InitRenderData()
 	{
 		m_VAO = Renderer::Draw2DQuad();

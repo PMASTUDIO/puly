@@ -54,4 +54,15 @@ namespace Puly {
 		levelSave.configurator.SetValue(section.c_str(), "speed", std::to_string(m_Speed).c_str());
 	}
 
+	MoveComponent& MoveComponent::GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config)
+	{
+		int speed = atoi(config.GetValue(section.c_str(), "speed"));
+		int useKeys = atoi(config.GetValue(section.c_str(), "usingKeys"));
+
+		MoveComponent& newComponent = go.AddComponent<MoveComponent>(speed);
+		newComponent.m_UseKeys = useKeys;
+
+		return newComponent;
+	}
+
 }

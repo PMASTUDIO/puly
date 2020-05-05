@@ -34,4 +34,9 @@ namespace Puly {
 		levelSave.configurator.SetValue(section.c_str(), "state", std::to_string(m_State).c_str());
 	}
 
+	ColliderComponent& ColliderComponent::GetComponentFromScene(EntityManager* em, GameObject& go, std::string section, SceneConfig& config)
+	{
+		return go.AddComponent<ColliderComponent>(em);
+	}
+
 }
