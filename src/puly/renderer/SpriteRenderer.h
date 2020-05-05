@@ -13,6 +13,7 @@
 #include "Texture.h"
 
 #include "../ecs/Component.h"
+#include <glm/glm.hpp>
 
 namespace Puly {
 
@@ -20,7 +21,8 @@ namespace Puly {
 	public:
 		SpriteRenderer(const char* texturePath,
 			const char* vertexShaderPath = "resources/shaders/textureVertexShader.glsl", 
-			const char* fragmentShaderPath = "resources/shaders/textureFragmentShader.glsl"
+			const char* fragmentShaderPath = "resources/shaders/textureFragmentShader.glsl",
+			glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)
 		);
 
 		~SpriteRenderer();
@@ -30,7 +32,6 @@ namespace Puly {
 		virtual void Render() override;
 
 		virtual void DebugGUI() override;
-
 
 		void SaveInScene(std::string section, GameLevel& levelSave) override;
 
@@ -46,6 +47,8 @@ namespace Puly {
 		std::string m_TexturePath;
 		std::string m_VertexShaderPath;
 		std::string m_FragmentShaderPath;
+
+		glm::vec4 m_Color;
 
 		void InitRenderData();
 	};

@@ -62,6 +62,18 @@ void Puly::Shader::Unbind()
 	glUseProgram(0);
 }
 
+void Puly::Shader::UploadUniformFloat4(const std::string& name, const float v0, const float v1, const float v2, const float v3)
+{
+	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
+
+	if (location != -1) {
+		glUniform4f(location, v0, v1, v2, v3);
+	}
+	else {
+		PL_LOG_ERROR("Uniform {}, location not found", name);
+	}
+}
+
 void Puly::Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 {
 	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());

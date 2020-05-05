@@ -17,6 +17,7 @@ namespace Puly {
 		void Bind();
 		void Unbind();
 
+		void UploadUniformFloat4(const std::string& name, const float v0, const float v1, const float v2, const float v3);
 		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 		void UploadUniform1i(const std::string& name, int value);
 	private:

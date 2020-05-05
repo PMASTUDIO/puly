@@ -9,7 +9,7 @@
 
 namespace Puly {
 
-	SpriteRenderer::SpriteRenderer(const char* texturePath, const char* vertexShaderPath, const char* fragmentShaderPath) : m_TexturePath(texturePath), m_VertexShaderPath(vertexShaderPath), m_FragmentShaderPath(fragmentShaderPath)
+	SpriteRenderer::SpriteRenderer(const char* texturePath, const char* vertexShaderPath, const char* fragmentShaderPath, glm::vec4 color) : m_TexturePath(texturePath), m_VertexShaderPath(vertexShaderPath), m_FragmentShaderPath(fragmentShaderPath), m_Color(color)
 	{
 		m_Shader.reset(new Shader());
 
@@ -44,6 +44,7 @@ namespace Puly {
 
 		m_Shader->Bind();
 		m_Shader->UploadUniform1i("u_Texture", 0);
+		m_Shader->UploadUniformFloat4("u_Color", m_Color.x, m_Color.y, m_Color.z, m_Color.w);
 
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(position, 0.0f));
