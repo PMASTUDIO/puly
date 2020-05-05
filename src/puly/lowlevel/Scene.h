@@ -13,6 +13,7 @@ namespace Puly {
 		bool Init();
 		void Shutdown();
 
+		std::vector<std::string> GetComponentsInObject(std::string objDebuggingName);
 		std::vector<std::string> GetObjects();
 
 		const char* GetValue(const char* section, const char* keyName);

@@ -23,6 +23,32 @@ void Puly::SceneConfig::Shutdown()
 	sceneFile.SaveFile(m_SceneName.c_str());
 }
 
+std::vector<std::string> Puly::SceneConfig::GetComponentsInObject(std::string objDebuggingName)
+{
+	CSimpleIniA::TNamesDepend sections;
+	sceneFile.GetAllSections(sections);
+
+	std::vector<std::string> sectionNames;
+
+	CSimpleIniA::TNamesDepend::const_iterator i;
+	for (i = sections.begin(); i != sections.end(); ++i)
+	{
+		std::string name(i->pItem);
+		char nameFirstChar = name.at(0);
+		char objectIdentifier = ':';
+
+		if (nameFirstChar == objectIdentifier) {
+			// Check if component is in this object return section name
+			std::size_t posName = name.find(objDebuggingName);
+			if (posName != std::string::npos) {
+				sectionNames.push_back(i->pItem);
+			}
+		}
+	}
+
+	return sectionNames;
+}
+
 std::vector<std::string> Puly::SceneConfig::GetObjects()
 {
 	CSimpleIniA::TNamesDepend sections;

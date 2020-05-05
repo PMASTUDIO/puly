@@ -58,6 +58,10 @@ namespace Puly {
 			importedObj.m_Scale.y = scaleY;
 			importedObj.m_Scale.z = scaleZ;
 			importedObj.m_Rotation = rotation;
+
+			for (auto objName : sceneConfig.GetComponentsInObject(objName)) {
+				PL_LOG_INFO("Created Component: {}", objName);
+			}
 		}
 
 		sceneConfig.Shutdown();
