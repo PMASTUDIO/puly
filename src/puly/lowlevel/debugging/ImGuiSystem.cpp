@@ -24,6 +24,7 @@
 #include "../..//ecs/components/MoveComponent.h"
 
 #include <queue>
+#include "../../ecs/components/FlappyControllerComponent.h"
 
 float newLinePos[3];
 float newLineFinalPos[3];
@@ -103,11 +104,11 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 
 		ImGui::Separator();
 
-		const char* listbox_items[] = { "2D Move Component", "Collider Component" };
+		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component" };
 		static int listbox_item_current = 0;
 
 		//ImGui::ListBoxHeader("New Component", ImVec2(0, 200));
-		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 2);
+		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 3);
 		//ImGui::ListBoxFooter();
 
 		if (ImGui::Button("Add Component")) {
@@ -118,6 +119,9 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 				break;
 			case 1:
 				v_Objects[selectedGameObject]->AddComponent<ColliderComponent>(&em);
+				break;
+			case 2:
+				v_Objects[selectedGameObject]->AddComponent<FlappyControllerComponent>(0.5f, 11.0f);
 				break;
 			default:
 				break;
