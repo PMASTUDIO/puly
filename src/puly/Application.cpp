@@ -108,6 +108,8 @@ void Puly::Application::Run()
 
 		#ifdef PL_DEBUG
 			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame->mainScene.GetEntityManager()->GetObjects(), *demoGame->mainScene.GetEntityManager());
+			mSubSystems->imGuiSystem->SceneTreeMenu(*demoGame->mainScene.GetEntityManager(), demoGame->mainScene.GetEntityManager()->GetObjects());
+			mSubSystems->imGuiSystem->PropertyPanel(*demoGame->mainScene.GetEntityManager(), demoGame->mainScene.GetEntityManager()->GetObjects());
 			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame->mainScene.GetEntityManager());
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->TopMenu(demoGame->mainScene);

@@ -25,10 +25,15 @@ namespace Puly {
 
 		void Shutdown();
 
+		static void ResetSelectedObj() { selectedGameObject = -1; };
+
 		void TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em);
 		void PerformanceMenu(bool show, Timestep dt);
 		void PlayPauseMenu(EntityManager& em);
 		void TopMenu(Scene2D& scene);
+
+		void PropertyPanel(EntityManager& em, std::vector<GameObject*>& v_Objects);
+		void SceneTreeMenu(EntityManager& em, std::vector<GameObject*>& objects);
 
 		void Render();
 
@@ -37,11 +42,8 @@ namespace Puly {
 		Window* mWindow;
 
 		void DebugPrimitiveMenu(Timestep dt);
-		void PropertyPanel(EntityManager& em, std::vector<GameObject*> v_Objects);
 
-		void SceneTreeMenu(EntityManager& em, std::vector<GameObject*> objects);
-
-		int selectedGameObject = -1;
+		static int selectedGameObject;
 	};
 
 }

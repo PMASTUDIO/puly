@@ -24,7 +24,8 @@
 #include "../..//ecs/components/MoveComponent.h"
 
 #include <queue>
-#include "../../ecs/components/FlappyControllerComponent.h"
+#include "../../ecs/components/Flappy/FlappyControllerComponent.h"
+#include "../../ecs/components/BulletComponent.h"
 
 float newLinePos[3];
 float newLineFinalPos[3];
@@ -90,8 +91,13 @@ void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
 	debugDrawManager->OnUpdate();
 }
 
-void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*> v_Objects)
+void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*>& v_Objects)
 {
+
+	if (selectedGameObject > v_Objects.size() || em.IsEmpty()) {
+		selectedGameObject = -1;
+	}
+
 	if (selectedGameObject != -1) {
 		ImGui::Begin("Properties");
 
@@ -104,11 +110,11 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 
 		ImGui::Separator();
 
-		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component" };
+		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component", "Bullet Component" };
 		static int listbox_item_current = 0;
 
 		//ImGui::ListBoxHeader("New Component", ImVec2(0, 200));
-		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 3);
+		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items));
 		//ImGui::ListBoxFooter();
 
 		if (ImGui::Button("Add Component")) {
@@ -121,7 +127,10 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 				v_Objects[selectedGameObject]->AddComponent<ColliderComponent>(&em);
 				break;
 			case 2:
-				v_Objects[selectedGameObject]->AddComponent<FlappyControllerComponent>(0.5f, 11.0f);
+				v_Objects[selectedGameObject]->AddComponent<FlappyControllerComponent>(0.5f, 1.0f);
+				break;
+			case 3:
+				v_Objects[selectedGameObject]->AddComponent<BulletComponent>(0.5f);
 				break;
 			default:
 				break;
@@ -132,7 +141,7 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 	}
 }
 
-void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*> objects)
+void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*>& objects)
 {
 	ImGui::Begin("Scene");
 
@@ -140,20 +149,24 @@ void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*
 	{
 		int i = 0;
 		for (auto& item : objects) {
-			if (ImGui::TreeNode(item->m_DebugName.c_str())) /*ImGui::Selectable(item.first.c_str())*/
-			{
-				ImGui::DragFloat3("Position", glm::value_ptr<float>(item->m_Position), 0.2f, -10.0f, 10.0f);
-				ImGui::DragFloat("Rotation", &item->m_Rotation, 1.0f, 0, 360.0f);
-				ImGui::DragFloat3("Scale", glm::value_ptr<float>(item->m_Scale), 0.2f, 0.0f, 10.0f);
-				if (ImGui::DragInt("Z-Index", &item->m_Priority)) {
-					em.SortByPriority();
-				}
 
-				if(ImGui::Button("Edit")) {
-					selectedGameObject = i;
-				}
+			if (item->m_IsActive) {
 
-				ImGui::TreePop();
+				if (ImGui::TreeNode(item->m_DebugName.c_str())) /*ImGui::Selectable(item.first.c_str())*/
+				{
+					ImGui::DragFloat3("Position", glm::value_ptr<float>(item->m_Position), 0.2f, -10.0f, 10.0f);
+					ImGui::DragFloat("Rotation", &item->m_Rotation, 1.0f, 0, 360.0f);
+					ImGui::DragFloat3("Scale", glm::value_ptr<float>(item->m_Scale), 0.2f, 0.0f, 10.0f);
+					if (ImGui::DragInt("Z-Index", &item->m_Priority)) {
+						em.SortByPriority();
+					}
+
+					if (ImGui::Button("Edit")) {
+						selectedGameObject = i;
+					}
+
+					ImGui::TreePop();
+				}
 			}
 			i++;
 		}
@@ -161,6 +174,8 @@ void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*
 
 	ImGui::End();
 }
+
+int Puly::ImguiSystem::selectedGameObject = -1;
 
 void Puly::ImguiSystem::TopMenu(Scene2D& scene)
 {
@@ -238,9 +253,6 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector
 		}
 
 		ImGui::End();
-
-		SceneTreeMenu(em, v_Objects);
-		PropertyPanel(em, v_Objects);
 	}
 	
 }

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../Component.h"
+#include "../../Component.h"
 
 namespace Puly {
 
 	class FlappyControllerComponent : public Component {
 	public:
 
-		FlappyControllerComponent(float speed, float fakeGravity = 11.0f);
+		FlappyControllerComponent(float speed, float fakeGravity = 1.5f);
 
 		virtual void Init() override;
 		virtual void Update(float deltaTime) override;

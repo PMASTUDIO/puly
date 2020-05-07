@@ -3,27 +3,39 @@
 #include "../lowlevel/Scene.h"
 
 #include "../platform/windows/FileOpenDialog.h"
+#include "../lowlevel/debugging/ImGuiSystem.h"
 
 namespace Puly {
 	void Puly::EntityManager::Update(float deltaTime)
 	{
-		for (auto object : v_Objects) {
+		int i = 0;
+		for (auto& object : v_Objects) {
 			if (m_IsDebugging) {
 				object->m_Debugging = true;
 			}
 			else {
 				object->m_Debugging = false;
 			}
-			object->Update(deltaTime);
+
+			if (!object->m_IsActive) {
+				//v_Objects.erase(v_Objects.begin() + i);
+				return;
+			}
+			else {
+				object->Update(deltaTime);
+			}
+
+			i++;
 		}
 	}
 
 	void Puly::EntityManager::Render()
 	{
 		for (auto& object : v_Objects) {
-			object->Draw();
+			if (object->m_IsActive) {
+				object->Draw();
+			}
 		}
-
 	}
 
 	bool Puly::EntityManager::IsEmpty() const

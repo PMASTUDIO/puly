@@ -15,6 +15,7 @@ void Puly::GameObject::Update(Timestep dt)
 		else {
 			component->m_State = PL_COMP_ACTIVE;
 		}
+
 		component->Update(dt);
 	}
 }
@@ -28,6 +29,7 @@ void Puly::GameObject::Draw()
 
 void Puly::GameObject::Destroy()
 {
+	PL_LOG_INFO("Destroyed");
 	m_IsActive = false;
 }
 

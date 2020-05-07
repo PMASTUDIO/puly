@@ -1,12 +1,12 @@
 #include "FlappyControllerComponent.h"
 
-#include "..//../lowlevel/Input.h"
-#include "..//../lowlevel/KeyCodes.h"
-#include "..//../lowlevel/debugging/Log.h"
+#include "..//../../lowlevel/Input.h"
+#include "..//../../lowlevel/KeyCodes.h"
+#include "..//../../lowlevel/debugging/Log.h"
 
 #include "imgui.h"
 
-#include "..//../objects/GameObject.h"
+#include "..//../../objects/GameObject.h"
 
 namespace Puly {
 	FlappyControllerComponent::FlappyControllerComponent(float speed, float fakeGravity) : m_Speed(speed), m_Gravity(fakeGravity)
@@ -54,9 +54,9 @@ namespace Puly {
 
 	FlappyControllerComponent& FlappyControllerComponent::GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config)
 	{
-		float speed = atoi(config.GetValue(section.c_str(), "speed"));
-		float gravity = atoi(config.GetValue(section.c_str(), "gravity"));
-		int useKeys = atoi(config.GetValue(section.c_str(), "usingKeys"));
+		float speed = std::stof(config.GetValue(section.c_str(), "speed"));
+		float gravity = std::stof(config.GetValue(section.c_str(), "gravity"));
+		int useKeys = std::stof(config.GetValue(section.c_str(), "usingKeys"));
 
 		FlappyControllerComponent& newComponent = go.AddComponent<FlappyControllerComponent>(speed, gravity);
 		newComponent.m_UseKeys = useKeys;

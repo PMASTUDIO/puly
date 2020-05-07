@@ -1,7 +1,8 @@
 #include "Scene2D.h"
 #include "../lowlevel/Scene.h"
 #include "components/MoveComponent.h"
-#include "components/FlappyControllerComponent.h"
+#include "components/Flappy/FlappyControllerComponent.h"
+#include "components/BulletComponent.h"
 
 namespace Puly {
 
@@ -77,6 +78,10 @@ namespace Puly {
 				else if (componentSection.find("FlappyController") != std::string::npos) {
 					PL_LOG_INFO("Creating Flappy Component");
 					FlappyControllerComponent::GetComponentFromScene(importedObj, componentSection, sceneConfig);
+				}
+				else if (componentSection.find("BulletComponent") != std::string::npos) {
+					PL_LOG_INFO("Creating Bullet Component");
+					BulletComponent::GetComponentFromScene(importedObj, componentSection, sceneConfig);
 				}
 			}
 		}
