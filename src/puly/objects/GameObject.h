@@ -56,6 +56,7 @@ namespace Puly {
 		void RemoveComponent() {
 			Component* compToDelete = GetComponent<T>();
 			v_Components.erase(std::remove(v_Components.begin(), v_Components.end(), compToDelete), v_Components.end());
+			v_ComponentsTypeMap.erase(&typeid(T));
 		}
 
 		template <typename T>

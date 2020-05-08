@@ -109,7 +109,9 @@ namespace Puly {
 		GameLevel levelSave(pathToSave + ".ini");
 
 		for (auto& object : v_Objects) {
-			object->SaveInLevel(levelSave);
+			if (object->m_IsActive) {
+				object->SaveInLevel(levelSave);
+			}
 		}
 
 		return pathToSave;

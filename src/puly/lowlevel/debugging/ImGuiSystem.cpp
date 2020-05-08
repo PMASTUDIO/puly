@@ -164,6 +164,11 @@ void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*
 						selectedGameObject = i;
 					}
 
+					if (ImGui::Button("Delete")) {
+						selectedGameObject = -1;
+						item->Destroy();
+					}
+
 					ImGui::TreePop();
 				}
 			}
