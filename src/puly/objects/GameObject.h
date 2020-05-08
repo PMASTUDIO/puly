@@ -53,6 +53,12 @@ namespace Puly {
 		}
 
 		template <typename T>
+		void RemoveComponent() {
+			Component* compToDelete = GetComponent<T>();
+			v_Components.erase(std::remove(v_Components.begin(), v_Components.end(), compToDelete), v_Components.end());
+		}
+
+		template <typename T>
 		bool HasComponent() const {
 			return v_ComponentsTypeMap.count(&typeid(T));
 		}

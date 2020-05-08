@@ -11,13 +11,12 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <typeindex>
+
 #include "../../platform/windows/FileOpenDialog.h"
 
 #include <filesystem>
 #include <string>
-
-#include <windows.h>
-
 #include "..//dataStructures/ArrayStack.h"
 #include "..//..//platform/FileOp.h"
 

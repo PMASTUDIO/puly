@@ -42,6 +42,11 @@ namespace Puly {
 			ImGui::InputFloat("Speed", &m_Speed);
 
 			ImGui::Checkbox("Use KEYS", &m_UseKeys);
+
+			if (ImGui::Button("Delete")) {
+				m_Owner->RemoveComponent<MoveComponent>();
+			}
+
 			ImGui::TreePop();
 		}
 	}

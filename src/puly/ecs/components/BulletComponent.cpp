@@ -42,6 +42,10 @@ namespace Puly {
 			ImGui::InputFloat("Angle", &m_AngleDeg);
 			ImGui::InputFloat("Lifetime", &m_Lieftime);
 
+			if (ImGui::Button("Delete")) {
+				m_Owner->RemoveComponent<BulletComponent>();
+			}
+
 			ImGui::TreePop();
 		}
 	}

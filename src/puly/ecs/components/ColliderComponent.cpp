@@ -24,6 +24,10 @@ namespace Puly {
 				ImGui::Text("Currently colliding with: %s", collidingWidth.c_str());
 			}
 
+			if (ImGui::Button("Delete")) {
+				m_Owner->RemoveComponent<ColliderComponent>();
+			}
+
 			ImGui::TreePop();
 		}
 	}

@@ -39,6 +39,11 @@ namespace Puly {
 			ImGui::InputFloat("Fake Gravity", &m_Gravity);
 
 			ImGui::Checkbox("Use KEYS", &m_UseKeys);
+
+			if (ImGui::Button("Delete")) {
+				m_Owner->RemoveComponent<FlappyControllerComponent>();
+			}
+
 			ImGui::TreePop();
 		}
 	}
