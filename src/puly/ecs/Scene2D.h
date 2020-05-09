@@ -21,8 +21,11 @@ namespace Puly {
 
 		void LoadSceneFromFile(std::string path);
 
+		std::string GetPath() const { return m_Path; }
+
 	private:
 		std::shared_ptr<EntityManager> m_EntityManager;
+		std::string m_Path;
 	};
 
 }

@@ -38,6 +38,8 @@ namespace Puly {
 
 	void Scene2D::LoadSceneFromFile(std::string path)
 	{
+		m_Path = path;
+
 		SceneConfig sceneConfig(path.c_str());
 		bool foundFile = sceneConfig.Init();
 
