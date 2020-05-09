@@ -51,6 +51,7 @@ bool Puly::Application::Init()
 bool Puly::Application::Shutdown()
 {
 	//m_EntityManager->ClearData();
+	Renderer::Shutdown();
 	mSubSystems->Shutdown();
 	mWindow.Shutdown();
 

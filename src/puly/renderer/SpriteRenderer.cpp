@@ -42,10 +42,6 @@ namespace Puly {
 		glm::vec2 size = glm::vec2(m_Owner->m_Scale.x, m_Owner->m_Scale.y);
 		float rotate = glm::radians(m_Owner->m_Rotation);
 
-		m_Shader->Bind();
-		m_Shader->UploadUniform1i("u_Texture", 0);
-		m_Shader->UploadUniformFloat4("u_Color", m_Color.x, m_Color.y, m_Color.z, m_Color.w);
-
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(position, 0.0f));
 
@@ -55,9 +51,7 @@ namespace Puly {
 
 		model = glm::scale(model, glm::vec3(size, 1.0f));
 
-		m_Texture->Bind();
-
-		Renderer::Submit(m_VAO, m_Shader, model);
+		Renderer::Draw2DQuad(m_Shader, m_Texture, model);
 	}
 
 	void SpriteRenderer::DebugGUI()
@@ -86,7 +80,7 @@ namespace Puly {
 
 	void SpriteRenderer::InitRenderData()
 	{
-		m_VAO = Renderer::Draw2DQuad();
+		
 	}
 
 }
