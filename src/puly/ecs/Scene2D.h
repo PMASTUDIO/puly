@@ -17,6 +17,8 @@ namespace Puly {
 		void OnUpdate(Timestep deltaTime);
 		void Render();
 
+		void Reset();
+
 		void LoadSceneFromFile(std::string path);
 
 	private:

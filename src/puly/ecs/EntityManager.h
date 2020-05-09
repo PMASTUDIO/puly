@@ -29,6 +29,8 @@ namespace Puly {
 
 		std::vector<GameObject*> SortByPriority();
 
+		Window* GetWindow() const { return m_Window; }
+
 		unsigned int GetObjectCount();
 
 		GameObject* GetObjectByDebugName(std::string name) const { 

@@ -31,6 +31,11 @@ namespace Puly {
 		m_EntityManager->Render();
 	}
 
+	void Scene2D::Reset()
+	{
+		m_EntityManager = std::make_shared<EntityManager>(m_EntityManager->GetWindow());
+	}
+
 	void Scene2D::LoadSceneFromFile(std::string path)
 	{
 		SceneConfig sceneConfig(path.c_str());

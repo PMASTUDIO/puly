@@ -114,13 +114,13 @@ void Puly::Application::Run()
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->TopMenu(demoGame->mainScene);
 
+			mSubSystems->imGuiSystem->Render();
+
 			if (Input::IsKeyPressed(&mWindow, PL_KEY_LEFT_CONTROL)) {
 				if (Input::IsKeyPressed(&mWindow, PL_KEY_S)) {
 					demoGame->mainScene.GetEntityManager()->SaveScene();
 				}
 			}
-
-			mSubSystems->imGuiSystem->Render();
 		#endif
 
 		mWindow.Update();

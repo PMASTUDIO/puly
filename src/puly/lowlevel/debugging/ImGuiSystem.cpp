@@ -187,6 +187,14 @@ void Puly::ImguiSystem::TopMenu(Scene2D& scene)
 	
 		if (ImGui::BeginMenu("File")) {
 		
+			if (ImGui::MenuItem("New Level")) {
+				scene.Reset();
+			}
+
+			if (ImGui::MenuItem("Save Level")) {
+				scene.GetEntityManager()->SaveScene();
+			}
+
 			if (ImGui::MenuItem("Load Level")) {
 				scene.LoadSceneFromFile(openfilename());
 			}
