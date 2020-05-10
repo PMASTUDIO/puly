@@ -28,4 +28,10 @@ namespace Puly {
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}
 	
+	void OpengGLRendererAPI::DrawIndexedLine()
+	{
+		glLineWidth(2.0f);
+		glDrawElements(GL_LINES, 2, GL_UNSIGNED_INT, nullptr);
+	}
+
 }

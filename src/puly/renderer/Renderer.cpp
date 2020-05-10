@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "../lowlevel/ResourceManager.h"
 
 namespace Puly {
 
@@ -83,6 +84,45 @@ namespace Puly {
 
 		s_Data->VAO->Bind();
 		RenderCommand::DrawIndexed(s_Data->VAO);
+	}
+
+	void Renderer::Draw2DLine(const glm::vec3& p0, const glm::vec3& p1, const glm::vec4& color)
+	{
+		std::shared_ptr<VertexArray> VAO;
+		std::shared_ptr<VertexBuffer> VBO;
+		std::shared_ptr<IndexBuffer> IBO;
+		std::shared_ptr<Shader> shader;
+
+		shader.reset(new Shader());
+
+		auto shaderTexts = ResourceManager::GetShaderText("resources/shaders/lineVertexShader.glsl", "resources/shaders/lineFragmentShader.glsl");
+		shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+
+		float vertices[3 * 3] = {
+			p0.x, p0.y, p0.z,
+			p1.x, p1.y, p1.z,
+		};
+
+		VAO.reset(VertexArray::Create());
+
+		VBO.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		BufferLayout layout = {
+			{ ShaderDataType::Float3, "a_Position" },
+		};
+		VBO->SetLayout(layout);
+		VAO->AddVertexBuffer(VBO);
+
+		uint32_t indices[2] = { 0, 1 };
+		IBO.reset(IndexBuffer::Create(indices, sizeof(indices)));
+		VAO->SetIndexBuffer(IBO);
+
+		shader->Bind();
+		shader->UploadUniformFloat4("u_Color", color.r, color.g, color.b, color.a);
+		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		shader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
+
+		VAO->Bind();
+		RenderCommand::DrawIndexedLine();
 	}
 
 	//void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform)

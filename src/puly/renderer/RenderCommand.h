@@ -26,6 +26,10 @@ namespace Puly {
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}
 
+		inline static void DrawIndexedLine() {
+			s_RendererAPI->DrawIndexedLine();
+		}
+
 	private:
 		static RendererAPI* s_RendererAPI;
 	};
