@@ -25,6 +25,7 @@
 #include <queue>
 #include "../../ecs/components/Flappy/FlappyControllerComponent.h"
 #include "../../ecs/components/BulletComponent.h"
+#include "../../ecs/components/ColoredSquare.h"
 
 float newLinePos[3];
 float newLineFinalPos[3];
@@ -109,7 +110,7 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 
 		ImGui::Separator();
 
-		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component", "Bullet Component" };
+		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component", "Bullet Component", "Colored Component" };
 		static int listbox_item_current = 0;
 
 		//ImGui::ListBoxHeader("New Component", ImVec2(0, 200));
@@ -130,6 +131,9 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 				break;
 			case 3:
 				v_Objects[selectedGameObject]->AddComponent<BulletComponent>(0.5f);
+				break;
+			case 4:
+				v_Objects[selectedGameObject]->AddComponent<ColoredComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 				break;
 			default:
 				break;

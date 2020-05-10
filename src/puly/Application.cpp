@@ -102,19 +102,19 @@ void Puly::Application::Run()
 			glm::mat4 scaledQuad = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 			glm::mat4 transformQuadsTest;
 
-			#ifdef PL_DEBUG
-				m_CameraController->ShowReleaseBoundingBox();
-			#endif
-
-			for (int i = 0; i < 31; i++) {
-				for (int j = 0; j < 31; j++) {
-					transformQuadsTest = glm::translate(scaledQuad, glm::vec3(i * 1.2f, j * 1.2f, 0.0f));
-					Renderer::Draw2DQuad(m_Shader, glm::vec4(i / 31.0f, j / 31.0f, (i * j) / 62.0f, (i * j) / 62.0f), transformQuadsTest);
-				}	
-			}
+			//for (int i = 0; i < 31; i++) {
+			//	for (int j = 0; j < 31; j++) {
+			//		transformQuadsTest = glm::translate(scaledQuad, glm::vec3(i * 1.2f, j * 1.2f, 0.0f));
+			//		Renderer::Draw2DQuad(m_Shader, glm::vec4(i / 31.0f, j / 31.0f, (i * j) / 62.0f, (i * j) / 62.0f), transformQuadsTest);
+			//	}	
+			//}
 
 			demoGame->Update(deltaTime);
 			demoGame->Render();
+
+#ifdef PL_DEBUG
+			m_CameraController->ShowReleaseBoundingBox();
+#endif
 
 			//myFirstSprite->DrawSprite(glm::vec2(0.0f), glm::vec2(1.0f), 0.0f, glm::vec3(1.0f));
 

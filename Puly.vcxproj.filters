@@ -597,6 +597,7 @@
     <ClInclude Include="src\puly\ecs\Scene2D.h" />
     <ClInclude Include="src\puly\ecs\components\Flappy\FlappyControllerComponent.h" />
     <ClInclude Include="src\puly\ecs\components\BulletComponent.h" />
+    <ClInclude Include="src\puly\ecs\components\ColoredSquare.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -712,5 +713,6 @@
     <ClCompile Include="src\puly\ecs\Scene2D.cpp" />
     <ClCompile Include="src\puly\ecs\components\Flappy\FlappyControllerComponent.cpp" />
     <ClCompile Include="src\puly\ecs\components\BulletComponent.cpp" />
+    <ClCompile Include="src\puly\ecs\components\ColoredSquare.cpp" />
   </ItemGroup>
 </Project>
