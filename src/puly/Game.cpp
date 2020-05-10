@@ -28,7 +28,7 @@ void Puly::Game::Start()
 	PL_LOG_SUCCESS("Game initialized! Width: {}, Height: {}", mWidth, mHeight);
 
 	mainScene.OnStart();
-	mainScene.LoadSceneFromFile("resources/scenes/breakoutLevelTest.ini");
+	mainScene.LoadSceneFromFile("resources/scenes/breakoutLevelTestWithPaddle.ini");
 	/*Puly::GameObject& checkerboard(m_EntityManager->AddObject(1, "checkerboard"));
 	checkerboard.AddComponent<Puly::SpriteRenderer>("resources/textures/checkerboard.png");*/
 }

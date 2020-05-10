@@ -7,7 +7,7 @@ namespace Puly {
 	class MoveComponent : public Component {
 	public:
 
-		MoveComponent(float speed);
+		MoveComponent(float speed, bool horizontal = true, bool vertical = true);
 
 		virtual void Init() override;
 		virtual void Update(float deltaTime) override;
@@ -22,6 +22,8 @@ namespace Puly {
 	private:
 		float m_Speed;
 		bool m_UseKeys;
+		bool m_HorizontalAxis;
+		bool m_VerticalAxis;
 	};
 
 }

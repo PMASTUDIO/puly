@@ -268,7 +268,7 @@ void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector
 			}
 			else {
 				// if it's empty then use the texture file name
-				fs::path fileName = "empty";
+				fileNameString = "empty";
 			}
 
 			Puly::GameObject& newObj(em.AddObject(1, fileNameString));
