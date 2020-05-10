@@ -8,6 +8,7 @@
 #include "..//lowlevel/Event.h"
 
 #include <algorithm>
+#include "Renderer.h"
 
 namespace Puly {
 
@@ -60,6 +61,13 @@ namespace Puly {
 	void OrthographicCamera2DController::SetControlActive(float active)
 	{
 		m_ControlActive = active;
+	}
+	void OrthographicCamera2DController::ShowReleaseBoundingBox()
+	{
+		Renderer::Draw2DLine(glm::vec3(-m_AspectRatio, 1.0f, 0.0f), glm::vec3(m_AspectRatio, 1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Renderer::Draw2DLine(glm::vec3(-m_AspectRatio, -1.0f, 0.0f), glm::vec3(m_AspectRatio, -1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Renderer::Draw2DLine(glm::vec3(-m_AspectRatio, -1.0f, 0.0f), glm::vec3(-m_AspectRatio, 1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		Renderer::Draw2DLine(glm::vec3(m_AspectRatio, -1.0f, 0.0f), glm::vec3(m_AspectRatio, 1.0f, 0.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 	bool OrthographicCamera2DController::OnMouseScrolled(MouseScrolledEvent& evt)
 	{

@@ -29,6 +29,8 @@ namespace Puly {
 
 		void SetControlActive(float active);
 
+		void ShowReleaseBoundingBox();
+
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& evt);
 		bool OnWindowsResized(WindowResizeEvent& evt);

@@ -1,6 +1,7 @@
 #include "OrthographicCamera.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include "Renderer.h"
 
 Puly::OrtographicCamera::OrtographicCamera(float leftBound, float rightBound, float bottomBound, float topBound)
 	: m_ProjectionMatrix(glm::ortho(leftBound, rightBound, bottomBound, topBound, -1.0f, 1.0f)), m_ViewMatrix(1.0f), m_Position(0.0f, 0.0f, 0.0f)

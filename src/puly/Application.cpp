@@ -42,7 +42,7 @@ bool Puly::Application::Init()
 		return false;
 
 	// Demo game
-	m_CameraController.reset(new OrthographicCamera2DController(&mWindow, 1280.0f / 720.0f, true));
+	m_CameraController.reset(new OrthographicCamera2DController(&mWindow, 1280.0f / 720.0f, false));
 
 	demoGame.reset(new Game(&mWindow, 1280, 720));
 	demoGame->Start();
@@ -102,7 +102,9 @@ void Puly::Application::Run()
 			glm::mat4 scaledQuad = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 			glm::mat4 transformQuadsTest;
 
-			//Renderer::Draw2DLine(m_CameraController->GetCamera().GetPosition(), glm::vec3(2.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+			#ifdef PL_DEBUG
+				m_CameraController->ShowReleaseBoundingBox();
+			#endif
 
 			for (int i = 0; i < 31; i++) {
 				for (int j = 0; j < 31; j++) {
