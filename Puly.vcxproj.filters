@@ -598,6 +598,7 @@
     <ClInclude Include="src\puly\ecs\components\Flappy\FlappyControllerComponent.h" />
     <ClInclude Include="src\puly\ecs\components\BulletComponent.h" />
     <ClInclude Include="src\puly\ecs\components\ColoredSquare.h" />
+    <ClInclude Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -714,5 +715,6 @@
     <ClCompile Include="src\puly\ecs\components\Flappy\FlappyControllerComponent.cpp" />
     <ClCompile Include="src\puly\ecs\components\BulletComponent.cpp" />
     <ClCompile Include="src\puly\ecs\components\ColoredSquare.cpp" />
+    <ClCompile Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.cpp" />
   </ItemGroup>
 </Project>

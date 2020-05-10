@@ -4,6 +4,7 @@
 #include "components/Flappy/FlappyControllerComponent.h"
 #include "components/BulletComponent.h"
 #include "components/ColoredSquare.h"
+#include "components/Breakout/BallBreakoutComponent.h"
 
 namespace Puly {
 
@@ -94,6 +95,10 @@ namespace Puly {
 				else if (componentSection.find("ColoredComponent") != std::string::npos) {
 					PL_LOG_INFO("Creating Colored Component");
 					ColoredComponent::GetComponentFromScene(importedObj, componentSection, sceneConfig);
+				}
+				else if (componentSection.find("BallBreakoutComponent") != std::string::npos) {
+					PL_LOG_INFO("Creating Ball Breakout Component");
+					BallBreakoutComponent::GetComponentFromScene(importedObj, componentSection, sceneConfig);
 				}
 			}
 		}
