@@ -74,6 +74,17 @@ namespace Puly {
 		//s_Data->VAO->Unbind();
 	}
 
+	void Renderer::Draw2DQuad(const std::shared_ptr<Shader>& shader, glm::vec4 color, const glm::mat4& transform)
+	{
+		shader->Bind();
+		shader->UploadUniformFloat4("u_Color", color.r, color.g, color.b, color.a);
+		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		shader->UploadUniformMat4("u_Transform", transform);
+
+		s_Data->VAO->Bind();
+		RenderCommand::DrawIndexed(s_Data->VAO);
+	}
+
 	//void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform)
 	//{
 	//	/*shader->Bind();

@@ -20,6 +20,7 @@ namespace Puly {
 		static void EndScene();
 
 		static void Draw2DQuad(const std::shared_ptr<Shader>& shader, const std::shared_ptr<Texture>& texture, const glm::mat4& transform = glm::mat4(1.0f));
+		static void Draw2DQuad(const std::shared_ptr<Shader>& shader, glm::vec4 color, const glm::mat4& transform = glm::mat4(1.0f));
 		
 		//static void Submit(const std::shared_ptr<VertexArray>& vertexArray, const std::shared_ptr<Shader>& shader, const glm::mat4& transform = glm::mat4(1.0f));
 

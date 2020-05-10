@@ -8,6 +8,7 @@
 #include "renderer/Renderer.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 #include "renderer/SpriteRenderer.h"
 
@@ -19,9 +20,10 @@
 #include "lowlevel/Input.h"
 #include "lowlevel/KeyCodes.h"
 
-Puly::Application::Application() : mLastFrameTime(0.0f), mWindow()
+Puly::Application::Application() : mLastFrameTime(0.0f), mWindow() // Shader should be deleted
 {
 	mWindow.SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+	m_Shader.reset(new Shader);
 }
 
 Puly::Application::~Application()
@@ -44,6 +46,9 @@ bool Puly::Application::Init()
 
 	demoGame.reset(new Game(&mWindow, 1280, 720));
 	demoGame->Start();
+
+	auto shaderTexts = ResourceManager::GetShaderText("resources/shaders/colorVertexShader.glsl", "resources/shaders/colorFragmentShader.glsl");
+	m_Shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
 
 	return true;
 }
@@ -94,6 +99,16 @@ void Puly::Application::Run()
 			Renderer::BeginScene(m_CameraController->GetCamera());
 
 			// Demo game
+			glm::mat4 scaledQuad = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+			glm::mat4 transformQuadsTest;
+
+			for (int i = 0; i < 31; i++) {
+				for (int j = 0; j < 31; j++) {
+					transformQuadsTest = glm::translate(scaledQuad, glm::vec3(i * 1.2f, j * 1.2f, 0.0f));
+					Renderer::Draw2DQuad(m_Shader, glm::vec4(i / 31.0f, j / 31.0f, (i * j) / 62.0f, (i * j) / 62.0f), transformQuadsTest);
+				}	
+			}
+
 			demoGame->Update(deltaTime);
 			demoGame->Render();
 

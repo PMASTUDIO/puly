@@ -42,7 +42,7 @@ namespace Puly {
 		Window mWindow;
 		std::unique_ptr<SubSystems> mSubSystems;
 
-		//Shader m_Shader;
+		std::shared_ptr<Shader> m_Shader;
 
 		std::unique_ptr<OrthographicCamera2DController> m_CameraController;
 
