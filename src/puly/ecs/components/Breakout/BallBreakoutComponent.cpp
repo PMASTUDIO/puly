@@ -23,6 +23,7 @@ namespace Puly {
 
 			if (!m_Stuck) {
 				m_Owner->m_Position.x += m_Speed * deltaTime;
+				m_Owner->m_Position.y += m_Speed * deltaTime;
 
 				if (m_Owner->m_Position.x <= -aspectRatio + m_Owner->m_Scale.x)
 				{
@@ -33,6 +34,11 @@ namespace Puly {
 				{
 					m_Speed = -m_Speed;
 					m_Owner->m_Position.x = aspectRatio - m_Owner->m_Scale.x;
+				}
+
+				if (m_Owner->m_Position.y >= 1.0f) {
+					m_Speed = -m_Speed;
+					m_Owner->m_Position.y = 0.99f;
 				}
 
 				PL_LOG_INFO(m_Owner->m_Position.y);
