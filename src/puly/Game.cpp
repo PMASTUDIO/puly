@@ -29,8 +29,22 @@ void Puly::Game::Start()
 
 	mainScene.OnStart();
 	mainScene.LoadSceneFromFile("resources/scenes/breakoutLevelTestWithPaddleCollision2.ini");
-	/*Puly::GameObject& checkerboard(m_EntityManager->AddObject(1, "checkerboard"));
-	checkerboard.AddComponent<Puly::SpriteRenderer>("resources/textures/checkerboard.png");*/
+
+	// Breakout demo
+	float blockX = -1.75f;
+	float blockY =  1.0f;
+	for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < 13; i++) {
+			Puly::GameObject& brick(mainScene.GetEntityManager()->AddObject(2, "brick"));
+			brick.AddComponent<Puly::SpriteRenderer>("resources/textures/brick.png");
+			brick.m_Scale = glm::vec3(0.3f);
+			brick.m_Position.x = blockX;
+			brick.m_Position.y = blockY;
+			blockX += 0.3f;
+		}
+		blockX = -1.75f;
+		blockY -= 0.3f;
+	}
 }
 
 void Puly::Game::Update(Timestep dt)
