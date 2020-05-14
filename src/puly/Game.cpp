@@ -32,6 +32,9 @@ void Puly::Game::Start()
 	mainScene.OnStart();
 	mainScene.LoadSceneFromFile("resources/scenes/breakoutLevelTestWithPaddleCollision3.ini");
 
+	m_Ball = mainScene.GetEntityManager()->GetObjectByDebugName("ball");
+	m_Paddle = mainScene.GetEntityManager()->GetObjectByDebugName("paddle");
+
 	// Breakout demo
 	float blockX = -1.75f;
 	float blockY =  0.7f;
@@ -59,24 +62,28 @@ void Puly::Game::Update(Timestep dt)
 {
 	mainScene.OnUpdate(dt);
 
-	GameObject* ball = mainScene.GetEntityManager()->GetObjectByDebugName("ball");
-	BallBreakoutComponent* comp = ball->GetComponent<BallBreakoutComponent>();
+	BallBreakoutComponent* comp = m_Ball->GetComponent<BallBreakoutComponent>();
 	glm::vec2 vel = comp->GetSpeed();
 
 	// Check collision with paddle
-	if (mainScene.GetEntityManager()->CheckEntityCollider(*ball).compare("paddle") == 0) {
+	if (mainScene.GetEntityManager()->CheckEntityCollider(*m_Ball).compare("paddle") == 0) {
 		comp->SetSpeed(glm::vec2(vel.x, -vel.y));
-		PL_LOG_INFO("Collided with paddle!");
 	}
 
 	// Check collision with brick
 	for (auto& box : boxes) {
 		const char* name = box->m_DebugName.c_str();
-		if (mainScene.GetEntityManager()->CheckEntityCollider(*ball).compare(box->m_DebugName.c_str()) == 0) {
+		if (mainScene.GetEntityManager()->CheckEntityCollider(*m_Ball).compare(box->m_DebugName.c_str()) == 0) {
 			box->Destroy();
 			comp->SetSpeed(glm::vec2(vel.x, -vel.y));
 			std::remove(boxes.begin(), boxes.end(), box);
 		}
+	}
+
+	if (m_Ball->m_Position.y <= -1.0f) {
+		comp->SetStuck(true);
+		m_Ball->m_Position.x = m_Paddle->m_Position.x + m_Ball->m_Scale.x;
+		m_Ball->m_Position.y = -0.800000;
 	}
 
 }

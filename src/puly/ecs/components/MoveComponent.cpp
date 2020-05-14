@@ -90,7 +90,7 @@ namespace Puly {
 
 	MoveComponent& MoveComponent::GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config)
 	{
-		int speed = atoi(config.GetValue(section.c_str(), "speed"));
+		float speed = atof(config.GetValue(section.c_str(), "speed"));
 		int useKeys = atoi(config.GetValue(section.c_str(), "usingKeys"));
 		int horizontal = atoi(config.GetValue(section.c_str(), "horizontal"));
 		int vertical = atoi(config.GetValue(section.c_str(), "vertical"));

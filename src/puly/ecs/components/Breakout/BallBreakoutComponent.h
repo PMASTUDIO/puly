@@ -9,6 +9,7 @@ namespace Puly {
 	private:
 		glm::vec2 m_Speed;
 		bool m_Stuck;
+
 	public:
 
 		BallBreakoutComponent(float speed);

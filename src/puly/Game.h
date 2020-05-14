@@ -37,6 +37,9 @@ namespace Puly {
 
 		std::vector<Puly::GameObject*> boxes;
 
+		GameObject* m_Ball;
+		GameObject* m_Paddle;
+
 		Window* mOwnerWindow;
 	};
 
