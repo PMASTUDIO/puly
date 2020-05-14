@@ -7,35 +7,38 @@
 #include <SOIL2/SOIL2.h>
 
 namespace Puly {
-	std::map<std::string, Texture2D> ResourceManager::m_Textures;
+	std::map<std::string, std::shared_ptr<Texture>> ResourceManager::m_Textures;
 
-	/*
-	std::map<std::string, Shader> ResourceManager::Shaders;
 	
+	//std::map<std::string, Shader> ResourceManager::Shaders;
+	/*
 	Shader ResourceManager::LoadShader(std::string vShaderFile, std::string fShaderFile, std::string name)
 	{
 		Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile);
 		return Shaders[name];
-	}
+	}*/
 
-	Shader ResourceManager::GetShader(std::string name)
+	/*std::shared_ptr<Texture> ResourceManager::GetShader(std::string name)
 	{
 		return Shaders[name];
-	}
+	}*/
 	
 
-	Texture2D ResourceManager::LoadTexture(const GLchar* file, GLboolean alpha, std::string name)
+	std::shared_ptr<Texture> ResourceManager::LoadTexture(const char* file)
 	{
-		m_Textures[name] = LoadTextureFromFile(file, alpha);
+		m_Textures[file] = Puly::Texture2D::Create(file);
+		return m_Textures[file];
+	}
+
+	std::shared_ptr<Texture> ResourceManager::GetTexture(std::string name)
+	{
+		if (m_Textures.find(name) == m_Textures.end()) {
+			return LoadTexture(name.c_str());
+		}
+		
 		return m_Textures[name];
 	}
 
-	Texture2D ResourceManager::GetTexture(std::string name)
-	{
-		return m_Textures[name];
-	}
-
-	*/
 
 	std::tuple<std::string, std::string> ResourceManager::GetShaderText(std::string vShaderFile, std::string fShaderFile)
 	{

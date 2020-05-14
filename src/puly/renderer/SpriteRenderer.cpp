@@ -18,7 +18,7 @@ namespace Puly {
 
 		InitRenderData();
 
-		m_Texture = Puly::Texture2D::Create(texturePath);
+		m_Texture = ResourceManager::GetTexture(texturePath);
 	}
 
 	void SpriteRenderer::Init()
