@@ -7,6 +7,7 @@
 #include "imgui.h"
 
 #include "../..//../objects/GameObject.h"
+#include "glm/gtc/type_ptr.hpp"
 
 namespace Puly {
 	BallBreakoutComponent::BallBreakoutComponent(float speed) : m_Speed(speed), m_Stuck(true)
@@ -22,26 +23,24 @@ namespace Puly {
 			float aspectRatio = 16.0f / 9.0f;
 
 			if (!m_Stuck) {
-				m_Owner->m_Position.x += m_Speed * deltaTime;
-				m_Owner->m_Position.y += m_Speed * deltaTime;
+				m_Owner->m_Position.x += m_Speed.x * deltaTime;
+				m_Owner->m_Position.y += m_Speed.y * deltaTime;
 
 				if (m_Owner->m_Position.x <= -aspectRatio + m_Owner->m_Scale.x)
 				{
-					m_Speed = -m_Speed;
+					m_Speed.x = -m_Speed.x;
 					m_Owner->m_Position.x = -aspectRatio + m_Owner->m_Scale.x;
 				}
 				else if (m_Owner->m_Position.x >= aspectRatio - m_Owner->m_Scale.x)
 				{
-					m_Speed = -m_Speed;
+					m_Speed.x = -m_Speed.x;
 					m_Owner->m_Position.x = aspectRatio - m_Owner->m_Scale.x;
 				}
 
 				if (m_Owner->m_Position.y >= 1.0f) {
-					m_Speed = -m_Speed;
+					m_Speed.y = -m_Speed.y;
 					m_Owner->m_Position.y = 0.99f;
 				}
-
-				PL_LOG_INFO(m_Owner->m_Position.y);
 			}
 
 			if (Input::IsKeyPressed(&m_Owner->m_Owner, PL_KEY_LEFT)) {
@@ -49,7 +48,7 @@ namespace Puly {
 				if (m_Stuck) {
 					if (m_Owner->m_Position.x >= -aspectRatio + m_Owner->m_Scale.x)
 					{
-						m_Owner->m_Position.x -= m_Speed * deltaTime;
+						m_Owner->m_Position.x -= m_Speed.x * deltaTime;
 					}
 
 				}
@@ -60,7 +59,7 @@ namespace Puly {
 				if (m_Stuck) {
 					if (m_Owner->m_Position.x <= aspectRatio - m_Owner->m_Scale.x)
 					{
-						m_Owner->m_Position.x += m_Speed * deltaTime;
+						m_Owner->m_Position.x += m_Speed.x * deltaTime;
 					}
 				}
 
@@ -77,7 +76,7 @@ namespace Puly {
 	void BallBreakoutComponent::DebugGUI()
 	{
 		if (ImGui::TreeNode("Breakout ball Component")) {
-			ImGui::InputFloat("Speed", &m_Speed);
+			ImGui::InputFloat2("Speed", glm::value_ptr(m_Speed));
 
 			if (ImGui::Button("Delete")) {
 				m_Owner->RemoveComponent<BallBreakoutComponent>();
@@ -87,11 +86,17 @@ namespace Puly {
 		}
 	}
 
+	void BallBreakoutComponent::SetSpeed(glm::vec2& speed)
+	{
+		m_Speed = speed;
+	}
+
 	void BallBreakoutComponent::SaveInScene(std::string section, GameLevel& levelSave)
 	{
 		levelSave.configurator.SetValue(section.c_str(), "owner", m_Owner->m_DebugName.c_str());
 		levelSave.configurator.SetValue(section.c_str(), "state", std::to_string(m_State).c_str());
-		levelSave.configurator.SetValue(section.c_str(), "speed", std::to_string(m_Speed).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "speed", std::to_string(m_Speed.x).c_str());
+		//levelSave.configurator.SetValue(section.c_str(), "speedY", std::to_string(m_Speed.y).c_str());
 	}
 
 	BallBreakoutComponent& BallBreakoutComponent::GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config)

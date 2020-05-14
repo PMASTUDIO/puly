@@ -25,8 +25,7 @@ namespace Puly {
 
 		Window& m_Owner;
 
-		glm::vec3 m_Position, m_Velocity;
-		glm::vec3 m_Scale;
+		glm::vec3 m_Position, m_Velocity, m_Scale;
 		float m_Rotation;
 		bool m_IsActive;
 

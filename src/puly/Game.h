@@ -35,6 +35,8 @@ namespace Puly {
 		//std::unique_ptr<EntityManager> m_EntityManager;
 		Scene2D mainScene;
 
+		std::vector<Puly::GameObject*> boxes;
+
 		Window* mOwnerWindow;
 	};
 

@@ -13,6 +13,8 @@ namespace Puly {
 		bool collisionY = one.m_Position.y + one.m_Scale.y >= two.m_Position.y &&
 			two.m_Position.y + two.m_Scale.y >= one.m_Position.y;
 
+		//PL_LOG_INFO("Condition-1-X: {} - Condition-1-X: {}", collisionX, collisionY);
+
 		return collisionX && collisionY;
 	}
 

@@ -24,10 +24,10 @@ namespace Puly {
 		std::shared_ptr<IndexBuffer> IBO;
 
 		float vertices[5 * 4] = {
-			-0.5f, -0.5f, 0.0f, 1.0f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
-			 0.5f,  0.5f, 0.0f, 0.0f, 0.0f,
-			-0.5f,  0.5f, 0.0f, 1.0f, 0.0f
+			 0.0f,  0.0f, 0.0f, 1.0f, 1.0f,
+			 1.0f,  0.0f, 0.0f, 0.0f, 1.0f,
+			 1.0f,  1.0f, 0.0f, 0.0f, 0.0f,
+			 0.0f,  1.0f, 0.0f, 1.0f, 0.0f
 		};
 
 		VBO.reset(VertexBuffer::Create(vertices, sizeof(vertices)));

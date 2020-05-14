@@ -18,7 +18,7 @@ namespace Puly {
 			}
 
 			if (!object->m_IsActive) {
-				//v_Objects.erase(v_Objects.begin() + i);
+				v_Objects.erase(v_Objects.begin() + i);
 				return;
 			}
 			else {
@@ -93,7 +93,7 @@ namespace Puly {
 	{
 		for (auto obj : v_Objects) {
 			if (entity.m_DebugName.compare(obj->m_DebugName) != 0) {
-				if (entity.HasComponent<ColliderComponent>()) {
+				if (obj->HasComponent<ColliderComponent>()) {
 					if (CheckRectCollision2D(entity, *obj)) {
 						return obj->m_DebugName;
 					}

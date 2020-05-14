@@ -29,7 +29,6 @@ void Puly::GameObject::Draw()
 
 void Puly::GameObject::Destroy()
 {
-	PL_LOG_INFO("Destroyed");
 	m_IsActive = false;
 }
 
