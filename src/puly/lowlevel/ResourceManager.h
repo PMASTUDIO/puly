@@ -12,8 +12,8 @@ namespace Puly {
 
 	class ResourceManager {
 	public:
-		//static Shader LoadShader(std::string vShaderFile, std::string fShaderFile, std::string name);
-		//static Shader GetShader(std::string name);
+		static std::shared_ptr<Shader> LoadShader(std::string vertexShaderPath, std::string fragmentShaderPath);
+		static std::shared_ptr<Shader> GetShader(std::string vertexShaderPath, std::string fragmentShaderPath);
 
 		static std::shared_ptr<Texture> LoadTexture(const char* file);
 		static std::shared_ptr<Texture> GetTexture(std::string name);
@@ -23,10 +23,10 @@ namespace Puly {
 		static void Clear();
 	private:
 		static std::map<std::string, std::shared_ptr<Texture>> m_Textures;
-
+		
 		//static Texture2D LoadTextureFromFile(const GLchar* file, GLboolean alpha);
 
-		//static std::map<std::string, Shader> Shaders;
+		static std::map<std::string, std::shared_ptr<Shader>> m_Shaders;
 
 		//static Shader loadShaderFromFile(std::string vShaderFile, std::string fShaderFile);
 	};

@@ -19,8 +19,7 @@ namespace Puly {
 	}
 	void ColoredComponent::Init()
 	{
-		auto shaderTexts = ResourceManager::GetShaderText("resources/shaders/colorVertexShader.glsl", "resources/shaders/colorFragmentShader.glsl");
-		m_Shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+		m_Shader = ResourceManager::GetShader("resources/shaders/colorVertexShader.glsl", "resources/shaders/colorFragmentShader.glsl");
 	}
 	void ColoredComponent::Update(float deltaTime)
 	{

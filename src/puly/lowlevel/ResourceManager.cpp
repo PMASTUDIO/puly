@@ -8,20 +8,37 @@
 
 namespace Puly {
 	std::map<std::string, std::shared_ptr<Texture>> ResourceManager::m_Textures;
-
+	std::map<std::string, std::shared_ptr<Shader>> ResourceManager::m_Shaders;
 	
-	//std::map<std::string, Shader> ResourceManager::Shaders;
-	/*
-	Shader ResourceManager::LoadShader(std::string vShaderFile, std::string fShaderFile, std::string name)
+	std::shared_ptr<Shader> ResourceManager::LoadShader(std::string vertexShaderPath, std::string fragmentShaderPath)
 	{
-		Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile);
-		return Shaders[name];
-	}*/
+		auto shaderTexts = GetShaderText(vertexShaderPath, fragmentShaderPath);
 
-	/*std::shared_ptr<Texture> ResourceManager::GetShader(std::string name)
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
+		shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+
+		std::string name = vertexShaderPath + fragmentShaderPath;
+
+		m_Shaders[name] = shader;
+
+		// Debugging porpoises
+		PL_LOG_INFO("New shader created and compiled!");
+
+		return m_Shaders[name];
+	}
+
+	std::shared_ptr<Shader> ResourceManager::GetShader(std::string vertexShaderPath, std::string fragmentShaderPath)
 	{
-		return Shaders[name];
-	}*/
+		std::string shaderName = vertexShaderPath + fragmentShaderPath;
+
+		if (m_Shaders.find(shaderName) == m_Shaders.end()) {
+			PL_LOG_INFO("Loaded new shader");
+			return LoadShader(vertexShaderPath, fragmentShaderPath);
+		}
+		PL_LOG_INFO("Loaded existing shader");
+
+		return m_Shaders[shaderName];
+	}
 	
 
 	std::shared_ptr<Texture> ResourceManager::LoadTexture(const char* file)
@@ -42,6 +59,8 @@ namespace Puly {
 
 	std::tuple<std::string, std::string> ResourceManager::GetShaderText(std::string vShaderFile, std::string fShaderFile)
 	{
+		PL_LOG_INFO("-- Got a shader text --");
+
 		std::string vertexCode;
 		std::string fragmentCode;
 

@@ -93,10 +93,8 @@ namespace Puly {
 		std::shared_ptr<IndexBuffer> IBO;
 		std::shared_ptr<Shader> shader;
 
-		shader.reset(new Shader());
 
-		auto shaderTexts = ResourceManager::GetShaderText("resources/shaders/lineVertexShader.glsl", "resources/shaders/lineFragmentShader.glsl");
-		shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+		shader = ResourceManager::GetShader("resources/shaders/lineVertexShader.glsl", "resources/shaders/lineFragmentShader.glsl");
 
 		float vertices[3 * 3] = {
 			p0.x, p0.y, p0.z,

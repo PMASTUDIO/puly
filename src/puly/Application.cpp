@@ -47,8 +47,7 @@ bool Puly::Application::Init()
 	demoGame.reset(new Game(&mWindow, 1280, 720));
 	demoGame->Start();
 
-	auto shaderTexts = ResourceManager::GetShaderText("resources/shaders/colorVertexShader.glsl", "resources/shaders/colorFragmentShader.glsl");
-	m_Shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+	m_Shader = ResourceManager::GetShader("resources/shaders/colorVertexShader.glsl", "resources/shaders/colorFragmentShader.glsl");
 
 	return true;
 }

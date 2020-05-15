@@ -11,10 +11,9 @@ namespace Puly {
 
 	SpriteRenderer::SpriteRenderer(const char* texturePath, const char* vertexShaderPath, const char* fragmentShaderPath, glm::vec4 color) : m_TexturePath(texturePath), m_VertexShaderPath(vertexShaderPath), m_FragmentShaderPath(fragmentShaderPath), m_Color(color)
 	{
-		m_Shader.reset(new Shader());
+		m_Shader = ResourceManager::GetShader(vertexShaderPath, fragmentShaderPath);
 
-		auto shaderTexts = ResourceManager::GetShaderText(vertexShaderPath, fragmentShaderPath);
-		m_Shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
+		//m_Shader->Compile(std::get<0>(shaderTexts), std::get<1>(shaderTexts));
 
 		InitRenderData();
 
