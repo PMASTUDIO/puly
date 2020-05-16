@@ -43,9 +43,9 @@ namespace Puly {
 		return v_Objects.size() == 0;
 	}
 
-	Puly::GameObject& EntityManager::AddObject(int priority, std::string name)
+	Puly::GameObject& EntityManager::AddObject(int priority, std::string name, bool procedural)
 	{
-		Puly::GameObject* newObject = new Puly::GameObject(*m_Window, priority, name);
+		Puly::GameObject* newObject = new Puly::GameObject(*m_Window, priority, name, procedural);
 
 		v_Objects.emplace_back(newObject);
 

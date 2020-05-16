@@ -21,7 +21,7 @@ namespace Puly {
 		void Render();
 
 		bool IsEmpty() const;
-	    Puly::GameObject& AddObject(int priority, std::string name);
+	    Puly::GameObject& AddObject(int priority, std::string name, bool procedural = false);
 
 		std::vector<GameObject*> GetObjects() const;
 		void ResetObjects();

@@ -31,7 +31,7 @@ namespace Puly {
 
 		bool m_Debugging = false;
 
-		GameObject(Window& owner, int priority, std::string debugName, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f));
+		GameObject(Window& owner, int priority, std::string debugName, bool isProcedural = false, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f));
 
 		void Update(Timestep dt);
 		
@@ -83,7 +83,7 @@ namespace Puly {
 	private:
 		std::vector<Component*> v_Components;
 		std::map<const std::type_info* , Component*> v_ComponentsTypeMap;
-
+		bool m_IsProcedural;
 	};
 
 }
