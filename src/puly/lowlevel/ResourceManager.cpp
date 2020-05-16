@@ -21,9 +21,6 @@ namespace Puly {
 
 		m_Shaders[name] = shader;
 
-		// Debugging porpoises
-		PL_LOG_INFO("New shader created and compiled!");
-
 		return m_Shaders[name];
 	}
 
@@ -32,10 +29,8 @@ namespace Puly {
 		std::string shaderName = vertexShaderPath + fragmentShaderPath;
 
 		if (m_Shaders.find(shaderName) == m_Shaders.end()) {
-			PL_LOG_INFO("Loaded new shader");
 			return LoadShader(vertexShaderPath, fragmentShaderPath);
 		}
-		PL_LOG_INFO("Loaded existing shader");
 
 		return m_Shaders[shaderName];
 	}
@@ -59,8 +54,6 @@ namespace Puly {
 
 	std::tuple<std::string, std::string> ResourceManager::GetShaderText(std::string vShaderFile, std::string fShaderFile)
 	{
-		PL_LOG_INFO("-- Got a shader text --");
-
 		std::string vertexCode;
 		std::string fragmentCode;
 

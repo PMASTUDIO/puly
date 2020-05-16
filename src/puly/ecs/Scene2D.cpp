@@ -45,6 +45,8 @@ namespace Puly {
 		SceneConfig sceneConfig(path.c_str());
 		bool foundFile = sceneConfig.Init();
 
+		m_EntityManager->SetWorkingScene(path);
+
 		// Load entities and components
 		
 		PL_LOG_INFO(foundFile ? "Loading scene" : "Failed finding the scene file");

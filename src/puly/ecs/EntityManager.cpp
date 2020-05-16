@@ -103,19 +103,31 @@ namespace Puly {
 
 		return "";
 	}
-	std::string EntityManager::SaveScene()
+	std::string EntityManager::SaveScene(bool useLastPath)
 	{
-		std::string pathToSave = Puly::savefile("ini;");
-		GameLevel levelSave(pathToSave + ".ini");
+		std::string pathToSave;
+		std::unique_ptr<GameLevel> levelSave;
 
+		if (currentlyModifyingLevel.empty() || !useLastPath) {
+			pathToSave = Puly::savefile("ini;");
+			levelSave.reset(new GameLevel(pathToSave + ".ini"));
+
+			currentlyModifyingLevel = pathToSave + ".ini";
+		}
+		else {
+			pathToSave = currentlyModifyingLevel;
+			levelSave.reset(new GameLevel(pathToSave));
+		}
+		
 		for (auto& object : v_Objects) {
 			if (object->m_IsActive) {
-				object->SaveInLevel(levelSave);
+				object->SaveInLevel(*levelSave.get());
 			}
 		}
 
 		return pathToSave;
 	}
+
 }
 
 

@@ -13,8 +13,9 @@ namespace Puly {
 	private:
 		std::vector<GameObject*> v_Objects;
 		Window* m_Window;
+		std::string currentlyModifyingLevel;
 	public:
-		EntityManager(Window* window) : m_Window(window) {}
+		EntityManager(Window* window) : m_Window(window), currentlyModifyingLevel("") {}
 
 		void Update(float deltaTime);
 		void Render();
@@ -30,6 +31,10 @@ namespace Puly {
 		std::vector<GameObject*> SortByPriority();
 
 		Window* GetWindow() const { return m_Window; }
+
+		void SetWorkingScene(std::string pathForScene) {
+			currentlyModifyingLevel = pathForScene;
+		}
 
 		unsigned int GetObjectCount();
 
@@ -49,7 +54,7 @@ namespace Puly {
 
 		std::string CheckEntityCollider(GameObject& entity);
 
-		std::string SaveScene();
+		std::string SaveScene(bool useLastPath = true);
 
 	public:
 		

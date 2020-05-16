@@ -8,6 +8,11 @@ namespace Puly {
 
 	struct Render2DStorage {
 		std::shared_ptr<VertexArray> VAO;
+
+		std::shared_ptr<VertexArray> VAOLine;
+		std::shared_ptr<VertexBuffer> VBOLine;
+		std::shared_ptr<IndexBuffer> IBOLine;
+		std::shared_ptr<Shader> shaderLine;
 	};
 
 	static Render2DStorage* s_Data;
@@ -41,6 +46,7 @@ namespace Puly {
 		uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
 		IBO.reset(IndexBuffer::Create(indices, sizeof(indices)));
 		s_Data->VAO->SetIndexBuffer(IBO);
+
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
@@ -88,38 +94,33 @@ namespace Puly {
 
 	void Renderer::Draw2DLine(const glm::vec3& p0, const glm::vec3& p1, const glm::vec4& color)
 	{
-		std::shared_ptr<VertexArray> VAO;
-		std::shared_ptr<VertexBuffer> VBO;
-		std::shared_ptr<IndexBuffer> IBO;
-		std::shared_ptr<Shader> shader;
-
-
-		shader = ResourceManager::GetShader("resources/shaders/lineVertexShader.glsl", "resources/shaders/lineFragmentShader.glsl");
+	
+		s_Data->shaderLine = ResourceManager::GetShader("resources/shaders/lineVertexShader.glsl", "resources/shaders/lineFragmentShader.glsl");
 
 		float vertices[3 * 3] = {
 			p0.x, p0.y, p0.z,
 			p1.x, p1.y, p1.z,
 		};
 
-		VAO.reset(VertexArray::Create());
+		s_Data->VAOLine.reset(VertexArray::Create());
 
-		VBO.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		s_Data->VBOLine.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 		BufferLayout layout = {
 			{ ShaderDataType::Float3, "a_Position" },
 		};
-		VBO->SetLayout(layout);
-		VAO->AddVertexBuffer(VBO);
+		s_Data->VBOLine->SetLayout(layout);
+		s_Data->VAOLine->AddVertexBuffer(s_Data->VBOLine);
 
 		uint32_t indices[2] = { 0, 1 };
-		IBO.reset(IndexBuffer::Create(indices, sizeof(indices)));
-		VAO->SetIndexBuffer(IBO);
+		s_Data->IBOLine.reset(IndexBuffer::Create(indices, sizeof(indices)));
+		s_Data->VAOLine->SetIndexBuffer(s_Data->IBOLine);
 
-		shader->Bind();
-		shader->UploadUniformFloat4("u_Color", color.r, color.g, color.b, color.a);
-		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		shader->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
+		s_Data->shaderLine->Bind();
+		s_Data->shaderLine->UploadUniformFloat4("u_Color", color.r, color.g, color.b, color.a);
+		s_Data->shaderLine->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		s_Data->shaderLine->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
 
-		VAO->Bind();
+		s_Data->VAOLine->Bind();
 		RenderCommand::DrawIndexedLine();
 	}
 
