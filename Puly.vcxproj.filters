@@ -599,6 +599,8 @@
     <ClInclude Include="src\puly\ecs\components\BulletComponent.h" />
     <ClInclude Include="src\puly\ecs\components\ColoredSquare.h" />
     <ClInclude Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.h" />
+    <ClInclude Include="src\puly\ecs\components\Effects\ParticleEmitterComponent.h" />
+    <ClInclude Include="src\puly\lowlevel\Random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -716,5 +718,7 @@
     <ClCompile Include="src\puly\ecs\components\BulletComponent.cpp" />
     <ClCompile Include="src\puly\ecs\components\ColoredSquare.cpp" />
     <ClCompile Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.cpp" />
+    <ClCompile Include="src\puly\ecs\components\Effects\ParticleEmitterComponent.cpp" />
+    <ClCompile Include="src\puly\lowlevel\Random.cpp" />
   </ItemGroup>
 </Project>

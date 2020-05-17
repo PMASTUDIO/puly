@@ -27,6 +27,7 @@
 #include "../../ecs/components/BulletComponent.h"
 #include "../../ecs/components/ColoredSquare.h"
 #include "../../ecs/components/Breakout/BallBreakoutComponent.h"
+#include "../../ecs/components/Effects/ParticleEmitterComponent.h"
 
 float newLinePos[3];
 float newLineFinalPos[3];
@@ -111,7 +112,7 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 
 		ImGui::Separator();
 
-		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component", "Bullet Component", "Colored Component", "Breakout Ball Component" };
+		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component", "Bullet Component", "Colored Component", "Breakout Ball Component", "Particle Component" };
 		static int listbox_item_current = 0;
 
 		//ImGui::ListBoxHeader("New Component", ImVec2(0, 200));
@@ -138,6 +139,9 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 				break;
 			case 5:
 				v_Objects[selectedGameObject]->AddComponent<BallBreakoutComponent>(5.0f);
+				break;
+			case 6:
+				v_Objects[selectedGameObject]->AddComponent<ParticleEmitterComponent>();
 				break;
 			default:
 				break;
