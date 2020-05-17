@@ -59,8 +59,8 @@ namespace Puly {
 	void ParticleEmitterComponent::Render()
 	{
 		for (auto& particle : m_ParticlePool) {
-			//if (!particle.Active)
-			//	continue;
+			if (!particle.Active)
+				continue;
 
 			//// Fade away particles
 			float life = particle.lifeRemaining / particle.lifeTime;
@@ -148,12 +148,43 @@ namespace Puly {
 		m_PoolIndex -= m_PoolIndex % m_ParticlePool.size();
 	}
 
+	void ParticleEmitterComponent::Emit()
+	{
+		Particle& particle = m_ParticlePool[m_PoolIndex];
+		particle.Active = true;
+		particle.position = particleDefault.position;
+		particle.rotation = Random::GetFloat() * 2.0f * glm::pi<float>();
+
+		// Velocity
+		particle.velocity = particleDefault.velocity;
+		particle.velocity.x += particleDefault.velocityVariation.x * (Random::GetFloat() - 0.5f);
+		particle.velocity.y += particleDefault.velocityVariation.y * (Random::GetFloat() - 0.5f);
+
+		// Color
+		particle.colorBegin = particleDefault.colorBegin;
+		particle.colorEnd = particleDefault.colorEnd;
+
+		// Lifetime
+		particle.lifeTime = particleDefault.lifeTime;
+		particle.lifeRemaining = particleDefault.lifeTime;
+
+		// Size
+		particle.sizeBegin = particleDefault.sizeBegin * particleDefault.sizeVariation * (Random::GetFloat() - 0.5f);
+		particle.sizeEnd = particleDefault.sizeEnd;
+
+		m_PoolIndex -= m_PoolIndex % m_ParticlePool.size();
+	}
+
 	void ParticleEmitterComponent::SaveInScene(std::string section, GameLevel& levelSave)
 	{
 		/*levelSave.configurator.SetValue(section.c_str(), "owner", m_Owner->m_DebugName.c_str());
 		levelSave.configurator.SetValue(section.c_str(), "state", std::to_string(m_State).c_str());
-		levelSave.configurator.SetValue(section.c_str(), "positionX", std::to_string(m_Color.r).c_str());
-		levelSave.configurator.SetValue(section.c_str(), "positionY", std::to_string(m_Color.r).c_str());*/
+		levelSave.configurator.SetValue(section.c_str(), "positionX", std::to_string(propsToSave.position.x).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "positionY", std::to_string(propsToSave.position.y).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "positionX", std::to_string(propsToSave.position.x).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "positionY", std::to_string(propsToSave.position.y).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "positionX", std::to_string(propsToSave.position.x).c_str());
+		levelSave.configurator.SetValue(section.c_str(), "positionY", std::to_string(propsToSave.position.y).c_str());*/
 	}
 
 	ParticleEmitterComponent& ParticleEmitterComponent::GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config)

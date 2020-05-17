@@ -14,6 +14,7 @@
 #include "physics/Collision.h"
 #include <string>
 #include "ecs/components/Breakout/BallBreakoutComponent.h"
+#include "ecs/components/Effects/ParticleEmitterComponent.h"
 
 Puly::Game::Game(Window* window, unsigned int width, unsigned int height) : mWidth(width), mHeight(height), m_State(GAME_ACTIVE), mOwnerWindow(window)
 , mainScene(*window)
@@ -56,6 +57,11 @@ void Puly::Game::Start()
 		blockX = -1.75f;
 		blockY -= 0.3f;
 	}
+
+	// Add particles to ball
+	mainScene.GetEntityManager()->AddObject(2, "emitter", true);
+	m_ParticleBallEmitter = mainScene.GetEntityManager()->GetObjectByDebugName("emitter");
+	m_ParticleBallEmitter->AddComponent<ParticleEmitterComponent>();
 }
 
 void Puly::Game::Update(Timestep dt)
@@ -86,6 +92,18 @@ void Puly::Game::Update(Timestep dt)
 		m_Ball->m_Position.y = -0.800000;
 	}
 
+	glm::vec2 ballSpeed = m_Ball->GetComponent<BallBreakoutComponent>()->GetSpeed();
+	ParticleEmitterComponent* emitter = m_ParticleBallEmitter->GetComponent<ParticleEmitterComponent>();
+
+	if (!m_Ball->GetComponent<BallBreakoutComponent>()->IsStuck()) {
+		emitter->GetDefaultParticle().position.x += ballSpeed.x * dt;
+		emitter->GetDefaultParticle().position.y += ballSpeed.y * dt;
+		emitter->Emit();
+	}
+	else {
+		emitter->GetDefaultParticle().position.x = m_Ball->m_Position.x;
+		emitter->GetDefaultParticle().position.y = m_Ball->m_Position.y;
+	}
 }
 
 void Puly::Game::Render()

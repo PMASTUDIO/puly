@@ -9,6 +9,7 @@
 
 #include "ecs/EntityManager.h"
 #include "ecs/Scene2D.h"
+#include "ecs/components/Effects/ParticleEmitterComponent.h"
 
 namespace Puly {
 	
@@ -39,6 +40,9 @@ namespace Puly {
 
 		GameObject* m_Ball;
 		GameObject* m_Paddle;
+		GameObject* m_ParticleBallEmitter;
+
+		ParticleProps particleBall;
 
 		Window* mOwnerWindow;
 	};

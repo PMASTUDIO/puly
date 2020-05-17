@@ -29,6 +29,9 @@ namespace Puly {
 		virtual void DebugGUI() override;
 
 		void Emit(const ParticleProps& particleProps);
+		void Emit();
+
+		ParticleProps& GetDefaultParticle() { return particleDefault; }
 
 		void SaveInScene(std::string section, GameLevel& levelSave) override;
 		static ParticleEmitterComponent& GetComponentFromScene(GameObject& go, std::string section, SceneConfig& config);
@@ -55,9 +58,7 @@ namespace Puly {
 		std::string m_VertexShaderPath;
 		std::string m_FragmentShaderPath;
 
-		#ifdef PL_DEBUG
 		ParticleProps particleDefault;
-		#endif
 	};
 
 }
