@@ -62,40 +62,46 @@ void Puly::Shader::Unbind()
 	glUseProgram(0);
 }
 
+void Puly::Shader::UploadUniformFloat(const std::string& name, const float v0)
+{
+	GLint location = GetUniformLocation(name);
+	glUniform1f(location, v0);
+}
+
+void Puly::Shader::UploadUniformFloat2(const std::string& name, const float v0, const float v1)
+{
+	GLint location = GetUniformLocation(name);
+	glUniform2f(location, v0, v1);
+}
+
+void Puly::Shader::UploadUniformFloat3(const std::string& name, const float v0, const float v1, const float v2)
+{
+	GLint location = GetUniformLocation(name);
+	glUniform3f(location, v0, v1, v2);
+}
+
 void Puly::Shader::UploadUniformFloat4(const std::string& name, const float v0, const float v1, const float v2, const float v3)
 {
-	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
+	GLint location = GetUniformLocation(name);
+	glUniform4f(location, v0, v1, v2, v3);
+}
 
-	if (location != -1) {
-		glUniform4f(location, v0, v1, v2, v3);
-	}
-	else {
-		PL_LOG_ERROR("Uniform {}, location not found", name);
-	}
+void Puly::Shader::UploadUniformMat3(const std::string& name, const glm::mat3& matrix)
+{
+	GLint location = GetUniformLocation(name);
+	glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Puly::Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 {
-	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
-	
-	if (location != -1) {
-		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
-	}
-	else {
-		PL_LOG_ERROR("Uniform {}, location not found", name);
-	}
+	GLint location = GetUniformLocation(name);
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Puly::Shader::UploadUniform1i(const std::string& name, int value)
 {
-	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
-
-	if (location != -1) {
-		glUniform1i(location, value);
-	}
-	else {
-		PL_LOG_ERROR("Uniform of type int {}, location not found", name);
-	}
+	GLint location = GetUniformLocation(name);
+	glUniform1i(location, value);
 }
 
 void Puly::Shader::CheckCompileErrors(GLuint object, std::string type)
@@ -120,4 +126,21 @@ void Puly::Shader::CheckCompileErrors(GLuint object, std::string type)
 			Log::GetLogger()->error("ERROR::Shader: Link-time error: Type: {} - {}", type, infoLog);
 		}
 	}
+}
+
+GLint Puly::Shader::GetUniformLocation(const std::string& name)
+{
+	if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
+		return m_UniformLocationCache[name];
+
+
+	GLint location = glGetUniformLocation(m_ShaderID, name.c_str());
+
+	if (location == -1) {
+		PL_LOG_WARN("Uniform '{0}' not found!", name);
+		return location;
+	}
+
+	m_UniformLocationCache[name] = location;
+	return location;
 }

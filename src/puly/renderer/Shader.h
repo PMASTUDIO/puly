@@ -5,6 +5,8 @@
 
 #include <glm/glm.hpp>
 
+#include <unordered_map>
+
 namespace Puly {
 	class Shader
 	{
@@ -17,12 +19,20 @@ namespace Puly {
 		void Bind();
 		void Unbind();
 
-		void UploadUniformFloat4(const std::string& name, const float v0, const float v1, const float v2, const float v3);
-		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 		void UploadUniform1i(const std::string& name, int value);
+
+		void UploadUniformFloat(const std::string& name, const float v0);
+		void UploadUniformFloat2(const std::string& name, const float v0, const float v1);
+		void UploadUniformFloat3(const std::string& name, const float v0, const float v1, const float v2);
+		void UploadUniformFloat4(const std::string& name, const float v0, const float v1, const float v2, const float v3);
+		
+		void UploadUniformMat3(const std::string& name, const glm::mat3& matrix);
+		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
+	private:
+		void CheckCompileErrors(GLuint object, std::string type);
+		GLint GetUniformLocation(const std::string& name);
 	private:
 		uint32_t m_ShaderID;
-
-		void CheckCompileErrors(GLuint object, std::string type);
+		std::unordered_map<std::string, GLint> m_UniformLocationCache;
 	};
 }
