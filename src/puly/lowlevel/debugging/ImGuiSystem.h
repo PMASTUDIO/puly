@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <map>
-#include "DebugDrawManager.h"
+
 #include "..//Timestep.h"
 
 #include "..//..//objects/GameObject.h"
@@ -38,10 +38,7 @@ namespace Puly {
 		void Render();
 
 	private:
-		std::unique_ptr<DebugDrawManager> debugDrawManager;
 		Window* mWindow;
-
-		void DebugPrimitiveMenu(Timestep dt);
 
 		static int selectedGameObject;
 	};

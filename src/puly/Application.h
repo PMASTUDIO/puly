@@ -9,7 +9,6 @@
 #include "renderer/VertexArray.h"
 #include "renderer/Texture.h"
 
-#include "lowlevel/debugging/DebugDrawManager.h"
 #include "lowlevel/debugging/ImGuiSystem.h"
 
 #include "renderer/SpriteRenderer.h"

@@ -17,7 +17,6 @@
 
 #include <filesystem>
 #include <string>
-#include "..//dataStructures/ArrayStack.h"
 #include "..//..//platform/FileOp.h"
 
 #include "../..//ecs/components/MoveComponent.h"
@@ -41,7 +40,6 @@ float initialPos[3] = { 0.0f };
 
 Puly::ImguiSystem::ImguiSystem()
 {
-	debugDrawManager.reset(new DebugDrawManager());
 }
 
 Puly::ImguiSystem::~ImguiSystem()
@@ -75,22 +73,6 @@ void Puly::ImguiSystem::Shutdown()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 	PL_LOG_INFO("Shutdown");
-}
-
-void Puly::ImguiSystem::DebugPrimitiveMenu(Timestep dt)
-{
-		
-	ImGui::Begin("Debugging Primitive Menu");
-	ImGui::SliderFloat3("From", newLinePos, -1.0f, 1.0f);
-	ImGui::SliderFloat3("To", newLineFinalPos, -1.0f, 1.0f);
-
-	if (ImGui::Button("Add New Line")) {
-		debugDrawManager->AddLine(Point(newLinePos[0], newLinePos[1], newLinePos[2]), Point(newLineFinalPos[0], newLineFinalPos[1], newLineFinalPos[2]));
-	}
-
-	ImGui::End();
-
-	debugDrawManager->OnUpdate();
 }
 
 void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*>& v_Objects)
@@ -315,6 +297,10 @@ void Puly::ImguiSystem::PerformanceMenu(bool show, Timestep dt)
 		//performanceArr.display();
 
 		ImGui::PlotLines("Graph", performanceArray, performanceStack.size(), 5);
+
+		ImGui::ShowMetricsWindow();
+
+		ImGui::ShowStyleSelector("Editor Style");
 
 		ImGui::End();
 	}

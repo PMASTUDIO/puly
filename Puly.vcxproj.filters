@@ -504,23 +504,11 @@
     <ClInclude Include="src\puly\lowlevel\Timestep.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\lowlevel\dataStructures\ArrayStack.h">
-      <Filter>src\puly\lowlevel\dataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="src\puly\lowlevel\debugging\DebugDrawManager.h">
-      <Filter>src\puly\lowlevel\debugging</Filter>
-    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\debugging\ImGuiSystem.h">
       <Filter>src\puly\lowlevel\debugging</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\debugging\Log.h">
       <Filter>src\puly\lowlevel\debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="src\puly\lowlevel\debugging\primitives\DebugLine.h">
-      <Filter>src\puly\lowlevel\debugging\primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="src\puly\lowlevel\debugging\primitives\Point.h">
-      <Filter>src\puly\lowlevel\debugging\primitives</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\iniParser\ConvertUTF.h">
       <Filter>src\puly\lowlevel\iniParser</Filter>
@@ -642,20 +630,11 @@
     <ClCompile Include="src\puly\lowlevel\ResourceManager.cpp">
       <Filter>src\puly\lowlevel</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\lowlevel\dataStructures\ArrayStack.cpp">
-      <Filter>src\puly\lowlevel\dataStructures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\puly\lowlevel\debugging\DebugDrawManager.cpp">
-      <Filter>src\puly\lowlevel\debugging</Filter>
-    </ClCompile>
     <ClCompile Include="src\puly\lowlevel\debugging\ImGuiSystem.cpp">
       <Filter>src\puly\lowlevel\debugging</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\lowlevel\debugging\Log.cpp">
       <Filter>src\puly\lowlevel\debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="src\puly\lowlevel\debugging\primitives\DebugLine.cpp">
-      <Filter>src\puly\lowlevel\debugging\primitives</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\objects\GameObject.cpp">
       <Filter>src\puly\objects</Filter>
