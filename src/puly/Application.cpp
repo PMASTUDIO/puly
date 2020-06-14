@@ -86,8 +86,10 @@ void Puly::Application::Run()
 
 	while (!mWindow.ShouldClose()) {
 		Timestep deltaTime = GetDeltaTime(targetFPS);
-
-		m_Framebuffer->Bind();
+		
+		#ifdef PL_DEBUG
+			m_Framebuffer->Bind();
+		#endif
 
 		RenderCommand::SetClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 		RenderCommand::Clear();
@@ -138,7 +140,9 @@ void Puly::Application::Run()
 
 		mWindow.Update();
 
-		m_Framebuffer->Unbind();
+		#ifdef PL_DEBUG
+			m_Framebuffer->Unbind();
+		#endif
 
 		#ifdef PL_DEBUG
 			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame->mainScene.GetEntityManager()->GetObjects(), *demoGame->mainScene.GetEntityManager());

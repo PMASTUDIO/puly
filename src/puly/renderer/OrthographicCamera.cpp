@@ -12,6 +12,10 @@ Puly::OrtographicCamera::OrtographicCamera(float leftBound, float rightBound, fl
 void Puly::OrtographicCamera::SetProjection(float left, float right, float bottom, float top)
 {
 	m_ProjectionMatrix = glm::ortho(left, right, bottom, top, -1.0f, 1.0f);
+
+#ifdef PL_DEBUG
+	m_ProjectionMatrix = glm::scale(m_ProjectionMatrix, glm::vec3{ 1, -1, 1 });
+#endif
 	m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 }
 
