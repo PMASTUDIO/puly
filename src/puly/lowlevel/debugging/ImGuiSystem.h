@@ -35,6 +35,9 @@ namespace Puly {
 		void PropertyPanel(EntityManager& em, std::vector<GameObject*>& v_Objects);
 		void SceneTreeMenu(EntityManager& em, std::vector<GameObject*>& objects);
 
+		void BeginDockable();
+		void EndDockable();
+
 		void Render(Window* window);
 
 	private:

@@ -46,7 +46,7 @@ void Puly::Game::Start()
 			Puly::GameObject& brick(mainScene.GetEntityManager()->AddObject(2, objName.c_str(), true));
 
 			brick.AddComponent<Puly::SpriteRenderer>("resources/textures/brick.png");
-			brick.AddComponent<Puly::ColliderComponent>();
+			brick.AddComponent<Puly::ColliderComponent>(mainScene.GetEntityManager().get());
 			brick.m_Scale = glm::vec3(0.3f);
 			brick.m_Position.x = blockX;
 			brick.m_Position.y = blockY;

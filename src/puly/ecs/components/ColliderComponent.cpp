@@ -18,18 +18,25 @@ namespace Puly {
 	{
 		if (ImGui::TreeNode("Collider Component")) {
 
-			std::string collidingWidth = m_Em->CheckEntityCollider(*m_Owner);
-			
-			if (collidingWidth.compare("") != 0) {
-				ImGui::Text("Currently colliding with: %s", collidingWidth.c_str());
-			}
+			if (m_Em != nullptr) {
+				std::string collidingWidth = m_Em->CheckEntityCollider(*m_Owner);
 
-			if (ImGui::Button("Delete")) {
-				m_Owner->RemoveComponent<ColliderComponent>();
+				if (collidingWidth.compare("") != 0) {
+					ImGui::Text("Currently colliding with: %s", collidingWidth.c_str());
+				}
+
+				if (ImGui::Button("Delete")) {
+					m_Owner->RemoveComponent<ColliderComponent>();
+				}
 			}
 
 			ImGui::TreePop();
 		}
+	}
+
+	void ColliderComponent::SetEntityManager(EntityManager* em)
+	{
+		m_Em = em;
 	}
 
 	void ColliderComponent::SaveInScene(std::string section, GameLevel& levelSave)
@@ -40,7 +47,15 @@ namespace Puly {
 
 	ColliderComponent& ColliderComponent::GetComponentFromScene(EntityManager* em, GameObject& go, std::string section, SceneConfig& config)
 	{
-		return go.AddComponent<ColliderComponent>(em);
+		if (em != nullptr) {
+			ColliderComponent& newCollider = go.AddComponent<ColliderComponent>(em);
+			newCollider.SetEntityManager(em);
+			return newCollider;
+		}
+		else {
+			PL_LOG_ERROR("New collider component is not being created because EM is nullptr!!!");
+			throw "New collider component is not being created because EM is nullptr!!!";
+		}
 	}
 
 }

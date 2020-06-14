@@ -145,6 +145,8 @@ void Puly::Application::Run()
 		#endif
 
 		#ifdef PL_DEBUG
+			mSubSystems->imGuiSystem->BeginDockable();
+
 			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame->mainScene.GetEntityManager()->GetObjects(), *demoGame->mainScene.GetEntityManager());
 			mSubSystems->imGuiSystem->SceneTreeMenu(*demoGame->mainScene.GetEntityManager(), demoGame->mainScene.GetEntityManager()->GetObjects());
 			mSubSystems->imGuiSystem->PropertyPanel(*demoGame->mainScene.GetEntityManager(), demoGame->mainScene.GetEntityManager()->GetObjects());

@@ -34,7 +34,7 @@ namespace Puly {
 
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthAttachment, 0);
 
-		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE) PL_LOG_ERROR("Error: FRAMEBUFFER INCOMPLETE!");
+		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) PL_LOG_ERROR("Error: FRAMEBUFFER INCOMPLETE!");
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}

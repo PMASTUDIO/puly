@@ -106,7 +106,7 @@ void Puly::ImguiSystem::OnUpdate(Timestep dt)
 		window_flags |= ImGuiWindowFlags_NoBackground;
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-	ImGui::Begin("DockSpace Demo", &dockspaceOpen, ImGuiWindowFlags_MenuBar|ImGuiWindowFlags_NoDocking);
+	ImGui::Begin("Dockspace", &dockspaceOpen, ImGuiWindowFlags_MenuBar |ImGuiWindowFlags_NoDocking|ImGuiWindowFlags_NoTitleBar);
 	ImGui::PopStyleVar();
 
 	if (opt_fullscreen)
@@ -160,7 +160,7 @@ void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*
 				v_Objects[selectedGameObject]->AddComponent<MoveComponent>(0.5f);
 				break;
 			case 1:
-				v_Objects[selectedGameObject]->AddComponent<ColliderComponent>(&em);
+				v_Objects[selectedGameObject]->AddComponent<ColliderComponent>(&em).SetEntityManager(&em);
 				break;
 			case 2:
 				v_Objects[selectedGameObject]->AddComponent<FlappyControllerComponent>(0.5f, 1.0f);
@@ -225,11 +225,21 @@ void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*
 	ImGui::End();
 }
 
+void Puly::ImguiSystem::BeginDockable()
+{
+
+}
+
+void Puly::ImguiSystem::EndDockable()
+{
+
+}
+
 int Puly::ImguiSystem::selectedGameObject = -1;
 
 void Puly::ImguiSystem::TopMenu(Scene2D& scene)
 {
-	if (ImGui::BeginMainMenuBar()) {
+	if (ImGui::BeginMenuBar()) {
 	
 		if (ImGui::BeginMenu("File")) {
 		
@@ -259,7 +269,7 @@ void Puly::ImguiSystem::TopMenu(Scene2D& scene)
 			ImGui::EndMenu();
 		}
 
-		ImGui::EndMainMenuBar();
+		ImGui::EndMenuBar();
 		
 	}
 }
