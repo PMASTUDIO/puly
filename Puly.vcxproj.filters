@@ -589,6 +589,8 @@
     <ClInclude Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.h" />
     <ClInclude Include="src\puly\ecs\components\Effects\ParticleEmitterComponent.h" />
     <ClInclude Include="src\puly\lowlevel\Random.h" />
+    <ClInclude Include="src\puly\opengl\OpenGLFramebuffer.h" />
+    <ClInclude Include="src\puly\renderer\Framebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -699,5 +701,7 @@
     <ClCompile Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.cpp" />
     <ClCompile Include="src\puly\ecs\components\Effects\ParticleEmitterComponent.cpp" />
     <ClCompile Include="src\puly\lowlevel\Random.cpp" />
+    <ClCompile Include="src\puly\renderer\Framebuffer.cpp" />
+    <ClCompile Include="src\puly\opengl\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>

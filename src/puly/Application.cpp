@@ -20,6 +20,9 @@
 #include "lowlevel/Input.h"
 #include "lowlevel/KeyCodes.h"
 
+// Debugging
+#include "imgui.h"
+
 Puly::Application::Application() : mLastFrameTime(0.0f), mWindow() // Shader should be deleted
 {
 	mWindow.SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
@@ -49,6 +52,12 @@ bool Puly::Application::Init()
 
 	m_Shader = ResourceManager::GetShader("resources/shaders/colorVertexShader.glsl", "resources/shaders/colorFragmentShader.glsl");
 
+	// Framebuffer
+	FramebufferSpecification fbSpecs;
+	fbSpecs.Width = 1280;
+	fbSpecs.Height = 720;
+	m_Framebuffer = Framebuffer::Create(fbSpecs);
+
 	return true;
 }
 
@@ -77,6 +86,8 @@ void Puly::Application::Run()
 
 	while (!mWindow.ShouldClose()) {
 		Timestep deltaTime = GetDeltaTime(targetFPS);
+
+		m_Framebuffer->Bind();
 
 		RenderCommand::SetClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 		RenderCommand::Clear();
@@ -125,6 +136,10 @@ void Puly::Application::Run()
 
 		mSubSystems->OnUpdate(deltaTime);
 
+		mWindow.Update();
+
+		m_Framebuffer->Unbind();
+
 		#ifdef PL_DEBUG
 			mSubSystems->imGuiSystem->TextureImportMenu(true, &mWindow, demoGame->mainScene.GetEntityManager()->GetObjects(), *demoGame->mainScene.GetEntityManager());
 			mSubSystems->imGuiSystem->SceneTreeMenu(*demoGame->mainScene.GetEntityManager(), demoGame->mainScene.GetEntityManager()->GetObjects());
@@ -132,6 +147,14 @@ void Puly::Application::Run()
 			mSubSystems->imGuiSystem->PlayPauseMenu(*demoGame->mainScene.GetEntityManager());
 			mSubSystems->imGuiSystem->PerformanceMenu(true, deltaTime);
 			mSubSystems->imGuiSystem->TopMenu(demoGame->mainScene);
+			
+			ImGui::Begin("Viewport");
+
+			
+			uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererId();
+			ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f }, ImVec2{0, 0}, ImVec2{ 1, 1 });
+
+			ImGui::End();
 
 			mSubSystems->imGuiSystem->Render(&mWindow);
 
@@ -141,8 +164,6 @@ void Puly::Application::Run()
 				}
 			}
 		#endif
-
-		mWindow.Update();
 	}
 }
 

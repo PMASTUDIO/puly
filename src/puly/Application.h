@@ -19,6 +19,7 @@
 #include "ecs/EntityManager.h"
 
 #include "Game.h"
+#include "renderer/Framebuffer.h"
 
 namespace Puly {
 	#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
@@ -46,6 +47,8 @@ namespace Puly {
 		std::unique_ptr<OrthographicCamera2DController> m_CameraController;
 
 		std::unique_ptr<Game> demoGame;
+
+		std::shared_ptr<Framebuffer> m_Framebuffer;
 
 		float mLastFrameTime;
 
