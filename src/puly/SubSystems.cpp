@@ -1,6 +1,6 @@
 #include "SubSystems.h"
 
-SubSystems::SubSystems(Window* mainWindow) : mainWindow(mainWindow)
+SubSystems::SubSystems(Puly::Window* mainWindow) : mainWindow(mainWindow)
 {
 	imGuiSystem = std::make_shared<Puly::ImguiSystem>();
 }

@@ -5,6 +5,8 @@
 
 #include <GL/glew.h>
 
+namespace Puly {
+
 Window::Window() : m_Window(nullptr)
 {
 }
@@ -80,3 +82,6 @@ bool Window::ShouldClose()
 {
 	return glfwWindowShouldClose(m_Window);
 }
+
+}
+

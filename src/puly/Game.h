@@ -7,9 +7,7 @@
 
 #include "./lowlevel/Timestep.h"
 
-#include "ecs/EntityManager.h"
 #include "ecs/Scene2D.h"
-#include "ecs/components/Effects/ParticleEmitterComponent.h"
 
 namespace Puly {
 	
@@ -35,15 +33,13 @@ namespace Puly {
 
 		//std::unique_ptr<EntityManager> m_EntityManager;
 		Scene2D mainScene;
-
-		std::vector<Puly::GameObject*> boxes;
-
-		GameObject* m_Ball;
-		GameObject* m_Paddle;
-		GameObject* m_ParticleBallEmitter;
-
-		ParticleProps particleBall;
-
+//
+//		std::vector<Puly::GameObject*> boxes;
+///*
+//		GameObject* m_Ball;
+//		GameObject* m_Paddle;
+//		GameObject* m_ParticleBallEmitter;
+//*/
 		Window* mOwnerWindow;
 	};
 

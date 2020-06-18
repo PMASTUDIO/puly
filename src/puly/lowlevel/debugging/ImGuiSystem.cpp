@@ -19,14 +19,7 @@
 #include <string>
 #include "..//..//platform/FileOp.h"
 
-#include "../..//ecs/components/MoveComponent.h"
-
 #include <queue>
-#include "../../ecs/components/Flappy/FlappyControllerComponent.h"
-#include "../../ecs/components/BulletComponent.h"
-#include "../../ecs/components/ColoredSquare.h"
-#include "../../ecs/components/Breakout/BallBreakoutComponent.h"
-#include "../../ecs/components/Effects/ParticleEmitterComponent.h"
 
 float newLinePos[3];
 float newLineFinalPos[3];
@@ -126,104 +119,104 @@ void Puly::ImguiSystem::Shutdown()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 }
-
-void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*>& v_Objects)
-{
-
-	if (selectedGameObject > v_Objects.size() || em.IsEmpty()) {
-		selectedGameObject = -1;
-	}
-
-	if (selectedGameObject != -1) {
-		ImGui::Begin("Properties");
-
-		std::string pageName = "Properties for " + v_Objects[selectedGameObject]->m_DebugName;
-		ImGui::Text(pageName.c_str());
-
-		for (auto& component : v_Objects[selectedGameObject]->GetComponents()) {
-			component->DebugGUI();
-		}
-
-		ImGui::Separator();
-
-		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component", "Bullet Component", "Colored Component", "Breakout Ball Component", "Particle Component" };
-		static int listbox_item_current = 0;
-
-		//ImGui::ListBoxHeader("New Component", ImVec2(0, 200));
-		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items));
-		//ImGui::ListBoxFooter();
-
-		if (ImGui::Button("Add Component")) {
-			switch (listbox_item_current)
-			{
-			case 0:
-				v_Objects[selectedGameObject]->AddComponent<MoveComponent>(0.5f);
-				break;
-			case 1:
-				v_Objects[selectedGameObject]->AddComponent<ColliderComponent>(&em).SetEntityManager(&em);
-				break;
-			case 2:
-				v_Objects[selectedGameObject]->AddComponent<FlappyControllerComponent>(0.5f, 1.0f);
-				break;
-			case 3:
-				v_Objects[selectedGameObject]->AddComponent<BulletComponent>(0.5f);
-				break;
-			case 4:
-				v_Objects[selectedGameObject]->AddComponent<ColoredComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-				break;
-			case 5:
-				v_Objects[selectedGameObject]->AddComponent<BallBreakoutComponent>(5.0f);
-				break;
-			case 6:
-				v_Objects[selectedGameObject]->AddComponent<ParticleEmitterComponent>();
-				break;
-			default:
-				break;
-			}
-		}
-
-		ImGui::End();
-	}
-}
-
-void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*>& objects)
-{
-	ImGui::Begin("Scene");
-
-	if (ImGui::CollapsingHeader("Game Objects"))
-	{
-		int i = 0;
-		for (auto& item : objects) {
-
-			if (item->m_IsActive) {
-
-				if (ImGui::TreeNode(item->m_DebugName.c_str())) /*ImGui::Selectable(item.first.c_str())*/
-				{
-					ImGui::DragFloat3("Position", glm::value_ptr<float>(item->m_Position), 0.2f, -10.0f, 10.0f);
-					ImGui::DragFloat("Rotation", &item->m_Rotation, 1.0f, 0, 360.0f);
-					ImGui::DragFloat3("Scale", glm::value_ptr<float>(item->m_Scale), 0.2f, 0.0f, 10.0f);
-					if (ImGui::DragInt("Z-Index", &item->m_Priority)) {
-						em.SortByPriority();
-					}
-
-					if (ImGui::Button("Edit")) {
-						selectedGameObject = i;
-					}
-
-					if (ImGui::Button("Delete")) {
-						selectedGameObject = -1;
-						item->Destroy();
-					}
-
-					ImGui::TreePop();
-				}
-			}
-			i++;
-		}
-	}
-
-	ImGui::End();
-}
+//
+//void Puly::ImguiSystem::PropertyPanel(EntityManager& em, std::vector<GameObject*>& v_Objects)
+//{
+//
+//	if (selectedGameObject > v_Objects.size() || em.IsEmpty()) {
+//		selectedGameObject = -1;
+//	}
+//
+//	if (selectedGameObject != -1) {
+//		ImGui::Begin("Properties");
+//
+//		std::string pageName = "Properties for " + v_Objects[selectedGameObject]->m_DebugName;
+//		ImGui::Text(pageName.c_str());
+//
+//		for (auto& component : v_Objects[selectedGameObject]->GetComponents()) {
+//			component->DebugGUI();
+//		}
+//
+//		ImGui::Separator();
+//
+//		const char* listbox_items[] = { "2D Move Component", "Collider Component", "Flappy Controller Component", "Bullet Component", "Colored Component", "Breakout Ball Component", "Particle Component" };
+//		static int listbox_item_current = 0;
+//
+//		//ImGui::ListBoxHeader("New Component", ImVec2(0, 200));
+//		ImGui::ListBox("Components", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items));
+//		//ImGui::ListBoxFooter();
+//
+//		if (ImGui::Button("Add Component")) {
+//			switch (listbox_item_current)
+//			{
+//			case 0:
+//				v_Objects[selectedGameObject]->AddComponent<MoveComponent>(0.5f);
+//				break;
+//			case 1:
+//				v_Objects[selectedGameObject]->AddComponent<ColliderComponent>(&em).SetEntityManager(&em);
+//				break;
+//			case 2:
+//				v_Objects[selectedGameObject]->AddComponent<FlappyControllerComponent>(0.5f, 1.0f);
+//				break;
+//			case 3:
+//				v_Objects[selectedGameObject]->AddComponent<BulletComponent>(0.5f);
+//				break;
+//			case 4:
+//				v_Objects[selectedGameObject]->AddComponent<ColoredComponent>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+//				break;
+//			case 5:
+//				v_Objects[selectedGameObject]->AddComponent<BallBreakoutComponent>(5.0f);
+//				break;
+//			case 6:
+//				v_Objects[selectedGameObject]->AddComponent<ParticleEmitterComponent>();
+//				break;
+//			default:
+//				break;
+//			}
+//		}
+//
+//		ImGui::End();
+//	}
+//}
+//
+//void Puly::ImguiSystem::SceneTreeMenu(EntityManager& em, std::vector<GameObject*>& objects)
+//{
+//	ImGui::Begin("Scene");
+//
+//	if (ImGui::CollapsingHeader("Game Objects"))
+//	{
+//		int i = 0;
+//		for (auto& item : objects) {
+//
+//			if (item->m_IsActive) {
+//
+//				if (ImGui::TreeNode(item->m_DebugName.c_str())) /*ImGui::Selectable(item.first.c_str())*/
+//				{
+//					ImGui::DragFloat3("Position", glm::value_ptr<float>(item->m_Position), 0.2f, -10.0f, 10.0f);
+//					ImGui::DragFloat("Rotation", &item->m_Rotation, 1.0f, 0, 360.0f);
+//					ImGui::DragFloat3("Scale", glm::value_ptr<float>(item->m_Scale), 0.2f, 0.0f, 10.0f);
+//					if (ImGui::DragInt("Z-Index", &item->m_Priority)) {
+//						em.SortByPriority();
+//					}
+//
+//					if (ImGui::Button("Edit")) {
+//						selectedGameObject = i;
+//					}
+//
+//					if (ImGui::Button("Delete")) {
+//						selectedGameObject = -1;
+//						item->Destroy();
+//					}
+//
+//					ImGui::TreePop();
+//				}
+//			}
+//			i++;
+//		}
+//	}
+//
+//	ImGui::End();
+//}
 
 void Puly::ImguiSystem::BeginDockable()
 {
@@ -248,11 +241,11 @@ void Puly::ImguiSystem::TopMenu(Scene2D& scene)
 			}
 
 			if (ImGui::MenuItem("Save Level")) {
-				scene.GetEntityManager()->SaveScene();
+				//scene.GetEntityManager()->SaveScene();
 			}
 
 			if (ImGui::MenuItem("Save Level As")) {
-				scene.GetEntityManager()->SaveScene(false);
+				//scene.GetEntityManager()->SaveScene(false);
 			}
 
 			if (ImGui::MenuItem("Load Level")) {
@@ -273,68 +266,68 @@ void Puly::ImguiSystem::TopMenu(Scene2D& scene)
 		
 	}
 }
-
-void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em)
-{
-
-	if (show) {
-
-		ImGui::Begin("Game Object Menu");
-
-		ImGui::InputText("Identifier:", bufIdentifier, 50);
-		ImGui::InputFloat3("Initial Position:", initialPos);
-
-		if (ImGui::Button("New object from texture")) {
-
-			std::string pathTexture = Puly::openfilename();
-			PL_LOG_INFO("Path: {}", pathTexture);
-
-			fs::path absolutePath = fs::current_path();
-			fs::path resourcesPath = absolutePath.append("resources/textures/");
-
-			PL_LOG_INFO(resourcesPath.u8string());
-
-			copyFile(pathTexture, resourcesPath);
-
-
-			fs::path path = pathTexture;
-			fs::path relativePath = fs::path("resources/textures/").append(path.filename());
-
-			std::string fileNameString;
-			
-			if (strcmp(bufIdentifier, "")) {
-				fileNameString = bufIdentifier;
-				memset(bufIdentifier, 0, sizeof(bufIdentifier));
-			}
-			else {
-				// if it's empty then use the texture file name
-				fs::path fileName = path.stem();
-				fileNameString = fileName.u8string();
-			}
-
-			Puly::GameObject& bird(em.AddObject(1, fileNameString));
-			bird.AddComponent<Puly::SpriteRenderer>(relativePath.u8string().c_str());
-		}
-
-		if (ImGui::Button("New empty object")) {
-			std::string fileNameString;
-
-			if (strcmp(bufIdentifier, "")) {
-				fileNameString = bufIdentifier;
-				memset(bufIdentifier, 0, sizeof(bufIdentifier));
-			}
-			else {
-				// if it's empty then use the texture file name
-				fileNameString = "empty";
-			}
-
-			Puly::GameObject& newObj(em.AddObject(1, fileNameString));
-		}
-
-		ImGui::End();
-	}
-	
-}
+//
+//void Puly::ImguiSystem::TextureImportMenu(bool show, Window* window, std::vector<GameObject*> v_Objects, EntityManager& em)
+//{
+//
+//	if (show) {
+//
+//		ImGui::Begin("Game Object Menu");
+//
+//		ImGui::InputText("Identifier:", bufIdentifier, 50);
+//		ImGui::InputFloat3("Initial Position:", initialPos);
+//
+//		if (ImGui::Button("New object from texture")) {
+//
+//			std::string pathTexture = Puly::openfilename();
+//			PL_LOG_INFO("Path: {}", pathTexture);
+//
+//			fs::path absolutePath = fs::current_path();
+//			fs::path resourcesPath = absolutePath.append("resources/textures/");
+//
+//			PL_LOG_INFO(resourcesPath.u8string());
+//
+//			copyFile(pathTexture, resourcesPath);
+//
+//
+//			fs::path path = pathTexture;
+//			fs::path relativePath = fs::path("resources/textures/").append(path.filename());
+//
+//			std::string fileNameString;
+//			
+//			if (strcmp(bufIdentifier, "")) {
+//				fileNameString = bufIdentifier;
+//				memset(bufIdentifier, 0, sizeof(bufIdentifier));
+//			}
+//			else {
+//				// if it's empty then use the texture file name
+//				fs::path fileName = path.stem();
+//				fileNameString = fileName.u8string();
+//			}
+//
+//			Puly::GameObject& bird(em.AddObject(1, fileNameString));
+//			bird.AddComponent<Puly::SpriteRenderer>(relativePath.u8string().c_str());
+//		}
+//
+//		if (ImGui::Button("New empty object")) {
+//			std::string fileNameString;
+//
+//			if (strcmp(bufIdentifier, "")) {
+//				fileNameString = bufIdentifier;
+//				memset(bufIdentifier, 0, sizeof(bufIdentifier));
+//			}
+//			else {
+//				// if it's empty then use the texture file name
+//				fileNameString = "empty";
+//			}
+//
+//			Puly::GameObject& newObj(em.AddObject(1, fileNameString));
+//		}
+//
+//		ImGui::End();
+//	}
+//	
+//}
 
 std::queue<float> performanceStack;
 
@@ -367,22 +360,22 @@ void Puly::ImguiSystem::PerformanceMenu(bool show, Timestep dt)
 		ImGui::End();
 	}
 }
-
-void Puly::ImguiSystem::PlayPauseMenu(EntityManager& em)
-{
-	ImGui::Begin("Runtime");
-	
-	if(ImGui::Button("Play")) {
-		em.m_IsDebugging = false;
-	}
-
-	if (ImGui::Button("Pause")) {
-		em.m_IsDebugging = true;
-		//em.ResetObjects();
-	}
-
-	ImGui::End();
-}
+//
+//void Puly::ImguiSystem::PlayPauseMenu(Scene2D& em)
+//{
+//	ImGui::Begin("Runtime");
+//	
+//	if(ImGui::Button("Play")) {
+//		em.S() = false;
+//	}
+//
+//	if (ImGui::Button("Pause")) {
+//		em.m_IsDebugging = true;
+//		//em.ResetObjects();
+//	}
+//
+//	ImGui::End();
+//}
 
 void Puly::ImguiSystem::Render(Window* window)
 {

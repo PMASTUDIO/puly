@@ -577,17 +577,9 @@
       <Filter>src\puly\window</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\ecs\Component.h" />
-    <ClInclude Include="src\puly\ecs\EntityManager.h" />
-    <ClInclude Include="src\puly\ecs\components\MoveComponent.h" />
     <ClInclude Include="src\puly\physics\Collision.h" />
-    <ClInclude Include="src\puly\ecs\components\ColliderComponent.h" />
     <ClInclude Include="src\puly\lowlevel\Scene.h" />
     <ClInclude Include="src\puly\ecs\Scene2D.h" />
-    <ClInclude Include="src\puly\ecs\components\Flappy\FlappyControllerComponent.h" />
-    <ClInclude Include="src\puly\ecs\components\BulletComponent.h" />
-    <ClInclude Include="src\puly\ecs\components\ColoredSquare.h" />
-    <ClInclude Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.h" />
-    <ClInclude Include="src\puly\ecs\components\Effects\ParticleEmitterComponent.h" />
     <ClInclude Include="src\puly\lowlevel\Random.h" />
     <ClInclude Include="src\puly\opengl\OpenGLFramebuffer.h" />
     <ClInclude Include="src\puly\renderer\Framebuffer.h" />
@@ -689,17 +681,9 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\ecs\EntityManager.cpp" />
-    <ClCompile Include="src\puly\ecs\components\MoveComponent.cpp" />
-    <ClCompile Include="src\puly\ecs\components\ColliderComponent.cpp" />
     <ClCompile Include="src\puly\physics\Collision.cpp" />
     <ClCompile Include="src\puly\lowlevel\Scene.cpp" />
     <ClCompile Include="src\puly\ecs\Scene2D.cpp" />
-    <ClCompile Include="src\puly\ecs\components\Flappy\FlappyControllerComponent.cpp" />
-    <ClCompile Include="src\puly\ecs\components\BulletComponent.cpp" />
-    <ClCompile Include="src\puly\ecs\components\ColoredSquare.cpp" />
-    <ClCompile Include="src\puly\ecs\components\Breakout\BallBreakoutComponent.cpp" />
-    <ClCompile Include="src\puly\ecs\components\Effects\ParticleEmitterComponent.cpp" />
     <ClCompile Include="src\puly\lowlevel\Random.cpp" />
     <ClCompile Include="src\puly\renderer\Framebuffer.cpp" />
     <ClCompile Include="src\puly\opengl\OpenGLFramebuffer.cpp" />

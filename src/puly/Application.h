@@ -1,5 +1,6 @@
 #pragma once
 #include "window/Window.h"
+
 #include "SubSystems.h"
 
 #include <vector>
@@ -15,8 +16,6 @@
 
 #include "renderer/OrthographicCameraController.h"
 #include <glm/glm.hpp>
-
-#include "ecs/EntityManager.h"
 
 #include "Game.h"
 #include "renderer/Framebuffer.h"

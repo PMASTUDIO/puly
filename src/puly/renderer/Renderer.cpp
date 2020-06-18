@@ -61,7 +61,6 @@ namespace Puly {
 
 	void Renderer::EndScene()
 	{
-		
 	}
 
 	void Renderer::Draw2DQuad(const std::shared_ptr<Shader>& shader, const std::shared_ptr<Texture>& texture, const glm::mat4& transform)

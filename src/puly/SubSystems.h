@@ -9,7 +9,7 @@
 
 class SubSystems {
 public:
-	SubSystems(Window* mainWindow);
+	SubSystems(Puly::Window* mainWindow);
 	~SubSystems();
 
 	bool Init();
@@ -19,6 +19,6 @@ public:
 	Puly::Configurations configurator;
 	std::shared_ptr<Puly::ImguiSystem> imGuiSystem;
 
-	Window* mainWindow;
+	Puly::Window* mainWindow;
 };
 
