@@ -49,17 +49,14 @@
     <Filter Include="src\puly">
       <UniqueIdentifier>{869935CF-7266-90DA-9B7F-7E8287ABC568}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\puly\ecs">
+      <UniqueIdentifier>{306DEE3B-1CD0-7DE0-C555-B696B1974963}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\puly\lowlevel">
       <UniqueIdentifier>{FF34AAB5-6B4B-A84B-B4C2-336D201879D3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\puly\lowlevel\dataStructures">
-      <UniqueIdentifier>{EC6D8C84-D8BE-77C6-0123-6688EDD20A30}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\puly\lowlevel\debugging">
       <UniqueIdentifier>{9A7D1203-068B-40E9-8F71-3CD4FB7D0CA0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\puly\lowlevel\debugging\primitives">
-      <UniqueIdentifier>{552BC8C5-417D-9FB5-2A9C-DCC5168DB89E}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\puly\lowlevel\iniParser">
       <UniqueIdentifier>{1B97F35B-87A4-2142-108B-1D2D7C97EDF8}</UniqueIdentifier>
@@ -69,6 +66,9 @@
     </Filter>
     <Filter Include="src\puly\opengl">
       <UniqueIdentifier>{5AA84631-C633-B4F5-CF44-37EA3B4F10F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\puly\physics">
+      <UniqueIdentifier>{185BD995-0454-F8E7-2D86-DD6C19DED7F3}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\puly\platform">
       <UniqueIdentifier>{BA88024D-269F-00E3-6F16-8C04DB6BD16A}</UniqueIdentifier>
@@ -480,6 +480,12 @@
     <ClInclude Include="src\puly\SubSystems.h">
       <Filter>src\puly</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\ecs\Component.h">
+      <Filter>src\puly\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\ecs\Scene2D.h">
+      <Filter>src\puly\ecs</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\BaseEvents.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
@@ -498,7 +504,13 @@
     <ClInclude Include="src\puly\lowlevel\MouseButtonCodes.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\Random.h">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\lowlevel\ResourceManager.h">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\lowlevel\Scene.h">
       <Filter>src\puly\lowlevel</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\lowlevel\Timestep.h">
@@ -522,6 +534,9 @@
     <ClInclude Include="src\puly\opengl\OpenGLBuffer.h">
       <Filter>src\puly\opengl</Filter>
     </ClInclude>
+    <ClInclude Include="src\puly\opengl\OpenGLFramebuffer.h">
+      <Filter>src\puly\opengl</Filter>
+    </ClInclude>
     <ClInclude Include="src\puly\opengl\OpenGLRendererApi.h">
       <Filter>src\puly\opengl</Filter>
     </ClInclude>
@@ -530,6 +545,9 @@
     </ClInclude>
     <ClInclude Include="src\puly\opengl\OpenGlTexture2D.h">
       <Filter>src\puly\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\physics\Collision.h">
+      <Filter>src\puly\physics</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\platform\FileOp.h">
       <Filter>src\puly\platform</Filter>
@@ -541,6 +559,9 @@
       <Filter>src\puly\platform\windows</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\renderer\Buffer.h">
+      <Filter>src\puly\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\puly\renderer\Framebuffer.h">
       <Filter>src\puly\renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\puly\renderer\OrthographicCamera.h">
@@ -576,13 +597,6 @@
     <ClInclude Include="src\puly\window\WindowsInput.h">
       <Filter>src\puly\window</Filter>
     </ClInclude>
-    <ClInclude Include="src\puly\ecs\Component.h" />
-    <ClInclude Include="src\puly\physics\Collision.h" />
-    <ClInclude Include="src\puly\lowlevel\Scene.h" />
-    <ClInclude Include="src\puly\ecs\Scene2D.h" />
-    <ClInclude Include="src\puly\lowlevel\Random.h" />
-    <ClInclude Include="src\puly\opengl\OpenGLFramebuffer.h" />
-    <ClInclude Include="src\puly\renderer\Framebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -618,10 +632,19 @@
     <ClCompile Include="src\puly\SubSystems.cpp">
       <Filter>src\puly</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\ecs\Scene2D.cpp">
+      <Filter>src\puly\ecs</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\lowlevel\Configuration.cpp">
       <Filter>src\puly\lowlevel</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\Random.cpp">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\lowlevel\ResourceManager.cpp">
+      <Filter>src\puly\lowlevel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\lowlevel\Scene.cpp">
       <Filter>src\puly\lowlevel</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\lowlevel\debugging\ImGuiSystem.cpp">
@@ -636,6 +659,9 @@
     <ClCompile Include="src\puly\opengl\OpenGLBuffer.cpp">
       <Filter>src\puly\opengl</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\opengl\OpenGLFramebuffer.cpp">
+      <Filter>src\puly\opengl</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\opengl\OpenGLRendererApi.cpp">
       <Filter>src\puly\opengl</Filter>
     </ClCompile>
@@ -645,7 +671,13 @@
     <ClCompile Include="src\puly\opengl\OpenGlTexture2D.cpp">
       <Filter>src\puly\opengl</Filter>
     </ClCompile>
+    <ClCompile Include="src\puly\physics\Collision.cpp">
+      <Filter>src\puly\physics</Filter>
+    </ClCompile>
     <ClCompile Include="src\puly\renderer\Buffer.cpp">
+      <Filter>src\puly\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\puly\renderer\Framebuffer.cpp">
       <Filter>src\puly\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\puly\renderer\OrthographicCamera.cpp">
@@ -681,11 +713,5 @@
     <ClCompile Include="src\puly\window\WindowsInput.cpp">
       <Filter>src\puly\window</Filter>
     </ClCompile>
-    <ClCompile Include="src\puly\physics\Collision.cpp" />
-    <ClCompile Include="src\puly\lowlevel\Scene.cpp" />
-    <ClCompile Include="src\puly\ecs\Scene2D.cpp" />
-    <ClCompile Include="src\puly\lowlevel\Random.cpp" />
-    <ClCompile Include="src\puly\renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\puly\opengl\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ workspace "Puly Engine"
 project "Puly"
    kind "ConsoleApp"
    language "C++"
+   cppdialect "C++17"
    targetdir "bin/%{cfg.buildcfg}"
 
    includedirs { "include", "src/imgui" }

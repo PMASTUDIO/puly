@@ -13,11 +13,11 @@
 
 #include "../window/Window.h"
 #include "../lowlevel/Scene.h"
+
+#include "../ecs/Scene2D.h"
 //class Component;
 
 namespace Puly {
-
-	class EntityManager;
 
 	class GameObject {
 	public:
@@ -31,7 +31,8 @@ namespace Puly {
 
 		bool m_Debugging = false;
 
-		GameObject(Window& owner, int priority, std::string debugName, bool isProcedural = false, glm::vec3 m_Position = glm::vec3(0.0f), glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f));
+		GameObject() = default;
+		GameObject(Window& owner, int priority, std::string debugName, entt::entity handle, Scene2D* sceneOwner, bool isProcedural = false);
 
 		void Update(Timestep dt);
 		
@@ -41,34 +42,25 @@ namespace Puly {
 
 		template <typename T, typename... TArgs>
 		T& AddComponent(TArgs&& ... args) {
-			T* newComponent(new T(std::forward<TArgs>(args)...));
-
-			newComponent->m_Owner = this;
-			v_Components.emplace_back(newComponent);
-			v_ComponentsTypeMap[&typeid(*newComponent)] = newComponent;
-			newComponent->Init();
-
-			return *newComponent;
+			return m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<TArgs>(args)...);
 		}
 
 		template <typename T>
 		void RemoveComponent() {
-			Component* compToDelete = GetComponent<T>();
-			v_Components.erase(std::remove(v_Components.begin(), v_Components.end(), compToDelete), v_Components.end());
-			v_ComponentsTypeMap.erase(&typeid(T));
+			m_Scene->m_Registry.remove<T>();
 		}
 
 		template <typename T>
 		bool HasComponent() const {
-			return v_ComponentsTypeMap.count(&typeid(T));
+			return m_Scene->m_Registry.has<T>(m_EntityHandle);
 		}
 
 		template <typename T>
 		T* GetComponent() {
-			return static_cast<T*>(v_ComponentsTypeMap[&typeid(T)]);
+			return m_Scene->m_Registry.try_get<T>(m_EntityHandle);
 		}
 
-		std::vector<Component*> GetComponents() const { return v_Components; }
+		//std::vector<Component*> GetComponents() const { return v_Components; }
 
 		void ResetComponents();
 
@@ -81,8 +73,13 @@ namespace Puly {
 		void SaveInLevel(GameLevel& levelSave);
 
 	private:
+		entt::entity m_EntityHandle;
+		Scene2D* m_Scene = nullptr;
+
+		friend class Scene2D;
+/*
 		std::vector<Component*> v_Components;
-		std::map<const std::type_info* , Component*> v_ComponentsTypeMap;
+		std::map<const std::type_info* , Component*> v_ComponentsTypeMap;*/
 		bool m_IsProcedural;
 	};
 

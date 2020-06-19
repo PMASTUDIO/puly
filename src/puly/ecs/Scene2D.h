@@ -2,17 +2,19 @@
 
 #include <memory>
 #include <string>
+#include "entt/entt.hpp"
 
 #include "../lowlevel/Timestep.h"
 
 namespace Puly {
 
 	class Window;
+	class GameObject;
 
 	class Scene2D {
 	public:
 
-		Scene2D(Window& window);
+		Scene2D(Window& window, const std::string& debugName = "Scene");
 		~Scene2D();
 
 		void OnStart();
@@ -27,11 +29,23 @@ namespace Puly {
 
 		bool GetIsDebugging() const { return m_IsDebugging; }
 
+		GameObject CreateEntity(Window& windowOwner, int priority, const std::string& name = "");
+		void DestroyEntity(GameObject entity);
+
+
 	private:
-		//std::shared_ptr<EntityManager> m_EntityManager;
+		uint32_t m_SceneID;
+		entt::entity m_SceneEntity;
+
+		entt::registry m_Registry;
+
+		std::string m_DebugName;
+
 		std::string m_Path;
 
 		bool m_IsDebugging;
+
+		friend class GameObject;
 	};
 
 }

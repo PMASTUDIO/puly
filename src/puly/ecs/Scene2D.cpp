@@ -1,10 +1,11 @@
 #include "Scene2D.h"
 #include "../lowlevel/Scene.h"
 #include "../lowlevel/Timestep.h"
+#include "../objects/GameObject.h"
 
 namespace Puly {
 
-	Scene2D::Scene2D(Window& window)
+	Scene2D::Scene2D(Window& window, const std::string& debugName)
 	{
 		//m_EntityManager = std::make_shared<EntityManager>(&window);
 	}
@@ -102,6 +103,18 @@ namespace Puly {
 		//}
 
 		sceneConfig.Shutdown();
+	}
+
+	Puly::GameObject Scene2D::CreateEntity(Window& windowOwner, int priority, const std::string& name /*= ""*/)
+	{
+		auto entity = GameObject(windowOwner, priority, name, m_Registry.create(), this, false);
+		// Add basics components
+		return entity;
+	}
+
+	void Scene2D::DestroyEntity(GameObject entity)
+	{
+		m_Registry.destroy(entity.m_EntityHandle);
 	}
 
 }
